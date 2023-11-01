@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="name_app"></style>
+    <color name="name_app_color">@color/green_app</color>
+    <style name="name_app_style">bold</style>
+
+    <style name="bienvenida_home"></style>
+    <style name="bienvenida_home_style">bold</style>
+
+    <style name="Theme.App" parent="Theme.MaterialComponents">
+        ...
+        <item name="colorSecondary">@color/green_app</item>
+        <item name="colorOnSecondary">@color/beige_app</item>
+        <item name="colorOnSurface">@color/pink_app</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
+</resources>

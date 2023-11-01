@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Principal">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="400dp"
+        android:layout_height="808dp"
+        android:src="@drawable/background_pantalla_principal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_eco_recicla"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="sans-serif-black"
+        android:paddingVertical="6dp"
+        android:text="@string/principal_app"
+        android:textAlignment="textStart"
+        android:textAllCaps="true"
+        android:textColor="@color/green_app"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/menu_hamburguesa_categorias"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:layout_gravity="end"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:src="@drawable/ic_menu_hamburguesa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/logo_categorias"
+        android:layout_width="116dp"
+        android:layout_height="115dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/ic_logo_app"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_categorias"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="240dp"
+        android:backgroundTint="@color/beige_app"
+        android:text="CATEGORÍAS"
+        android:textAllCaps="true"
+        android:textColor="@color/green_app"
+        android:textSize="35sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_estadistica"
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/beige_app"
+        android:text="ESTADÍSTICA"
+        android:textAllCaps="true"
+        android:textColor="@color/green_app"
+        android:textSize="35sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_categorias" />
+
+    <Button
+        android:id="@+id/btn_consejos"
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/beige_app"
+        android:text="CONSEJOS"
+        android:textAllCaps="true"
+        android:textColor="@color/green_app"
+        android:textSize="35sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_estadistica" />
+
+    <ImageView
+        android:id="@+id/icono_usuario_pantalla_principal"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_usuario_pantalla_principal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_consejos"
+        app:tint="@color/beige_app" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Usuario_Correcto"
+        android:textAlignment="center"
+        android:textColor="@color/beige_app"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/icono_usuario_pantalla_principal" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
