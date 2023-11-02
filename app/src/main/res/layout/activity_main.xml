@@ -180,12 +180,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="148dp"
+            android:layout_marginTop="152dp"
            >
 
             <Button
                 android:id="@+id/btn_iniciar_sesion_home"
-                android:layout_width="154dp"
+                android:layout_width="170dp"
                 android:layout_height="48dp"
                 android:backgroundTint="@color/beige_app"
                 android:text="@string/login_home"
@@ -198,14 +198,15 @@
 
             <Button
                 android:id="@+id/btn_registrarse_home"
-                android:layout_width="154dp"
+                android:layout_width="170dp"
                 android:layout_height="48dp"
                 android:backgroundTint="@color/beige_app"
                 android:text="@string/signup_home"
                 android:textStyle="bold"
                 android:textColor="@color/green_app"
                 android:textSize="20sp"
-                android:layout_marginStart="62dp"
+                android:layout_marginStart="34dp"
+                android:layout_marginEnd="10dp"
                 />
         </LinearLayout>
     </LinearLayout>
