@@ -9,92 +9,80 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="-1dp"
+        android:layout_marginTop="-64dp"
+        android:scaleType="matrix"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/background_pantalla_login" />
+        app:srcCompat="@drawable/img" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
         android:orientation="vertical"
+        android:paddingHorizontal="10dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginBottom="-14dp"
-            android:text="Usuario"
-            android:textColor="@color/white"
-            android:textSize="20sp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/beige_app"
+            android:textColorHint="@color/green_app"
+            android:gravity="center"
+            android:layout_marginBottom="2dp"
+            android:paddingHorizontal="2dp">
 
-            />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="316dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            app:cardCornerRadius="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/user_login"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:hint="Ingrese el usuario"
-                android:paddingStart="8dp"
-                android:textColor="@color/green_app"
-                android:textSize="24dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/user"
+                android:inputType="textEmailAddress"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                />
 
-        </androidx.cardview.widget.CardView>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/beige_app"
+            android:textColorHint="@color/green_app"
+            android:gravity="center"
+            android:paddingBottom="2dp"
+            android:paddingHorizontal="2dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginBottom="-14dp"
-            android:text="Contraseña"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-
-            />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="316dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            app:cardCornerRadius="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_login"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:hint="Ingrese contraseña"
-                android:paddingStart="8dp"
-                android:textColor="@color/green_app"
-                android:textSize="24dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-                />
-
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_iniciar_sesion"
             android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:backgroundTint="@color/beige_app"
             android:text="Inicar sesión"
             android:textColor="@color/green_app"

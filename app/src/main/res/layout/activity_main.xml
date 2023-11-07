@@ -16,12 +16,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top">
 
-        <View
-            android:id="@+id/background_top_home"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_gravity="top"
-            android:background="@color/white" />
 
         <TextView
             android:id="@+id/title_eco_recicla"
