@@ -83,7 +83,7 @@ public class Principal extends AppCompatActivity {
 
     private void showCurrentSesion() {
         if(currentUser == null){
-            Intent intentLogin = new Intent(getApplicationContext(), Login2.class);
+            Intent intentLogin = new Intent(getApplicationContext(), Login.class);
             startActivity(intentLogin);
             finish();
         } else{
@@ -96,8 +96,8 @@ public class Principal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intentLogin = new Intent(getApplicationContext(), Login2.class);
-                startActivity(intentLogin);
+                Intent intentLogout = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intentLogout);
                 finish();
             }
         });
