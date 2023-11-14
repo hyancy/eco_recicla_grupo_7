@@ -7,19 +7,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
 public class Principal extends AppCompatActivity {
-    Button btnCategorias, btnEstadistica, btnConsejos;
+    Button btnCategorias, btnEstadistica, btnConsejos, btnLogout;
+    TextView tvUserCurrent;
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
 
         initComponents();
         listenersButtons();
+        showCurrentSesion();
+        logoutCurrentSesion();
 
     }
 
@@ -27,6 +38,10 @@ public class Principal extends AppCompatActivity {
         btnCategorias = findViewById(R.id.btn_categorias);
         btnEstadistica = findViewById(R.id.btn_estadistica);
         btnConsejos = findViewById(R.id.btn_consejos);
+
+        tvUserCurrent = findViewById(R.id.user_current);
+        btnLogout = findViewById(R.id.btn_logout);
+
     }
 
     private void listenersButtons() {
@@ -65,4 +80,27 @@ public class Principal extends AppCompatActivity {
 
         return listaIntents;
     }
+
+    private void showCurrentSesion() {
+        if(currentUser == null){
+            Intent intentLogin = new Intent(getApplicationContext(), Login.class);
+            startActivity(intentLogin);
+            finish();
+        } else{
+            tvUserCurrent.setText(currentUser.getEmail());
+        }
+    }
+
+    private void logoutCurrentSesion() {
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intentLogout = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intentLogout);
+                finish();
+            }
+        });
+    }
+
 }

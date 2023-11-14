@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -15,19 +16,16 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.ArrayList;
-
-public class Login extends AppCompatActivity {
-    Button iniciarSesion;
-    TextInputEditText userLogin, passwordLogin;
+public class Register2 extends AppCompatActivity {
+    TextInputEditText edtUser, edtPassword;
+    Button btnRegister;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
-    TextView tvNoTieneCuentaRegistrate;
+    TextView loginNow;
 
     @Override
     public void onStart() {
@@ -43,77 +41,74 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register2);
         mAuth = FirebaseAuth.getInstance();
 
         initComponents();
-        listenersButtons();
+        listeners();
     }
 
-    private void initComponents() {
-        iniciarSesion = findViewById(R.id.btn_iniciar_sesion);
-        userLogin = findViewById(R.id.user_login);
-        passwordLogin = findViewById(R.id.password_login);
-        progressBar = findViewById(R.id.progress_bar);
-
-        tvNoTieneCuentaRegistrate = findViewById(R.id.tv_no_tiene_cuenta);
-    }
-
-    private void listenersButtons() {
-        iniciarSesion.setOnClickListener(new View.OnClickListener() {
+    private void listeners() {
+        loginNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intenLogin = new Intent(getApplicationContext(), Login2.class);
+                startActivity(intenLogin);
+                finish();
+            }
+        });
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(v.VISIBLE);
                 String user, password;
-                user = userLogin.getText().toString();
-                password = passwordLogin.getText().toString();
+                user = edtUser.getText().toString();
+                password = edtPassword.getText().toString();
 
                 if (TextUtils.isEmpty(user)) {
-                    Toast.makeText(getApplicationContext(), "Ingrese su usuario", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Register2.this, "Ingrese un email", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Ingrese su contraseña", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Register2.this, "Ingrese una contraseña", Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                mAuth.signInWithEmailAndPassword(user, password)
+
+                mAuth.createUserWithEmailAndPassword(user, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(v.GONE);
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
-                                    Toast.makeText(getApplicationContext(), "Login exitoso!",
+                                    Toast.makeText(Register2.this, "Cuenta creada con exito!.",
                                             Toast.LENGTH_SHORT).show();
-                                    startActivity(initIntents().get(0));
-                                    finish();
+                                    cleanComponents();
+                                    FirebaseAuth.getInstance().signOut();
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Toast.makeText(getApplicationContext(), "Login fallido, compruebe sus datos de ingreso!.",
+                                    Toast.makeText(Register2.this, "No se pudo crear la cuenta!.",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
             }
         });
-        tvNoTieneCuentaRegistrate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(initIntents().get(1));
-                finish();
-            }
-        });
     }
 
-    private ArrayList<Intent> initIntents() {
-        ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentPrincipal = new Intent(Login.this, Principal.class);
-        Intent intentRegistroUsuario = new Intent(Login.this, RegistroUsario.class);
+    private void initComponents() {
+        edtUser = findViewById(R.id.user);
+        edtPassword = findViewById(R.id.password);
+        btnRegister = findViewById(R.id.btn_register);
 
-        listaIntents.add(intentPrincipal);
-        listaIntents.add(intentRegistroUsuario);
+        progressBar = findViewById(R.id.progress_bar);
+        loginNow = findViewById(R.id.login_now);
+    }
 
-        return listaIntents;
+    private void cleanComponents(){
+        edtUser.setText("");
+        edtPassword.setText("");
     }
 }

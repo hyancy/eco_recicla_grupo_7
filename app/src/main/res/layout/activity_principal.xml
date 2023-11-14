@@ -108,6 +108,7 @@
         app:tint="@color/beige_app" />
 
     <TextView
+        android:id="@+id/user_current"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Usuario_Correcto"
@@ -118,6 +119,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icono_usuario_pantalla_principal" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerrar\nsesión"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="170dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

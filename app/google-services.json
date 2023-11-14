@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "849014397018",
+    "project_id": "eco-recicla",
+    "storage_bucket": "eco-recicla.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849014397018:android:30a1e449f6270be7cf2063",
+        "android_client_info": {
+          "package_name": "com.hyancy.eco_recicla_reto_1_grupo_7"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdsqPyfdPotOmAixVw2Wf5AvUDRycX6v0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
