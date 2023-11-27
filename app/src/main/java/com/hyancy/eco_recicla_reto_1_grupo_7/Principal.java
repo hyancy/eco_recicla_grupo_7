@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,7 +67,7 @@ public class Principal extends AppCompatActivity {
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentCategorias = new Intent(Principal.this, Category.class);
+        Intent intentCategorias = new Intent(Principal.this, Categoria.class);
         Intent intentEstadisticas = new Intent(Principal.this, Statistic.class);
         Intent intentConsejos = new Intent(Principal.this, Consejos.class);
         Intent intentLogout = new Intent(Principal.this, MainActivity.class);

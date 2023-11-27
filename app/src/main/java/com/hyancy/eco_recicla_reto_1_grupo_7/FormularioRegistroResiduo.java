@@ -75,7 +75,7 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentCategorias = new Intent(FormularioRegistroResiduo.this, Category.class);
+        Intent intentCategorias = new Intent(FormularioRegistroResiduo.this, Categoria.class);
         Intent intentEstadisticas = new Intent(FormularioRegistroResiduo.this, Statistic.class);
         Intent intentConsejos = new Intent(FormularioRegistroResiduo.this, Consejos.class);
         Intent intentLogout= new Intent(FormularioRegistroResiduo.this, MainActivity.class);
