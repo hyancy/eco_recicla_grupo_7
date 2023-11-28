@@ -3,11 +3,14 @@ package com.hyancy.eco_recicla_reto_1_grupo_7;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,11 +26,11 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 
 public class Login extends AppCompatActivity {
-    Button iniciarSesion;
+    Button btnLogin;
     TextInputEditText userLogin, passwordLogin;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
-    TextView tvNoTieneCuentaRegistrate;
+    TextView tvNoHaveCount, tvForgottenPassword;
 
     @Override
     public void onStart() {
@@ -51,16 +54,17 @@ public class Login extends AppCompatActivity {
     }
 
     private void initComponents() {
-        iniciarSesion = findViewById(R.id.btn_iniciar_sesion);
+        btnLogin = findViewById(R.id.btn_iniciar_sesion);
         userLogin = findViewById(R.id.user_login);
         passwordLogin = findViewById(R.id.password_login);
         progressBar = findViewById(R.id.progress_bar);
 
-        tvNoTieneCuentaRegistrate = findViewById(R.id.tv_no_tiene_cuenta);
+        tvNoHaveCount = findViewById(R.id.tv_no_tiene_cuenta);
+        tvForgottenPassword = findViewById(R.id.tv_olvido_contraseña);
     }
 
     private void listenersButtons() {
-        iniciarSesion.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(v.VISIBLE);
@@ -97,11 +101,18 @@ public class Login extends AppCompatActivity {
                         });
             }
         });
-        tvNoTieneCuentaRegistrate.setOnClickListener(new View.OnClickListener() {
+        tvNoHaveCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(initIntents().get(1));
                 finish();
+            }
+        });
+
+        tvForgottenPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogFogottenPassword();
             }
         });
     }
@@ -115,5 +126,14 @@ public class Login extends AppCompatActivity {
         listaIntents.add(intentRegistroUsuario);
 
         return listaIntents;
+    }
+
+
+    private void showDialogFogottenPassword() {
+
+        AlertDialog.Builder dialogForgottenPassword = new AlertDialog.Builder(this);
+        dialogForgottenPassword.setView(R.layout.dialog_forgotten_password).create().show();
+
+
     }
 }
