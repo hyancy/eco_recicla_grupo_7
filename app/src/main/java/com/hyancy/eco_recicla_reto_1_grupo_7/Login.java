@@ -128,12 +128,8 @@ public class Login extends AppCompatActivity {
         return listaIntents;
     }
 
-
     private void showDialogFogottenPassword() {
-
         AlertDialog.Builder dialogForgottenPassword = new AlertDialog.Builder(this);
         dialogForgottenPassword.setView(R.layout.dialog_forgotten_password).create().show();
-
-
     }
 }
