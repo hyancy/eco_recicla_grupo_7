@@ -89,8 +89,13 @@
                 app:cardCornerRadius="20dp">
 
                 <EditText
+<<<<<<< HEAD
                     android:id="@+id/name_user_register"
                     android:layout_width="340dp"
+=======
+                    android:id="@+id/et_nombre"
+                    android:layout_width="match_parent"
+>>>>>>> 7dd5f25cb51281247a50b3985d00ac25ea33fef6
                     android:layout_height="match_parent"
                     android:background="@color/grey_app"
                     android:hint="@string/hint_name_user_register"
@@ -110,8 +115,13 @@
                 app:cardCornerRadius="20dp">
 
                 <EditText
+<<<<<<< HEAD
                     android:id="@+id/email_user_register"
                     android:layout_width="340dp"
+=======
+                    android:id="@+id/et_email"
+                    android:layout_width="match_parent"
+>>>>>>> 7dd5f25cb51281247a50b3985d00ac25ea33fef6
                     android:layout_height="match_parent"
                     android:background="@color/grey_app"
                     android:hint="@string/hint_email_user_register"
@@ -131,8 +141,13 @@
                 app:cardCornerRadius="20dp">
 
                 <EditText
+<<<<<<< HEAD
                     android:id="@+id/confirm_email_user_register"
                     android:layout_width="340dp"
+=======
+                    android:id="@+id/et_usuario"
+                    android:layout_width="match_parent"
+>>>>>>> 7dd5f25cb51281247a50b3985d00ac25ea33fef6
                     android:layout_height="match_parent"
                     android:background="@color/grey_app"
                     android:hint="@string/hint_confirm_email_user_register"
@@ -152,8 +167,13 @@
                 app:cardCornerRadius="20dp">
 
                 <EditText
+<<<<<<< HEAD
                     android:id="@+id/password_user_register"
                     android:layout_width="340dp"
+=======
+                    android:id="@+id/et_contraseña"
+                    android:layout_width="match_parent"
+>>>>>>> 7dd5f25cb51281247a50b3985d00ac25ea33fef6
                     android:layout_height="match_parent"
                     android:background="@color/grey_app"
                     android:hint="@string/hint_password_user_register"
@@ -173,8 +193,13 @@
                 app:cardCornerRadius="20dp">
 
                 <EditText
+<<<<<<< HEAD
                     android:id="@+id/confirm_password_user_register"
                     android:layout_width="340dp"
+=======
+                    android:id="@+id/et_confirmar_contraseña"
+                    android:layout_width="match_parent"
+>>>>>>> 7dd5f25cb51281247a50b3985d00ac25ea33fef6
                     android:layout_height="match_parent"
                     android:background="@color/grey_app"
                     android:autofillHints="password"
