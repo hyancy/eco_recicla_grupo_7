@@ -62,6 +62,7 @@
                 app:cardCornerRadius="20dp">
 
                 <EditText
+                    android:id="@+id/et_nombre"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/grey_app"
@@ -79,6 +80,7 @@
                 app:cardCornerRadius="20dp">
 
                 <EditText
+                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/grey_app"
@@ -96,6 +98,7 @@
                 app:cardCornerRadius="20dp">
 
                 <EditText
+                    android:id="@+id/et_usuario"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/grey_app"
@@ -113,6 +116,7 @@
                 app:cardCornerRadius="20dp">
 
                 <EditText
+                    android:id="@+id/et_contraseña"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/grey_app"
@@ -130,6 +134,7 @@
                 app:cardCornerRadius="20dp">
 
                 <EditText
+                    android:id="@+id/et_confirmar_contraseña"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/grey_app"

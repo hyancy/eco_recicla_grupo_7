@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="#E8E3CA"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Complete todos los datos para poderse registrarse"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textColor="#2A782D"
+        />
+    <Button
+        android:id="@+id/btn_acepta_todo"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Aceptar"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="#2A782D"
+        />
+</LinearLayout>
