@@ -15,13 +15,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+//import com.google.android.gms.tasks.OnCompleteListener;
+//import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+//import com.google.firebase.auth.AuthResult;
+//import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -29,30 +28,32 @@ public class Login extends AppCompatActivity {
     Button btnLogin;
     TextInputEditText userLogin, passwordLogin;
     ProgressBar progressBar;
-    FirebaseAuth mAuth;
+    //FirebaseAuth mAuth;
     TextView tvNoHaveCount, tvForgottenPassword;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent intentPrincipal = new Intent(getApplicationContext(), Principal.class);
-            startActivity(intentPrincipal);
-            finish();
+    /*
+        @Override
+        public void onStart() {
+            super.onStart();
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            if(currentUser != null){
+                Intent intentPrincipal = new Intent(getApplicationContext(), Principal.class);
+                startActivity(intentPrincipal);
+                finish();
+            }
         }
-    }
-
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance();
 
-        initComponents();
-        listenersButtons();
+        //initComponents();
+        //listenersButtons();
     }
-
+}
+/*
     private void initComponents() {
         btnLogin = findViewById(R.id.btn_iniciar_sesion);
         userLogin = findViewById(R.id.user_login);
@@ -133,3 +134,4 @@ public class Login extends AppCompatActivity {
         dialogForgottenPassword.setView(R.layout.dialog_forgotten_password).create().show();
     }
 }
+*/
