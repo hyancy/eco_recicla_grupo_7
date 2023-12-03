@@ -43,4 +43,5 @@
     <string name="terminos_condiciones_user_register">Acepto términos y condiciones.</string>
     <string name="privacidad_user_register">Acepto políticas de privacidad y manejo de datos.</string>
     <string name="tienes_cuenta_user_register">¿Ya tienes cuenta? Inicia sesión.</string>
+    <string name="user_email">Email o usuario</string>
 </resources>

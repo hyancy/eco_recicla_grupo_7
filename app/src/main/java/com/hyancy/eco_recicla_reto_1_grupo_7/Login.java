@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -36,7 +39,7 @@ public class Login extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
+        if (currentUser != null) {
             Intent intentPrincipal = new Intent(getApplicationContext(), Principal.class);
             startActivity(intentPrincipal);
             finish();
@@ -129,7 +132,44 @@ public class Login extends AppCompatActivity {
     }
 
     private void showDialogFogottenPassword() {
-        AlertDialog.Builder dialogForgottenPassword = new AlertDialog.Builder(this);
-        dialogForgottenPassword.setView(R.layout.dialog_forgotten_password).create().show();
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_forgotten_password, null);
+
+        dialogBuilder.setView(view);
+
+        final AlertDialog dialog = dialogBuilder.create();
+        dialog.show();
+
+        TextInputEditText edtUser = view.findViewById(R.id.edt_user);
+        //TextInputEditText edtEmail = view.findViewById(R.id.edt_email);
+        Button btnAceptSendPassword = view.findViewById(R.id.btn_acept);
+        Button btnCancelSendPassword = view.findViewById(R.id.btn_cancel);
+
+        btnAceptSendPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String user = edtUser.getText().toString();
+                //String email = edtEmail.getText().toString();
+                System.out.println("EL USUARIO ES " + user);
+                if (user.isEmpty() /*|| email.isEmpty()*/) {
+                    Toast.makeText(getApplicationContext(), "Completa todos los datos!!!", Toast.LENGTH_LONG).show();
+                } else if (!user.toString().equals("usuario en FireBase") /*&& !email.equals("correo en FireBase")*/) {
+                    Toast.makeText(getApplicationContext(), "Usuario no registrado!!!", Toast.LENGTH_LONG).show();
+                } else {
+                    // TODO ENVIAR CORREO PARA REINICIAR CONTRASEÑA
+                    Toast.makeText(view.getContext(), "Revise su correo electrónico", Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        btnCancelSendPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
     }
 }
