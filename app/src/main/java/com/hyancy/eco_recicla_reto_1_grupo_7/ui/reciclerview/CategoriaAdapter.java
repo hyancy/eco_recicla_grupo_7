@@ -1,4 +1,4 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7.reciclerview;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui.reciclerview;
 
 import android.view.LayoutInflater;
 import android.view.View;

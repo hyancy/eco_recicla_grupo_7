@@ -1,28 +1,22 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
-import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.hyancy.eco_recicla_reto_1_grupo_7.reciclerview.CategoriaAdapter;
-import com.hyancy.eco_recicla_reto_1_grupo_7.reciclerview.ModeloCategoria;
+import com.hyancy.eco_recicla_reto_1_grupo_7.R;
+import com.hyancy.eco_recicla_reto_1_grupo_7.ui.reciclerview.CategoriaAdapter;
+import com.hyancy.eco_recicla_reto_1_grupo_7.ui.reciclerview.ModeloCategoria;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.io.File;
 import java.util.ArrayList;
 
 public class CategoriaUI extends AppCompatActivity {

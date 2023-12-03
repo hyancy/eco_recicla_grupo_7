@@ -15,47 +15,48 @@
         android:theme="@style/Theme.Eco_recicla_reto_1_grupo_7"
         tools:targetApi="31" >
         <activity
-            android:name=".CategoriaUI"
+            android:name=".ui.CategoriaUI"
             android:exported="false" >
         </activity>
         <activity
-            android:name=".Register2"
+            android:name=".ui.Register2"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
-            android:name=".Login2"
+            android:name=".ui.Login2"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar" >
         </activity>
         <activity
-            android:name=".PoliticaPrivacidadTerminos"
+            android:name=".ui.PoliticaPrivacidadTerminos"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".ui.Login"
             android:exported="false" />
         <activity
-            android:name=".Principal"
+            android:name=".ui.Principal"
             android:exported="false" />
         <activity
-            android:name=".Consejos"
+            android:name=".ui.Consejos"
             android:exported="false" />
         <activity
-            android:name=".RegistroUsario"
+            android:name=".ui.RegistroUsario"
             android:exported="false" />
         <activity
-            android:name=".FormularioRegistroResiduo"
+            android:name=".ui.FormularioRegistroResiduo"
             android:exported="false" />
         <activity
-            android:name=".PuntoLimpio"
+            android:name=".ui.PuntoLimpio"
             android:exported="false" />
         <activity
-            android:name=".Statistic"
+            android:name=".ui.Statistic"
             android:exported="false" />
         <activity
-            android:name=".Categoria"
+            android:name=".ui.Categoria"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
+            android:theme="@style/SplashTheme"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

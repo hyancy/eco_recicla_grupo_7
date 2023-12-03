@@ -1,4 +1,4 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,18 +7,51 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
-import java.lang.reflect.Array;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.hyancy.eco_recicla_reto_1_grupo_7.R;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     ImageButton consejos, puntosLimpios, desafiosLogros, infoApp;
     Button btnIniciarSesion, btnRegistrarse;
+    FirebaseAuth mAuth;
+
+    @Override
+    public void onStart() {
+        try {
+            Thread.sleep(2000);
+            setTheme(R.style.Theme_Eco_recicla_reto_1_grupo_7);
+        } catch (InterruptedException e) {
+            Toast.makeText(this, "No es posible iniciar la App!!!", Toast.LENGTH_LONG).show();
+            throw new RuntimeException(e);
+        }
+
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Intent intentPrincipal = new Intent(getApplicationContext(), Principal.class);
+            startActivity(intentPrincipal);
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        try {
+            Thread.sleep(2000);
+            setTheme(R.style.Theme_Eco_recicla_reto_1_grupo_7);
+        } catch (InterruptedException e) {
+            Toast.makeText(this, "No es posible iniciar la App!!!", Toast.LENGTH_LONG).show();
+            throw new RuntimeException(e);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mAuth = FirebaseAuth.getInstance();
 
         initComponents();
         listenersButtons();
@@ -89,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         listaIntents.add(intentConsejos);
         listaIntents.add(intentPuntosLimpios);
 
-        return  listaIntents;
+        return listaIntents;
     }
 
 }

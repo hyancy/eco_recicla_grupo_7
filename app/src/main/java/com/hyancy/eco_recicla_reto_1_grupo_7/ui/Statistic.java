@@ -1,8 +1,10 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 
 public class Statistic extends AppCompatActivity {
 

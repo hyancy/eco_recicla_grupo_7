@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="name_app"></style>
+
     <color name="name_app_color">@color/green_app</color>
+
     <style name="name_app_style">bold</style>
 
     <style name="bienvenida_home"></style>
+
     <style name="bienvenida_home_style">bold</style>
 
     <style name="Theme.App" parent="Theme.MaterialComponents">
@@ -19,9 +23,14 @@
         <item name="cornerFamily">cut</item>
         <item name="cornerSize">4dp</item>
     </style>
+
     <style name="DialogForgottenPassword" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">cut</item>
         <item name="cornerSize">4dp</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.App">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
 </resources>

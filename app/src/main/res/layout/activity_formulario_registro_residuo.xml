@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green_app"
-    tools:context=".FormularioRegistroResiduo">
+    tools:context=".ui.FormularioRegistroResiduo">
 
 
     <FrameLayout
@@ -352,14 +352,14 @@
                             android:background="#CC609E58" />
 
 
-                        <EditText
+                        <TextView
                             android:layout_width="80dp"
                             android:layout_height="50dp"
                             android:gravity="center"
-                            android:hint="0"
-                            android:textColor="@color/white"
+                            android:text="0"
                             android:textSize="28dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            tools:textColor="@color/white" />
 
 
                     </FrameLayout>
@@ -370,9 +370,10 @@
                 <Button
                     android:id="@+id/btn_registrar_residuo"
                     android:layout_width="250dp"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
+                    android:gravity="center"
                     android:backgroundTint="@color/beige_app"
                     android:text="Registrar"
                     android:textColor="@color/green_app"
@@ -381,7 +382,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="80dp" />
+                    android:layout_height="180dp" />
             </LinearLayout>
         </ScrollView>
 
