@@ -1,92 +1,146 @@
 package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
+import com.hyancy.eco_recicla_reto_1_grupo_7.ui.models.SpinnerModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.WasteViewModel;
 
 import java.util.ArrayList;
 
 public class FormularioRegistroResiduo extends AppCompatActivity {
-    Button btnBegistarResiduo;
-    ImageView categoriasBottomBar, estadisticasBottomBar, consejosBottomBar, infoAppBottomBar, logoutBottomBar;
+    private Button btnBegistarResiduo;
+    private ImageView categoriasBottomBar, estadisticasBottomBar, consejosBottomBar, homeAppBottomBar, logoutBottomBar, ivCamera, ivCalendar, ivLocation, photo;
+    private EditText edtDescription, dateRegister, locationRegister, quantity;
+    TextView points;
+    private Spinner categoryWasteSpinner;
+    private ArrayList<String> listCategories;
+    private WasteViewModel wasteViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_registro_residuo);
 
+        SpinnerModel spinnerModel = new SpinnerModel();
+        wasteViewModel = new ViewModelProvider(this).get(WasteViewModel.class);
+
         initComponents();
         listenersButtons();
+        spinnerUI(spinnerModel);
     }
 
     private void initComponents() {
-        btnBegistarResiduo = findViewById(R.id.btn_registrar_residuo);
+        edtDescription = findViewById(R.id.edt_descripcion_waste);
+        dateRegister = findViewById(R.id.edt_date_register_waste);
+        locationRegister = findViewById(R.id.edt_location_register_waste);
+        quantity = findViewById(R.id.edt_quantity_waste);
+        points = findViewById(R.id.tv_points_waste);
+        categoryWasteSpinner = findViewById(R.id.spn_category_waste);
+        ivCamera = findViewById(R.id.iv_camera_photo);
+        ivCalendar = findViewById(R.id.iv_calendar);
+        ivLocation = findViewById(R.id.iv_location);
+        photo = findViewById(R.id.iv_photo_waste);
 
+        btnBegistarResiduo = findViewById(R.id.btn_register_waste);
+
+        homeAppBottomBar = findViewById(R.id.home_menu_bottom_bar);
         categoriasBottomBar = findViewById(R.id.categorias_menu_bottom_bar);
         estadisticasBottomBar = findViewById(R.id.estadisticas_menu_bottom_bar);
         consejosBottomBar = findViewById(R.id.consejos_menu_bottom_bar);
-        infoAppBottomBar = findViewById(R.id.info_app_menu_bottom_bar);
         logoutBottomBar = findViewById(R.id.logout_menu_bottom_bar);
+
     }
 
     private void listenersButtons() {
+        createWaste();
+        listenersMenuAppBar();
+    }
+
+    private void createWaste() {
         btnBegistarResiduo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                //wasteViewModel.createWaste();
                 startActivity(initIntents().get(0));
             }
         });
+    }
 
-        categoriasBottomBar.setOnClickListener(new View.OnClickListener() {
+    private void listenersMenuAppBar() {
+        homeAppBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(initIntents().get(0));
             }
         });
-        estadisticasBottomBar.setOnClickListener(new View.OnClickListener() {
+        categoriasBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(initIntents().get(1));
             }
         });
-        consejosBottomBar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(initIntents().get(2));
-            }
-        });
-        infoAppBottomBar.setOnClickListener(new View.OnClickListener() {
+
+        estadisticasBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                startActivity(initIntents().get(2));
+            }
+        });
+        consejosBottomBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(initIntents().get(3));
             }
         });
         logoutBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(initIntents().get(3));
+                startActivity(initIntents().get(4));
             }
         });
     }
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
+        Intent intentPrincipal = new Intent(FormularioRegistroResiduo.this, Principal.class);
         Intent intentCategorias = new Intent(FormularioRegistroResiduo.this, Categoria.class);
         Intent intentEstadisticas = new Intent(FormularioRegistroResiduo.this, Statistic.class);
         Intent intentConsejos = new Intent(FormularioRegistroResiduo.this, Consejos.class);
-        Intent intentLogout= new Intent(FormularioRegistroResiduo.this, MainActivity.class);
+        Intent intentLogout = new Intent(FormularioRegistroResiduo.this, Index.class);
 
+        listaIntents.add(intentPrincipal);
         listaIntents.add(intentCategorias);
         listaIntents.add(intentEstadisticas);
         listaIntents.add(intentConsejos);
         listaIntents.add(intentLogout);
 
         return listaIntents;
+    }
+
+    private void spinnerUI(SpinnerModel spinnerModel) {
+        this.listCategories = spinnerModel.getListSpinnerCategory();
+        ArrayAdapter<String> categories = new ArrayAdapter<>(this, R.layout.spinner_categories_item);
+        categories.addAll(listCategories);
+        categoryWasteSpinner.setAdapter(categories);
+    }
+
+    private void clearComponents() {
     }
 }

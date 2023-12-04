@@ -15,7 +15,7 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class Index extends AppCompatActivity {
     ImageButton consejos, puntosLimpios, desafiosLogros, infoApp;
     Button btnIniciarSesion, btnRegistrarse;
     FirebaseAuth mAuth;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_index);
         mAuth = FirebaseAuth.getInstance();
 
         initComponents();
@@ -112,10 +112,10 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intenIniciarSesion = new Intent(MainActivity.this, Login.class);
-        Intent intentRegistrarse = new Intent(MainActivity.this, RegistroUsario.class);
-        Intent intentConsejos = new Intent(MainActivity.this, Consejos.class);
-        Intent intentPuntosLimpios = new Intent(MainActivity.this, PuntoLimpio.class);
+        Intent intenIniciarSesion = new Intent(Index.this, Login.class);
+        Intent intentRegistrarse = new Intent(Index.this, RegistroUsario.class);
+        Intent intentConsejos = new Intent(Index.this, Consejos.class);
+        Intent intentPuntosLimpios = new Intent(Index.this, PuntoLimpio.class);
 
         listaIntents.add(intenIniciarSesion);
         listaIntents.add(intentRegistrarse);

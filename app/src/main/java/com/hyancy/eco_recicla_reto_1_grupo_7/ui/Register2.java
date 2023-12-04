@@ -82,13 +82,13 @@ public class Register2 extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(v.GONE);
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
+                                    // Sign in success, update UI with the signed-in userModel's information
                                     Toast.makeText(Register2.this, "Cuenta creada con exito!.",
                                             Toast.LENGTH_SHORT).show();
                                     cleanComponents();
                                     FirebaseAuth.getInstance().signOut();
                                 } else {
-                                    // If sign in fails, display a message to the user.
+                                    // If sign in fails, display a message to the userModel.
                                     Toast.makeText(Register2.this, "No se pudo crear la cuenta!.",
                                             Toast.LENGTH_SHORT).show();
                                 }

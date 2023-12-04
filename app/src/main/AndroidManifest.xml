@@ -55,7 +55,7 @@
             android:name=".ui.Categoria"
             android:exported="false" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.Index"
             android:theme="@style/SplashTheme"
             android:exported="true" >
             <intent-filter>

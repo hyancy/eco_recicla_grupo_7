@@ -15,13 +15,13 @@ import android.widget.ImageView;
 
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 import com.hyancy.eco_recicla_reto_1_grupo_7.ui.reciclerview.CategoriaAdapter;
-import com.hyancy.eco_recicla_reto_1_grupo_7.ui.reciclerview.ModeloCategoria;
+import com.hyancy.eco_recicla_reto_1_grupo_7.ui.models.CategoryModel;
 
 import java.util.ArrayList;
 
 public class CategoriaUI extends AppCompatActivity {
     RecyclerView recyclerViewCategoria;
-    ArrayList<ModeloCategoria> listaCategorias = new ArrayList<>();
+    ArrayList<CategoryModel> listaCategorias = new ArrayList<>();
     ImageView estadisticasBottomBar, consejosBottomBar, infoAppBottomBar, logoutBottomBar;
     SearchView filtrarCard;
 
@@ -30,7 +30,6 @@ public class CategoriaUI extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categoria_ui);
-
         initComponents();
         initCategoriasUI();
         listenersButtons();
@@ -119,13 +118,13 @@ public class CategoriaUI extends AppCompatActivity {
         }
     }
 
-    public ModeloCategoria categoriaFactory(String tipoCategoria, int pathCategoria) {
-        ModeloCategoria categoria = new ModeloCategoria(tipoCategoria, pathCategoria);
+    public CategoryModel categoriaFactory(String tipoCategoria, int pathCategoria) {
+        CategoryModel categoria = new CategoryModel(tipoCategoria, pathCategoria);
         return categoria;
     }
 
-    public ArrayList<ModeloCategoria> generarListaCategorias(String tipoCategoria, int pathCategoria) {
-        ModeloCategoria categoria = categoriaFactory(tipoCategoria, pathCategoria);
+    public ArrayList<CategoryModel> generarListaCategorias(String tipoCategoria, int pathCategoria) {
+        CategoryModel categoria = categoriaFactory(tipoCategoria, pathCategoria);
         listaCategorias.add(categoria);
         return listaCategorias;
     }
@@ -135,7 +134,7 @@ public class CategoriaUI extends AppCompatActivity {
         Intent intentRegistroResiduos = new Intent(CategoriaUI.this, FormularioRegistroResiduo.class);
         Intent intentEstadisticas = new Intent(CategoriaUI.this, Statistic.class);
         Intent intentConsejos = new Intent(CategoriaUI.this, Consejos.class);
-        Intent intentLogout= new Intent(CategoriaUI.this, MainActivity.class);
+        Intent intentLogout = new Intent(CategoriaUI.this, Index.class);
 
         listaIntents.add(intentRegistroResiduos);
         listaIntents.add(intentEstadisticas);

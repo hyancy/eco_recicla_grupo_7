@@ -10,13 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:src="@drawable/img_1"
+        android:contentDescription="@string/description_imageView_background"
         android:scaleType="matrix"
-        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/img_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/description_imageView_background"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -28,23 +28,23 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="#262D8023"
         android:contentDescription="@string/description_float_button"
-        android:backgroundTint="#262D8023" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_title_user_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginTop="244dp"
+        android:gravity="center"
         android:text="@string/title_form_user_register"
         android:textColor="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -52,30 +52,32 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
     <ImageView
         android:id="@+id/logo_clean_points"
         android:layout_width="84dp"
         android:layout_height="78dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_gravity="end"
-        android:layout_marginTop="194dp"
         android:layout_marginStart="280dp"
+        android:layout_marginTop="194dp"
+        android:contentDescription="@string/contentDescription_image_logo"
         android:src="@drawable/ic_logo_app"
-        android:contentDescription="@string/contentDescription_image_logo"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="430dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="292dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="292dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -92,13 +94,34 @@
                     android:id="@+id/name_user_register"
                     android:layout_width="340dp"
                     android:layout_height="match_parent"
+                    android:autofillHints="name"
                     android:background="@color/grey_app"
                     android:hint="@string/hint_name_user_register"
                     android:inputType="textPersonName"
-                    android:autofillHints="name"
-                    android:textColorHint="@color/beige_app"
                     android:paddingHorizontal="16dp"
                     android:textColor="@color/beige_app"
+                    android:textColorHint="@color/beige_app"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="335dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="22dp"
+                app:cardCornerRadius="20dp">
+
+                <EditText
+                    android:id="@+id/age_user_register"
+                    android:layout_width="340dp"
+                    android:layout_height="match_parent"
+                    android:autofillHints="age"
+                    android:background="@color/grey_app"
+                    android:hint="@string/hint_age_user_register"
+                    android:inputType="number"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/beige_app"
+                    android:textColorHint="@color/beige_app"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
@@ -113,13 +136,13 @@
                     android:id="@+id/email_user_register"
                     android:layout_width="340dp"
                     android:layout_height="match_parent"
+                    android:autofillHints="emailAddress"
                     android:background="@color/grey_app"
                     android:hint="@string/hint_email_user_register"
-                    android:autofillHints="emailAddress"
                     android:inputType="textEmailAddress"
-                    android:textColorHint="@color/beige_app"
                     android:paddingHorizontal="16dp"
                     android:textColor="@color/beige_app"
+                    android:textColorHint="@color/beige_app"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
@@ -134,13 +157,13 @@
                     android:id="@+id/confirm_email_user_register"
                     android:layout_width="340dp"
                     android:layout_height="match_parent"
+                    android:autofillHints="emailAddress"
                     android:background="@color/grey_app"
                     android:hint="@string/hint_confirm_email_user_register"
                     android:inputType="textEmailAddress"
                     android:paddingHorizontal="16dp"
-                    android:textColorHint="@color/beige_app"
-                    android:autofillHints="emailAddress"
                     android:textColor="@color/beige_app"
+                    android:textColorHint="@color/beige_app"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
@@ -155,13 +178,13 @@
                     android:id="@+id/password_user_register"
                     android:layout_width="340dp"
                     android:layout_height="match_parent"
+                    android:autofillHints="password"
                     android:background="@color/grey_app"
                     android:hint="@string/hint_password_user_register"
                     android:inputType="textPassword"
                     android:paddingHorizontal="16dp"
-                    android:autofillHints="password"
-                    android:textColorHint="@color/beige_app"
                     android:textColor="@color/beige_app"
+                    android:textColorHint="@color/beige_app"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
@@ -176,13 +199,13 @@
                     android:id="@+id/confirm_password_user_register"
                     android:layout_width="340dp"
                     android:layout_height="match_parent"
-                    android:background="@color/grey_app"
                     android:autofillHints="password"
+                    android:background="@color/grey_app"
                     android:hint="@string/hint_confirm_password_user_register"
                     android:inputType="textPassword"
                     android:paddingHorizontal="16dp"
-                    android:textColorHint="@color/beige_app"
                     android:textColor="@color/beige_app"
+                    android:textColorHint="@color/beige_app"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>

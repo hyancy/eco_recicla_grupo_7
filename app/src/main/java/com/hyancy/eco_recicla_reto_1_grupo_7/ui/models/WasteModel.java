@@ -1,9 +1,8 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7.models;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui.models;
 
 import java.util.Date;
 
-public class Product {
-    private final String ID;
+public class WasteModel {
     private String description;
     private String photoUrl;
     private Date registerDate;
@@ -12,8 +11,7 @@ public class Product {
     private double quantity;
     private int points;
 
-    public Product(String ID, String description, String photoUrl, Date registerDate, String location, String category, double quantity, int points) {
-        this.ID = ID;
+    public WasteModel(String description, String photoUrl, Date registerDate, String location, String category, double quantity, int points) {
         this.description = description;
         this.photoUrl = photoUrl;
         this.registerDate = registerDate;
@@ -21,10 +19,6 @@ public class Product {
         this.category = category;
         this.quantity = quantity;
         this.points = points;
-    }
-
-    public String getID() {
-        return ID;
     }
 
     public String getDescription() {

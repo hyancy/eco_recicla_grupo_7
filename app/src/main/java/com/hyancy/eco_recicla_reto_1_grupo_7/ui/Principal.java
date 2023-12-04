@@ -71,7 +71,7 @@ public class Principal extends AppCompatActivity {
         Intent intentCategorias = new Intent(Principal.this, Categoria.class);
         Intent intentEstadisticas = new Intent(Principal.this, Statistic.class);
         Intent intentConsejos = new Intent(Principal.this, Consejos.class);
-        Intent intentLogout = new Intent(Principal.this, MainActivity.class);
+        Intent intentLogout = new Intent(Principal.this, Index.class);
 
         listaIntents.add(intentCategorias);
         listaIntents.add(intentEstadisticas);
@@ -96,7 +96,7 @@ public class Principal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intentLogout = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intentLogout = new Intent(getApplicationContext(), Index.class);
                 startActivity(intentLogout);
                 finish();
             }

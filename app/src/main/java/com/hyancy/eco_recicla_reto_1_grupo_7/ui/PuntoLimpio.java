@@ -39,7 +39,7 @@ public class PuntoLimpio extends AppCompatActivity {
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intenHome = new Intent(PuntoLimpio.this, MainActivity.class);
+        Intent intenHome = new Intent(PuntoLimpio.this, Index.class);
 
         listaIntents.add(intenHome);
 
