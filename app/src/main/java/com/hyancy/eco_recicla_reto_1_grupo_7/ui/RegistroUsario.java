@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 import com.hyancy.eco_recicla_reto_1_grupo_7.ui.models.UserModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.DatasetViewModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
@@ -35,14 +36,14 @@ public class RegistroUsario extends AppCompatActivity {
     ProgressBar progressBar;
     TextView tvYaTieneCuenta;
     EditText edtName, edtAge, edtEmail, edtConfirmEmail, edtPassword, edtConfirmPassword;
-    FirebaseAuth mAuth;
     UserViewModel userViewModel;
+    DatasetViewModel datasetViewModel;
     UserModel userModel;
 
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser currentUser = datasetViewModel.getCurrentUser();
         if (currentUser != null) {
             Intent intentPrincipal = new Intent(getApplicationContext(), Principal.class);
             startActivity(intentPrincipal);
@@ -55,9 +56,9 @@ public class RegistroUsario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_usario);
 
-        mAuth = FirebaseAuth.getInstance();
-
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        datasetViewModel = new ViewModelProvider(this).get(DatasetViewModel.class);
+
 
         initComponents();
         listenersButtons();
@@ -165,28 +166,26 @@ public class RegistroUsario extends AppCompatActivity {
         });
     }
 
-
-    private ArrayList<Intent> initIntents() {
-        ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentHome = new Intent(RegistroUsario.this, Index.class);
-        Intent intentTerminosCondiciones = new Intent(RegistroUsario.this, PoliticaPrivacidadTerminos.class);
-        Intent intentLogin = new Intent(RegistroUsario.this, Login.class);
-
-        listaIntents.add(intentHome);
-        listaIntents.add(intentTerminosCondiciones);
-        listaIntents.add(intentLogin);
-
-        return listaIntents;
-    }
-
-
-    private void clearComponents() {
-        edtName.setText("");
-        edtAge.setText("");
-        edtEmail.setText("");
-        edtConfirmEmail.setText("");
-        edtPassword.setText("");
-        edtConfirmPassword.setText("");
+    private void authenticateUser() {
+        datasetViewModel.getmAuth().createUserWithEmailAndPassword(userModel.getEmail(), userModel.getPassword())
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in userModel's information
+                            Toast.makeText(getApplicationContext(), "Cuenta creada con exito!.",
+                                    Toast.LENGTH_SHORT).show();
+                            clearComponents();
+                            FirebaseAuth.getInstance().signOut();
+                            onDestroy();
+                            startActivity(initIntents().get(2));
+                        } else {
+                            // If sign in fails, display a message to the userModel.
+                            Toast.makeText(getApplicationContext(), "Cuenta ya existe!!!.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
 
@@ -212,28 +211,6 @@ public class RegistroUsario extends AppCompatActivity {
             }
         });
         builder.setView(R.layout.dialog_registro_completo).create().show();
-    }
-
-    private void authenticateUser() {
-                            mAuth.createUserWithEmailAndPassword(userModel.getEmail(), userModel.getPassword())
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in userModel's information
-                                        Toast.makeText(getApplicationContext(), "Cuenta creada con exito!.",
-                                                Toast.LENGTH_SHORT).show();
-                                        clearComponents();
-                                        FirebaseAuth.getInstance().signOut();
-                                        onDestroy();
-                                        startActivity(initIntents().get(2));
-                                    } else {
-                                        // If sign in fails, display a message to the userModel.
-                                        Toast.makeText(getApplicationContext(), "Cuenta ya existe!!!.",
-                                                Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
     }
 
     private void showDialogContrasenaNoCoincide() {
@@ -309,5 +286,27 @@ public class RegistroUsario extends AppCompatActivity {
             }
         });
         builder.setView(R.layout.dialog_privacidad).create().show();
+    }
+
+    private ArrayList<Intent> initIntents() {
+        ArrayList<Intent> listaIntents = new ArrayList<>();
+        Intent intentHome = new Intent(RegistroUsario.this, Index.class);
+        Intent intentTerminosCondiciones = new Intent(RegistroUsario.this, PoliticaPrivacidadTerminos.class);
+        Intent intentLogin = new Intent(RegistroUsario.this, Login.class);
+
+        listaIntents.add(intentHome);
+        listaIntents.add(intentTerminosCondiciones);
+        listaIntents.add(intentLogin);
+
+        return listaIntents;
+    }
+
+    private void clearComponents() {
+        edtName.setText("");
+        edtAge.setText("");
+        edtEmail.setText("");
+        edtConfirmEmail.setText("");
+        edtPassword.setText("");
+        edtConfirmPassword.setText("");
     }
 }

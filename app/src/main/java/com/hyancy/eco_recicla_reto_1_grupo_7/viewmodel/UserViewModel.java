@@ -10,4 +10,5 @@ public class UserViewModel extends ViewModel {
     public void createUser(String name, Integer age, String email, String password) {
         userUseCase.setUser(name, age, email, password);
     }
+
 }
