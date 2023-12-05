@@ -225,7 +225,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/privacidad_user_register"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/btn_registar_usuario"

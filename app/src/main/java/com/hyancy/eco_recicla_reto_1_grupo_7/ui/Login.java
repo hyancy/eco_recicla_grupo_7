@@ -30,6 +30,7 @@ public class Login extends AppCompatActivity {
     FirebaseAuth mAuth;
     TextView tvNoHaveCount, tvForgottenPassword;
 
+
     @Override
     public void onStart() {
         super.onStart();
@@ -72,11 +73,13 @@ public class Login extends AppCompatActivity {
                 if (TextUtils.isEmpty(user)) {
                     Toast.makeText(getApplicationContext(), "Ingrese su usuario", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(v.GONE);
+                    showDialogCompleteDataLogin();
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
                     Toast.makeText(getApplicationContext(), "Ingrese su contraseña", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(v.GONE);
+                    showDialogCompleteDataLogin();
                     return;
                 }
                 progressBar.setVisibility(v.VISIBLE);
@@ -126,6 +129,8 @@ public class Login extends AppCompatActivity {
         listaIntents.add(intentRegistroUsuario);
 
         return listaIntents;
+
+
     }
 
     private void showDialogFogottenPassword() {
@@ -168,5 +173,23 @@ public class Login extends AppCompatActivity {
             }
         });
 
+    }
+    private void showDialogCompleteDataLogin(){
+        AlertDialog.Builder dialogCompleteDataLogin = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_complete_data_login,null);
+        dialogCompleteDataLogin.setView(view);
+        final AlertDialog dialog = dialogCompleteDataLogin.create();
+        dialog.show();
+
+        TextView tvCerrar = view.findViewById(R.id.Cerrar);
+
+        tvCerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "Se cerro dialogo", Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+            }
+        });
     }
 }
