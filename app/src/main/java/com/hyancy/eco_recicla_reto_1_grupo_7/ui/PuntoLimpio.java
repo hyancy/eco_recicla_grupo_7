@@ -1,4 +1,4 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 
 import java.util.ArrayList;
 
@@ -37,7 +39,7 @@ public class PuntoLimpio extends AppCompatActivity {
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intenHome = new Intent(PuntoLimpio.this, MainActivity.class);
+        Intent intenHome = new Intent(PuntoLimpio.this, Index.class);
 
         listaIntents.add(intenHome);
 

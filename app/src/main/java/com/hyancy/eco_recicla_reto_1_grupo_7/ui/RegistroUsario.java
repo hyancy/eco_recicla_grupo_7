@@ -1,13 +1,13 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,6 +22,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.hyancy.eco_recicla_reto_1_grupo_7.R;
+import com.hyancy.eco_recicla_reto_1_grupo_7.ui.models.UserModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
 
@@ -31,9 +34,10 @@ public class RegistroUsario extends AppCompatActivity {
     Button btnRegistrarUsuario;
     ProgressBar progressBar;
     TextView tvYaTieneCuenta;
-    EditText edtName, edtEmail, edtConfirmEmail, edtPassword, edtConfirmPassword;
-
+    EditText edtName, edtAge, edtEmail, edtConfirmEmail, edtPassword, edtConfirmPassword;
     FirebaseAuth mAuth;
+    UserViewModel userViewModel;
+    UserModel userModel;
 
     @Override
     public void onStart() {
@@ -50,11 +54,13 @@ public class RegistroUsario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_usario);
+
         mAuth = FirebaseAuth.getInstance();
+
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         initComponents();
         listenersButtons();
-
     }
 
 
@@ -66,6 +72,7 @@ public class RegistroUsario extends AppCompatActivity {
         tvYaTieneCuenta = findViewById(R.id.tv_ya_tiene_cuenta);
 
         edtName = findViewById(R.id.name_user_register);
+        edtAge = findViewById(R.id.age_user_register);
         edtEmail = findViewById(R.id.email_user_register);
         edtConfirmEmail = findViewById(R.id.confirm_email_user_register);
         edtPassword = findViewById(R.id.password_user_register);
@@ -81,22 +88,7 @@ public class RegistroUsario extends AppCompatActivity {
                 // startActivity(initIntents().get(0));
             }
         });
-        cbxTerminosCondiciones.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                //startActivity(initIntents().get(1));
-            }
-        });
-
-
-        cbxPoliticasPrivacidad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //startActivity(initIntents().get(1));
-            }
-        });
         cbxTerminosCondiciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,53 +110,48 @@ public class RegistroUsario extends AppCompatActivity {
             }
         });
 
+        createUser();
+        tvYaTieneCuenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(initIntents().get(2));
+                finish();
+            }
+        });
+    }
+
+    public void createUser() {
         btnRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(v.VISIBLE);
-                String name, user, confirmUser, password, confirmPassword;
-                name = edtName.getText().toString();
-                user = edtEmail.getText().toString();
-                confirmUser = edtConfirmEmail.getText().toString();
-                password = edtPassword.getText().toString();
-                confirmPassword = edtConfirmPassword.getText().toString();
 
-                if (name.isEmpty() || user.isEmpty() || confirmUser.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                String name = edtName.getText().toString().trim();
+                String email = edtEmail.getText().toString().trim();
+                String age = edtAge.getText().toString().trim();
+                String confirmEmail = edtConfirmEmail.getText().toString().trim();
+                String password = edtPassword.getText().toString().trim();
+                String confirmPassword = edtConfirmPassword.getText().toString().trim();
+
+
+                if (name.isEmpty() || age.isEmpty() || email.isEmpty() || confirmEmail.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                     showDialogCompleteAll();
-                    return;
                 } else if (!(password.equals(confirmPassword))) {
                     showDialogContrasenaNoCoincide();
-                } else if (!(user.equals(confirmPassword))) {
+                } else if (!(email.equals(confirmEmail))) {
                     showDialogContrasenaNoCoincide();
-                    return;
                 } else if (!(cbxTerminosCondiciones.isChecked())) {
                     showDialogAceptaCondicionesYTerminos();
-                    return;
                 } else if (!(cbxPoliticasPrivacidad.isChecked())) {
                     showDialogAceptaPrivacidad();
-                    return;
                 } else {
+                    Integer userAge = Integer.parseInt(age);
+                    userModel = new UserModel(name, userAge, email, password);
                     showDialogoRegistroCompleto();
-                    mAuth.createUserWithEmailAndPassword(user, password)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    progressBar.setVisibility(v.GONE);
-                                    if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        Toast.makeText(getApplicationContext(), "Cuenta creada con exito!.",
-                                                Toast.LENGTH_SHORT).show();
-                                        clearComponents();
-                                        FirebaseAuth.getInstance().signOut();
-                                    } else {
-                                        // If sign in fails, display a message to the user.
-                                        Toast.makeText(getApplicationContext(), "No se pudo crear la cuenta!.",
-                                                Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                }
+                    userViewModel.createUser(userModel.getName(), userModel.getAge(), userModel.getEmail(), userModel.getPassword());
 
+                }
             }
         });
 
@@ -181,7 +168,7 @@ public class RegistroUsario extends AppCompatActivity {
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentHome = new Intent(RegistroUsario.this, MainActivity.class);
+        Intent intentHome = new Intent(RegistroUsario.this, Index.class);
         Intent intentTerminosCondiciones = new Intent(RegistroUsario.this, PoliticaPrivacidadTerminos.class);
         Intent intentLogin = new Intent(RegistroUsario.this, Login.class);
 
@@ -192,8 +179,10 @@ public class RegistroUsario extends AppCompatActivity {
         return listaIntents;
     }
 
+
     private void clearComponents() {
         edtName.setText("");
+        edtAge.setText("");
         edtEmail.setText("");
         edtConfirmEmail.setText("");
         edtPassword.setText("");
@@ -218,11 +207,33 @@ public class RegistroUsario extends AppCompatActivity {
         builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(RegistroUsario.this, Login.class);
-                startActivity(intent);
+                clearComponents();
+                authenticateUser();
             }
         });
         builder.setView(R.layout.dialog_registro_completo).create().show();
+    }
+
+    private void authenticateUser() {
+                            mAuth.createUserWithEmailAndPassword(userModel.getEmail(), userModel.getPassword())
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in userModel's information
+                                        Toast.makeText(getApplicationContext(), "Cuenta creada con exito!.",
+                                                Toast.LENGTH_SHORT).show();
+                                        clearComponents();
+                                        FirebaseAuth.getInstance().signOut();
+                                        onDestroy();
+                                        startActivity(initIntents().get(2));
+                                    } else {
+                                        // If sign in fails, display a message to the userModel.
+                                        Toast.makeText(getApplicationContext(), "Cuenta ya existe!!!.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
     }
 
     private void showDialogContrasenaNoCoincide() {

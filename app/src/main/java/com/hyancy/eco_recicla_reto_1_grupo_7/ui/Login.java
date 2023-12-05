@@ -1,4 +1,4 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +16,10 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 
 import java.util.ArrayList;
 
@@ -65,33 +66,36 @@ public class Login extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(v.VISIBLE);
                 String user, password;
                 user = userLogin.getText().toString();
                 password = passwordLogin.getText().toString();
 
                 if (TextUtils.isEmpty(user)) {
                     Toast.makeText(getApplicationContext(), "Ingrese su usuario", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(v.GONE);
+                    showDialogCompleteDataLogin();
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
                     Toast.makeText(getApplicationContext(), "Ingrese su contraseña", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(v.GONE);
+                    showDialogCompleteDataLogin();
                     return;
                 }
-
+                progressBar.setVisibility(v.VISIBLE);
                 mAuth.signInWithEmailAndPassword(user, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(v.GONE);
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
+                                    // Sign in success, update UI with the signed-in userModel's information
                                     Toast.makeText(getApplicationContext(), "Login exitoso!",
                                             Toast.LENGTH_SHORT).show();
                                     startActivity(initIntents().get(0));
                                     finish();
                                 } else {
-                                    // If sign in fails, display a message to the user.
+                                    // If sign in fails, display a message to the userModel.
                                     Toast.makeText(getApplicationContext(), "Login fallido, compruebe sus datos de ingreso!.",
                                             Toast.LENGTH_SHORT).show();
                                 }
@@ -99,6 +103,7 @@ public class Login extends AppCompatActivity {
                         });
             }
         });
+
         tvNoHaveCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,10 +129,67 @@ public class Login extends AppCompatActivity {
         listaIntents.add(intentRegistroUsuario);
 
         return listaIntents;
+
+
     }
 
     private void showDialogFogottenPassword() {
-        AlertDialog.Builder dialogForgottenPassword = new AlertDialog.Builder(this);
-        dialogForgottenPassword.setView(R.layout.dialog_forgotten_password).create().show();
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_forgotten_password, null);
+
+        dialogBuilder.setView(view);
+
+        final AlertDialog dialog = dialogBuilder.create();
+        dialog.show();
+
+        TextInputEditText edtUser = view.findViewById(R.id.edt_user);
+        //TextInputEditText edtEmail = view.findViewById(R.id.edt_email);
+        Button btnAceptSendPassword = view.findViewById(R.id.btn_acept);
+        Button btnCancelSendPassword = view.findViewById(R.id.btn_cancel);
+
+        btnAceptSendPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String user = edtUser.getText().toString();
+                //String email = edtEmail.getText().toString();
+                System.out.println("EL USUARIO ES " + user);
+                if (user.isEmpty() /*|| email.isEmpty()*/) {
+                    Toast.makeText(getApplicationContext(), "Completa todos los datos!!!", Toast.LENGTH_LONG).show();
+                } else if (!user.toString().equals("usuario en FireBase") /*&& !email.equals("correo en FireBase")*/) {
+                    Toast.makeText(getApplicationContext(), "Usuario no registrado!!!", Toast.LENGTH_LONG).show();
+                } else {
+                    // TODO ENVIAR CORREO PARA REINICIAR CONTRASEÑA
+                    Toast.makeText(view.getContext(), "Revise su correo electrónico", Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        btnCancelSendPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+    }
+    private void showDialogCompleteDataLogin(){
+        AlertDialog.Builder dialogCompleteDataLogin = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_complete_data_login,null);
+        dialogCompleteDataLogin.setView(view);
+        final AlertDialog dialog = dialogCompleteDataLogin.create();
+        dialog.show();
+
+        TextView tvCerrar = view.findViewById(R.id.Cerrar);
+
+        tvCerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "Se cerro dialogo", Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+            }
+        });
     }
 }

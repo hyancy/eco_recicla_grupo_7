@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green_app"
-    tools:context=".MainActivity">
+    tools:context=".ui.Index">
 
     <ImageView
         android:layout_width="match_parent"
@@ -180,7 +180,7 @@
             <Button
                 android:id="@+id/btn_iniciar_sesion_home"
                 android:layout_width="170dp"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/beige_app"
                 android:text="@string/login_home"
                 android:textColor="@color/green_app"
@@ -193,7 +193,7 @@
             <Button
                 android:id="@+id/btn_registrarse_home"
                 android:layout_width="170dp"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/beige_app"
                 android:text="@string/signup_home"
                 android:textStyle="bold"
