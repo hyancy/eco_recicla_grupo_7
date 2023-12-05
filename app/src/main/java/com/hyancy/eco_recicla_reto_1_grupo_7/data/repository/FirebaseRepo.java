@@ -26,6 +26,7 @@ public class FirebaseRepo {
     private final FirebaseUser currentUser = mAuth.getCurrentUser();
 
 
+
     public void setUserData(String name, Integer age, String email, String password) {
 
         //Crear un nuevo usuario
@@ -78,7 +79,6 @@ public class FirebaseRepo {
                     }
                 });
     }
-
 
     public FirebaseFirestore getDb(){
         return db;

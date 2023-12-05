@@ -59,7 +59,6 @@ public class RegistroUsario extends AppCompatActivity {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         datasetViewModel = new ViewModelProvider(this).get(DatasetViewModel.class);
 
-
         initComponents();
         listenersButtons();
     }
@@ -166,29 +165,6 @@ public class RegistroUsario extends AppCompatActivity {
         });
     }
 
-    private void authenticateUser() {
-        datasetViewModel.getmAuth().createUserWithEmailAndPassword(userModel.getEmail(), userModel.getPassword())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in userModel's information
-                            Toast.makeText(getApplicationContext(), "Cuenta creada con exito!.",
-                                    Toast.LENGTH_SHORT).show();
-                            clearComponents();
-                            FirebaseAuth.getInstance().signOut();
-                            onDestroy();
-                            startActivity(initIntents().get(2));
-                        } else {
-                            // If sign in fails, display a message to the userModel.
-                            Toast.makeText(getApplicationContext(), "Cuenta ya existe!!!.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-
-
     private void showDialogCompleteAll() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
@@ -287,6 +263,29 @@ public class RegistroUsario extends AppCompatActivity {
         });
         builder.setView(R.layout.dialog_privacidad).create().show();
     }
+
+    private void authenticateUser() {
+        datasetViewModel.getmAuth().createUserWithEmailAndPassword(userModel.getEmail(), userModel.getPassword())
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in userModel's information
+                            Toast.makeText(getApplicationContext(), "Cuenta creada con exito!.",
+                                    Toast.LENGTH_SHORT).show();
+                            clearComponents();
+                            FirebaseAuth.getInstance().signOut();
+                            onDestroy();
+                            startActivity(initIntents().get(2));
+                        } else {
+                            // If sign in fails, display a message to the userModel.
+                            Toast.makeText(getApplicationContext(), "Cuenta ya existe!!!.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();

@@ -8,7 +8,6 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.data.repository.FirebaseRepo;
 public class DataUseCase {
     private FirebaseRepo repository = new FirebaseRepo();
 
-
     public FirebaseFirestore getData() {
         return repository.getDb();
     }

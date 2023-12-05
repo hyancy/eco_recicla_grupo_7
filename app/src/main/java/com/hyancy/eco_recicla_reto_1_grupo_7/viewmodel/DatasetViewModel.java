@@ -10,7 +10,6 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.domain.DataUseCase;
 public class DatasetViewModel extends ViewModel {
     private DataUseCase dataUseCase = new DataUseCase();
 
-
     public FirebaseFirestore getData(){
         return dataUseCase.getData();
     }
