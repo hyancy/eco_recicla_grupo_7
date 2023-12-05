@@ -1,4 +1,4 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,13 +18,14 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 
-public class Login2 extends AppCompatActivity {
+public class Register2 extends AppCompatActivity {
     TextInputEditText edtUser, edtPassword;
-    Button btnLogin;
+    Button btnRegister;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
-    TextView registerNow;
+    TextView loginNow;
 
     @Override
     public void onStart() {
@@ -36,10 +37,11 @@ public class Login2 extends AppCompatActivity {
             finish();
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login2);
+        setContentView(R.layout.activity_register2);
         mAuth = FirebaseAuth.getInstance();
 
         initComponents();
@@ -47,15 +49,16 @@ public class Login2 extends AppCompatActivity {
     }
 
     private void listeners() {
-        registerNow.setOnClickListener(new View.OnClickListener() {
+        loginNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intenRegister = new Intent(getApplicationContext(), Register2.class);
-                startActivity(intenRegister);
+                FirebaseAuth.getInstance().signOut();
+                Intent intenLogin = new Intent(getApplicationContext(), Login2.class);
+                startActivity(intenLogin);
                 finish();
             }
         });
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(v.VISIBLE);
@@ -64,29 +67,29 @@ public class Login2 extends AppCompatActivity {
                 password = edtPassword.getText().toString();
 
                 if (TextUtils.isEmpty(user)) {
-                    Toast.makeText(Login2.this, "Ingrese un email", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Register2.this, "Ingrese un email", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(Login2.this, "Ingrese una contraseña", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Register2.this, "Ingrese una contraseña", Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                mAuth.signInWithEmailAndPassword(user, password)
+
+                mAuth.createUserWithEmailAndPassword(user, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(v.GONE);
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Toast.makeText(getApplicationContext(), "Login exitoso!",
+                                    // Sign in success, update UI with the signed-in userModel's information
+                                    Toast.makeText(Register2.this, "Cuenta creada con exito!.",
                                             Toast.LENGTH_SHORT).show();
-                                    Intent intentPrincipal = new Intent(getApplicationContext(), Principal.class);
-                                    startActivity(intentPrincipal);
-                                    finish();
+                                    cleanComponents();
+                                    FirebaseAuth.getInstance().signOut();
                                 } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(Login2.this, "Authentication failed.",
+                                    // If sign in fails, display a message to the userModel.
+                                    Toast.makeText(Register2.this, "No se pudo crear la cuenta!.",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -94,13 +97,18 @@ public class Login2 extends AppCompatActivity {
             }
         });
     }
+
     private void initComponents() {
         edtUser = findViewById(R.id.user);
         edtPassword = findViewById(R.id.password);
-        btnLogin = findViewById(R.id.btn_login);
+        btnRegister = findViewById(R.id.btn_register);
 
         progressBar = findViewById(R.id.progress_bar);
+        loginNow = findViewById(R.id.login_now);
+    }
 
-        registerNow = findViewById(R.id.register_now);
+    private void cleanComponents(){
+        edtUser.setText("");
+        edtPassword.setText("");
     }
 }

@@ -1,68 +1,60 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
+
+import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 
 import java.util.ArrayList;
 
-public class FormularioRegistroResiduo extends AppCompatActivity {
-    Button btnBegistarResiduo;
-    ImageView categoriasBottomBar, estadisticasBottomBar, consejosBottomBar, infoAppBottomBar, logoutBottomBar;
+public class Statistic extends AppCompatActivity {
+    ImageView categoriasBottomBar, estadisticasBottomBar, consejosBottomBar, homeAppBottomBar, logoutBottomBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_formulario_registro_residuo);
+        setContentView(R.layout.activity_statistic);
 
         initComponents();
-        listenersButtons();
+        listenersMenuAppBar();
     }
 
     private void initComponents() {
-        btnBegistarResiduo = findViewById(R.id.btn_registrar_residuo);
-
+        homeAppBottomBar = findViewById(R.id.home_menu_bottom_bar);
         categoriasBottomBar = findViewById(R.id.categorias_menu_bottom_bar);
         estadisticasBottomBar = findViewById(R.id.estadisticas_menu_bottom_bar);
         consejosBottomBar = findViewById(R.id.consejos_menu_bottom_bar);
-        infoAppBottomBar = findViewById(R.id.info_app_menu_bottom_bar);
         logoutBottomBar = findViewById(R.id.logout_menu_bottom_bar);
     }
 
-    private void listenersButtons() {
-        btnBegistarResiduo.setOnClickListener(new View.OnClickListener() {
+    private void listenersMenuAppBar() {
+        homeAppBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(initIntents().get(0));
             }
         });
-
         categoriasBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(initIntents().get(0));
+
+                startActivity(initIntents().get(1));
             }
         });
         estadisticasBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(initIntents().get(1));
+
             }
         });
         consejosBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(initIntents().get(2));
-            }
-        });
-        infoAppBottomBar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
             }
         });
         logoutBottomBar.setOnClickListener(new View.OnClickListener() {
@@ -75,13 +67,13 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentCategorias = new Intent(FormularioRegistroResiduo.this, Categoria.class);
-        Intent intentEstadisticas = new Intent(FormularioRegistroResiduo.this, Statistic.class);
-        Intent intentConsejos = new Intent(FormularioRegistroResiduo.this, Consejos.class);
-        Intent intentLogout= new Intent(FormularioRegistroResiduo.this, MainActivity.class);
+        Intent intentPrincipal = new Intent(Statistic.this, Principal.class);
+        Intent intentCategorias = new Intent(Statistic.this, Categoria.class);
+        Intent intentConsejos = new Intent(Statistic.this, Consejos.class);
+        Intent intentLogout = new Intent(Statistic.this, Index.class);
 
+        listaIntents.add(intentPrincipal);
         listaIntents.add(intentCategorias);
-        listaIntents.add(intentEstadisticas);
         listaIntents.add(intentConsejos);
         listaIntents.add(intentLogout);
 

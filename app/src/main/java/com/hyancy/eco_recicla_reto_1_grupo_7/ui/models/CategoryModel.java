@@ -1,13 +1,10 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7.reciclerview;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui.models;
 
-import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
-
-public class ModeloCategoria {
+public class CategoryModel {
     private String categoria;
     private int pathImageCategoria;
 
-    public ModeloCategoria(String categoria, int pathImageCategoria) {
+    public CategoryModel(String categoria, int pathImageCategoria) {
         this.categoria = categoria;
         this.pathImageCategoria = pathImageCategoria;
     }

@@ -1,4 +1,4 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7.reciclerview;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui.reciclerview;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -9,6 +9,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
+import com.hyancy.eco_recicla_reto_1_grupo_7.ui.models.CategoryModel;
 
 public class CategoriaViewHolder extends RecyclerView.ViewHolder {
     CardView cardCategoria;
@@ -24,8 +25,8 @@ public class CategoriaViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void render(ModeloCategoria modeloCategoria) {
-        tvTipoCategoria.setText(String.valueOf(modeloCategoria.getCategoria()));
-        imagenCategoria.setImageResource(modeloCategoria.getPathImageCategoria());
+    public void render(CategoryModel categoryModel) {
+        tvTipoCategoria.setText(String.valueOf(categoryModel.getCategoria()));
+        imagenCategoria.setImageResource(categoryModel.getPathImageCategoria());
     }
 }

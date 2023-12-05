@@ -1,7 +1,7 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,16 +14,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.hyancy.eco_recicla_reto_1_grupo_7.R;
+import com.hyancy.eco_recicla_reto_1_grupo_7.ui.models.UserModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
-
-import kotlin.text.RegexOption;
 
 public class RegistroUsario extends AppCompatActivity {
     FloatingActionButton btnCerrar;
@@ -31,8 +29,10 @@ public class RegistroUsario extends AppCompatActivity {
     Button btnRegistrarUsuario;
     ProgressBar progressBar;
     TextView tvYaTieneCuenta;
-    EditText edtName, edtEmail, edtConfirmEmail, edtPassword, edtConfirmPassword;
+    EditText edtName, edtAge, edtEmail, edtConfirmEmail, edtPassword, edtConfirmPassword;
     FirebaseAuth mAuth;
+    UserViewModel userViewModel;
+    UserModel userModel;
 
     @Override
     public void onStart() {
@@ -49,11 +49,13 @@ public class RegistroUsario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_usario);
+
         mAuth = FirebaseAuth.getInstance();
+
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         initComponents();
         listenersButtons();
-
     }
 
 
@@ -65,6 +67,7 @@ public class RegistroUsario extends AppCompatActivity {
         tvYaTieneCuenta = findViewById(R.id.tv_ya_tiene_cuenta);
 
         edtName = findViewById(R.id.name_user_register);
+        edtAge = findViewById(R.id.age_user_register);
         edtEmail = findViewById(R.id.email_user_register);
         edtConfirmEmail = findViewById(R.id.confirm_email_user_register);
         edtPassword = findViewById(R.id.password_user_register);
@@ -94,22 +97,37 @@ public class RegistroUsario extends AppCompatActivity {
                 //startActivity(initIntents().get(1));
             }
         });
+        createUser();
+        tvYaTieneCuenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(initIntents().get(2));
+                finish();
+            }
+        });
+    }
+
+    public void createUser() {
         btnRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(v.VISIBLE);
-                String name, user, confirmUser, password, confirmPassword;
-                name = edtName.getText().toString();
-                user = edtEmail.getText().toString();
-                confirmUser = edtConfirmEmail.getText().toString();
-                password = edtPassword.getText().toString();
-                confirmPassword = edtConfirmPassword.getText().toString();
+
+                String name = edtName.getText().toString().trim();
+                Integer age = Integer.parseInt(edtAge.getText().toString().trim());
+                String email = edtEmail.getText().toString().trim();
+                String confirmUser = edtConfirmEmail.getText().toString().trim();
+                String password = edtPassword.getText().toString().trim();
+                String confirmPassword = edtConfirmPassword.getText().toString().trim();
+
+                userModel = new UserModel(name, age, email, password);
 
                 if (TextUtils.isEmpty(name)) {
                     Toast.makeText(getApplicationContext(), "Ingrese un nombre", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (TextUtils.isEmpty(user)) {
+                if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Ingrese un email", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -117,7 +135,7 @@ public class RegistroUsario extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Confirme email", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (!user.equals(confirmUser)) {
+                if (!email.equals(confirmUser)) {
                     Toast.makeText(getApplicationContext(), "Emails no coinciden", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -133,46 +151,41 @@ public class RegistroUsario extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Las contraseñas no coinciden", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (!user.equals(confirmUser) || !password.equals(confirmPassword)) {
+                if (!email.equals(confirmUser) || !password.equals(confirmPassword)) {
                     Toast.makeText(getApplicationContext(), "Los datos no coinciden", Toast.LENGTH_LONG).show();
                     return;
                 }
-
-                mAuth.createUserWithEmailAndPassword(user, password)
+                userViewModel.createUser(userModel.getName(), userModel.getAge(), userModel.getEmail(), userModel.getPassword());
+                startActivity(initIntents().get(2));
+/*
+                mAuth.createUserWithEmailAndPassword(userModel.getEmail(), userModel.getPassword())
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(v.GONE);
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
+                                    // Sign in success, update UI with the signed-in userModel's information
                                     Toast.makeText(getApplicationContext(), "Cuenta creada con exito!.",
                                             Toast.LENGTH_SHORT).show();
                                     clearComponents();
                                     FirebaseAuth.getInstance().signOut();
+                                    onDestroy();
+                                    Intent intentLogin = new Intent(RegistroUsario.this, Login.class);
+                                    startActivity(intentLogin);
                                 } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(getApplicationContext(), "No se pudo crear la cuenta!.",
+                                    // If sign in fails, display a message to the userModel.
+                                    Toast.makeText(getApplicationContext(), "Cuenta ya existe!!!.",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
-                        });
-
-
-            }
-        });
-        tvYaTieneCuenta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(initIntents().get(2));
-                finish();
+                        });*/
             }
         });
     }
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentHome = new Intent(RegistroUsario.this, MainActivity.class);
+        Intent intentHome = new Intent(RegistroUsario.this, Index.class);
         Intent intentTerminosCondiciones = new Intent(RegistroUsario.this, PoliticaPrivacidadTerminos.class);
         Intent intentLogin = new Intent(RegistroUsario.this, Login.class);
 
@@ -183,8 +196,10 @@ public class RegistroUsario extends AppCompatActivity {
         return listaIntents;
     }
 
+
     private void clearComponents() {
         edtName.setText("");
+        edtAge.setText("");
         edtEmail.setText("");
         edtConfirmEmail.setText("");
         edtPassword.setText("");

@@ -1,4 +1,4 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7.reciclerview;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui.reciclerview;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,14 +8,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
+import com.hyancy.eco_recicla_reto_1_grupo_7.ui.models.CategoryModel;
 
 import java.util.ArrayList;
 
 public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaViewHolder> {
-    ArrayList<ModeloCategoria> listaCategorias;
+    ArrayList<CategoryModel> listaCategorias;
     View view;
 
-    public CategoriaAdapter(ArrayList<ModeloCategoria> listaCategorias) {
+    public CategoriaAdapter(ArrayList<CategoryModel> listaCategorias) {
         this.listaCategorias = listaCategorias;
     }
 
