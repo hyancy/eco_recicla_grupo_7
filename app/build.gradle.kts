@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.hyancy.eco_recicla_reto_1_grupo_7"
-        minSdk = 27
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
