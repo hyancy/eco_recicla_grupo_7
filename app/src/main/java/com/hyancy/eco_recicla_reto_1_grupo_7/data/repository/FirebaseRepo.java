@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -20,6 +22,9 @@ import java.util.Map;
 public class FirebaseRepo {
     //Instancia de la base de datos
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
+
 
     public void setUserData(String name, Integer age, String email, String password) {
 
@@ -72,5 +77,17 @@ public class FirebaseRepo {
                         Log.d(TAG, "Error al registrar residuo. Contactarse con el administrador");
                     }
                 });
+    }
+
+    public FirebaseFirestore getDb(){
+        return db;
+    }
+
+    public FirebaseAuth getmAuth(){
+        return mAuth;
+    }
+
+    public FirebaseUser getCurrentUser(){
+        return currentUser;
     }
 }
