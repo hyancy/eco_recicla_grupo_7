@@ -108,33 +108,18 @@ public class RegistroUsario extends AppCompatActivity {
         });
     }
 
-    private ArrayList<Intent> initIntents() {
-        ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentHome = new Intent(RegistroUsario.this, Index.class);
-        Intent intentTerminosCondiciones = new Intent(RegistroUsario.this, PoliticaPrivacidadTerminos.class);
-        Intent intentLogin = new Intent(RegistroUsario.this, Login.class);
-
-        listaIntents.add(intentHome);
-        listaIntents.add(intentTerminosCondiciones);
-        listaIntents.add(intentLogin);
-
-        return listaIntents;
-    }
-
     public void createUser() {
         btnRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(v.VISIBLE);
-                String ID, name, email, confirmUser, password, confirmPassword;
-                Integer age;
 
-                name = edtName.getText().toString().trim();
-                age = Integer.parseInt(edtAge.getText().toString().trim());
-                email = edtEmail.getText().toString().trim();
-                confirmUser = edtConfirmEmail.getText().toString().trim();
-                password = edtPassword.getText().toString().trim();
-                confirmPassword = edtConfirmPassword.getText().toString().trim();
+                String name = edtName.getText().toString().trim();
+                Integer age = Integer.parseInt(edtAge.getText().toString().trim());
+                String email = edtEmail.getText().toString().trim();
+                String confirmUser = edtConfirmEmail.getText().toString().trim();
+                String password = edtPassword.getText().toString().trim();
+                String confirmPassword = edtConfirmPassword.getText().toString().trim();
 
                 userModel = new UserModel(name, age, email, password);
 
@@ -171,7 +156,7 @@ public class RegistroUsario extends AppCompatActivity {
                     return;
                 }
                 userViewModel.createUser(userModel.getName(), userModel.getAge(), userModel.getEmail(), userModel.getPassword());
-
+                startActivity(initIntents().get(2));
 /*
                 mAuth.createUserWithEmailAndPassword(userModel.getEmail(), userModel.getPassword())
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -197,6 +182,20 @@ public class RegistroUsario extends AppCompatActivity {
             }
         });
     }
+
+    private ArrayList<Intent> initIntents() {
+        ArrayList<Intent> listaIntents = new ArrayList<>();
+        Intent intentHome = new Intent(RegistroUsario.this, Index.class);
+        Intent intentTerminosCondiciones = new Intent(RegistroUsario.this, PoliticaPrivacidadTerminos.class);
+        Intent intentLogin = new Intent(RegistroUsario.this, Login.class);
+
+        listaIntents.add(intentHome);
+        listaIntents.add(intentTerminosCondiciones);
+        listaIntents.add(intentLogin);
+
+        return listaIntents;
+    }
+
 
     private void clearComponents() {
         edtName.setText("");

@@ -16,7 +16,7 @@ public class WasteUseCase {
         return productDataSet.createProductList();
     }
 
-    public void setWaste(String description, String photoUrl, Date registerDate, String location, String category, double quantity, int points) {
+    public void setWaste(String description, String photoUrl, String registerDate, String location, String category, double quantity, int points) {
         repository.setWasteData(description, photoUrl, registerDate, location, category, quantity, points);
     }
 }

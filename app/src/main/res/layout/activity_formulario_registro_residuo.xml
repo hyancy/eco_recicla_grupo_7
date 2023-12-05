@@ -28,7 +28,7 @@
             android:layout_width="116dp"
             android:layout_height="115dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="116dp"
+            android:layout_marginTop="100dp"
             android:src="@drawable/ic_logo_app" />
 
 
@@ -41,7 +41,7 @@
             android:fontFamily="sans-serif-black"
             android:paddingVertical="6dp"
             android:text="Registro de\nresiduos"
-            android:textAlignment="center"
+            android:gravity="start"
             android:textColor="@color/green_app"
             android:textSize="32sp" />
 
@@ -55,8 +55,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="502dp"
-            android:layout_marginTop="230dp">
+            android:layout_height="448dp"
+            android:layout_marginTop="216dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -106,11 +106,12 @@
                             <EditText
                                 android:id="@+id/edt_descripcion_waste"
                                 android:layout_width="194dp"
-                                android:layout_height="140dp"
+                                android:layout_height="100dp"
+                                android:padding="4dp"
                                 android:background="@color/green_app_secondary"
                                 android:gravity="start|top"
                                 android:textColor="@color/white"
-                                android:textSize="14sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold" />
 
 
@@ -118,28 +119,30 @@
 
                     </ScrollView>
 
-                    <LinearLayout
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:orientation="vertical">
+                        android:layout_marginStart="20dp"
+                        >
 
                         <ImageView
                             android:id="@+id/iv_photo_waste"
                             android:layout_width="128dp"
                             android:layout_height="100dp"
+                            android:layout_gravity="center"
                             android:background="@color/black" />
 
                         <ImageView
                             android:id="@+id/iv_camera_photo"
-                            android:layout_width="128dp"
+                            android:layout_width="60dp"
                             android:layout_height="40dp"
-                            android:background="#00E8E3CA"
+                            android:layout_gravity="center"
+                            android:background="@color/green_app_secondary"
                             android:clickable="true"
                             android:src="@drawable/ic_camara_foto" />
 
 
-                    </LinearLayout>
+                    </FrameLayout>
 
 
                 </LinearLayout>
@@ -171,7 +174,7 @@
                         android:hint="DD | MM | AAAA"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="24sp" />
+                        android:textSize="18sp" />
 
                     <ImageView
                         android:id="@+id/iv_calendar"
@@ -211,7 +214,7 @@
                         android:hint="Escriba su ubicación"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                     <ImageView
                         android:id="@+id/iv_location"
@@ -278,6 +281,7 @@
                         android:background="@color/green_app_secondary"
                         android:gravity="center"
                         android:hint="0"
+                        android:text="0"
                         android:textColor="@color/white"
                         android:textSize="28dp"
                         android:textStyle="bold" />
@@ -311,7 +315,7 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="12dp"
                     android:backgroundTint="@color/beige_app"
                     android:gravity="center"
                     android:text="Registrar"
@@ -321,7 +325,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="180dp" />
+                    android:layout_height="200dp" />
             </LinearLayout>
         </ScrollView>
 

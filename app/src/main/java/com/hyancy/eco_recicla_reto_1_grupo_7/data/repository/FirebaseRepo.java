@@ -46,7 +46,7 @@ public class FirebaseRepo {
                     }
                 });
     }
-    public void setWasteData(String description, String photoUrl, Date registerDate, String location, String category, double quantity, int points) {
+    public void setWasteData(String description, String photoUrl, String registerDate, String location, String category, double quantity, int points) {
 
         //Crear un nuevo residuo
         Map<String, Object> wasteHashMap = new HashMap<>();

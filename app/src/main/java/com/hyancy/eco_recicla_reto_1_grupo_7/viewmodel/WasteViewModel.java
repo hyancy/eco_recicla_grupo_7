@@ -9,7 +9,7 @@ import java.util.Date;
 public class WasteViewModel extends ViewModel {
     private WasteUseCase wasteUseCase = new WasteUseCase();
 
-    public void createWaste(String description, String photoUrl, Date registerDate, String location, String category, double quantity, int points) {
+    public void createWaste(String description, String photoUrl, String registerDate, String location, String category, double quantity, int points) {
         wasteUseCase.setWaste(description, photoUrl, registerDate, location, category, quantity, points);
     }
 }

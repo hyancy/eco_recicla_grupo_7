@@ -8,11 +8,11 @@ import java.util.Date;
 public class ProductDataSet {
     public ArrayList<WasteModel> createProductList() {
         WasteModel producto = new WasteModel("xxx", "www",
-                new Date("2/12/2023"), "Bta", "Aceite", 5.0, 10);
+                "2/12/2023", "Bta", "Aceite", 5.0, 10);
         WasteModel producto2 = new WasteModel( "xxx", "www",
-                new Date("2/12/2023"), "Bta", "Papel", 5.0, 10);
+                "2/12/2023", "Bta", "Papel", 5.0, 10);
         WasteModel producto3 = new WasteModel( "xxx", "www",
-                new Date("2/12/2023"), "Bta", "Organicos", 5.0, 10);
+                "2/12/2023", "Bta", "Organicos", 5.0, 10);
 
         ArrayList productsList = new ArrayList();
         productsList.add(producto);

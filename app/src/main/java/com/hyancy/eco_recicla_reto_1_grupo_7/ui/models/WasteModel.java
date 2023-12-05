@@ -5,13 +5,13 @@ import java.util.Date;
 public class WasteModel {
     private String description;
     private String photoUrl;
-    private Date registerDate;
+    private String registerDate;
     private String location;
     private String category;
     private double quantity;
     private int points;
 
-    public WasteModel(String description, String photoUrl, Date registerDate, String location, String category, double quantity, int points) {
+    public WasteModel(String description, String photoUrl, String registerDate, String location, String category, double quantity, int points) {
         this.description = description;
         this.photoUrl = photoUrl;
         this.registerDate = registerDate;
@@ -37,11 +37,11 @@ public class WasteModel {
         this.photoUrl = photoUrl;
     }
 
-    public Date getRegisterDate() {
+    public String getRegisterDate() {
         return registerDate;
     }
 
-    public void setRegisterDate(Date registerDate) {
+    public void setRegisterDate(String registerDate) {
         this.registerDate = registerDate;
     }
 
