@@ -2,6 +2,7 @@ package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
+import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
 
@@ -29,6 +31,8 @@ public class Login extends AppCompatActivity {
     ProgressBar progressBar;
     FirebaseAuth mAuth;
     TextView tvNoHaveCount, tvForgottenPassword;
+
+    UserViewModel userViewModel;
 
 
     @Override
@@ -46,6 +50,9 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+
         mAuth = FirebaseAuth.getInstance();
 
         initComponents();
@@ -174,9 +181,10 @@ public class Login extends AppCompatActivity {
         });
 
     }
-    private void showDialogCompleteDataLogin(){
+
+    private void showDialogCompleteDataLogin() {
         AlertDialog.Builder dialogCompleteDataLogin = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_complete_data_login,null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_complete_data_login, null);
         dialogCompleteDataLogin.setView(view);
         final AlertDialog dialog = dialogCompleteDataLogin.create();
         dialog.show();

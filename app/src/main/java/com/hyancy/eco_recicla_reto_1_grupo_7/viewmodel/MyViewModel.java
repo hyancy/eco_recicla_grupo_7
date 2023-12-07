@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.hyancy.eco_recicla_reto_1_grupo_7.domain.WasteUseCase;
-import com.hyancy.eco_recicla_reto_1_grupo_7.ui.models.WasteModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.WasteModel;
 
 import java.util.ArrayList;
 

@@ -2,19 +2,27 @@ package com.hyancy.eco_recicla_reto_1_grupo_7.data.repository;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,33 +33,56 @@ public class FirebaseRepo {
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private final FirebaseUser currentUser = mAuth.getCurrentUser();
 
+    public void createUser(String name, Integer age, String email, String password, Context context) {
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in userModel's information
+                            Toast.makeText(context, "Cuenta creada con exito!.",
+                                    Toast.LENGTH_SHORT).show();
 
+                            String uIdUser = mAuth.getCurrentUser().getUid();
 
-    public void setUserData(String name, Integer age, String email, String password) {
+                            setUserData(uIdUser, name, age, email, password);
+                        } else {
+                            // If sign in fails, display a message to the userModel.
+                            Toast.makeText(context, "Cuenta ya existe!!!.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    public String getUidUser() {
+        String uIdUser = mAuth.getCurrentUser().getUid();
+        return uIdUser;
+    }
+
+    public void setUserData(String uIdUser, String name, Integer age, String email, String password) {
 
         //Crear un nuevo usuario
         Map<String, Object> userHashMap = new HashMap<>();
         userHashMap.put("name", name);
-        userHashMap.put("edad", age);
+        userHashMap.put("age", age);
         userHashMap.put("email", email);
         userHashMap.put("password", password);
 
-
         //Agregar una nueva colección a la base de datos con un nuevo documento que tenga el objeto de usuario
-        db.collection("users")
-                .add(userHashMap)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        db.collection("users").document(uIdUser.toString())
+                .set(userHashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "UserModel creado con exito, ID: " + documentReference.getId());
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "Error al registrar usuario. Contactarse con el administrador");
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d("VEF", "Usuario registrado con exito con ID: " + uIdUser);
+                            FirebaseAuth.getInstance().signOut();
+                        } else {
+                            Log.d("VEF2", "Error al registrar usuario. Contactar al administrador");
+                        }
                     }
                 });
     }
+
     public void setWasteData(String description, String photoUrl, String registerDate, String location, String category, double quantity, int points) {
 
         //Crear un nuevo residuo
@@ -63,6 +94,7 @@ public class FirebaseRepo {
         wasteHashMap.put("category", category);
         wasteHashMap.put("quantity", quantity);
         wasteHashMap.put("points", points);
+        wasteHashMap.put("idCurrentUser", getUidUser());
 
         //Agregar una nueva colección a la base de datos con un nuevo documento que tenga el objeto de usuario
         db.collection("wastes")
@@ -80,15 +112,38 @@ public class FirebaseRepo {
                 });
     }
 
-    public FirebaseFirestore getDb(){
+    public FirebaseFirestore getDb() {
         return db;
     }
 
-    public FirebaseAuth getmAuth(){
+    public FirebaseAuth getmAuth() {
         return mAuth;
     }
 
-    public FirebaseUser getCurrentUser(){
+    public FirebaseUser getCurrentUser() {
         return currentUser;
+    }
+
+    public void getUserData(String idUser) {
+        db.collection("users").document(currentUser.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot document) {
+                if (document.exists()) {
+                    String idUser = document.getId();
+                    String nombre = document.getString("name");
+                    int edad = Long.valueOf(document.getLong("edad")).intValue();
+                    String email = document.getString("email");
+
+                    Log.i("OUT", "LOS DATOS DE USUARIO SON: \n" + idUser + "\n" + nombre + "\n" + edad + "\n" + email);
+                } else {
+                    Log.d(TAG, "Usuario no encontrado, verificar los datos");
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, "Usuario no encontrado, verificar los datos");
+            }
+        });
     }
 }

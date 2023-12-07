@@ -1,9 +1,8 @@
 package com.hyancy.eco_recicla_reto_1_grupo_7.data;
 
-import com.hyancy.eco_recicla_reto_1_grupo_7.ui.models.WasteModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.WasteModel;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ProductDataSet {
     public ArrayList<WasteModel> createProductList() {

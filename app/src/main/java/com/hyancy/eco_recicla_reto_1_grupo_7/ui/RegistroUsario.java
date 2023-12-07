@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
-import com.hyancy.eco_recicla_reto_1_grupo_7.ui.models.UserModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.UserModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.DatasetViewModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
@@ -148,9 +149,9 @@ public class RegistroUsario extends AppCompatActivity {
                 } else {
                     Integer userAge = Integer.parseInt(age);
                     userModel = new UserModel(name, userAge, email, password);
-                    showDialogoRegistroCompleto();
-                    userViewModel.createUser(userModel.getName(), userModel.getAge(), userModel.getEmail(), userModel.getPassword());
+                    createUser(userModel.getName(), userModel.getAge(), userModel.getEmail(), userModel.getPassword(), getApplicationContext());
 
+                    showDialogoRegistroCompleto();
                 }
             }
         });
@@ -183,7 +184,7 @@ public class RegistroUsario extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 clearComponents();
-                authenticateUser();
+                startActivity(initIntents().get(0));
             }
         });
         builder.setView(R.layout.dialog_registro_completo).create().show();
@@ -264,26 +265,8 @@ public class RegistroUsario extends AppCompatActivity {
         builder.setView(R.layout.dialog_privacidad).create().show();
     }
 
-    private void authenticateUser() {
-        datasetViewModel.getmAuth().createUserWithEmailAndPassword(userModel.getEmail(), userModel.getPassword())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in userModel's information
-                            Toast.makeText(getApplicationContext(), "Cuenta creada con exito!.",
-                                    Toast.LENGTH_SHORT).show();
-                            clearComponents();
-                            FirebaseAuth.getInstance().signOut();
-                            onDestroy();
-                            startActivity(initIntents().get(2));
-                        } else {
-                            // If sign in fails, display a message to the userModel.
-                            Toast.makeText(getApplicationContext(), "Cuenta ya existe!!!.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+    private void createUser(String name, Integer age, String email, String password, Context context) {
+       userViewModel.createUser(name, age, email, password, context);
     }
 
 

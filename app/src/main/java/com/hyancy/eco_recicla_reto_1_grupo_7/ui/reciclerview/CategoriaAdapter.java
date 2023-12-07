@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
-import com.hyancy.eco_recicla_reto_1_grupo_7.ui.models.CategoryModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.CategoryModel;
 
 import java.util.ArrayList;
 
