@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
-import com.hyancy.eco_recicla_reto_1_grupo_7.ui.models.WasteModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.WasteModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.MyViewModel;
 
 import java.util.ArrayList;
@@ -33,7 +33,6 @@ public class Categoria extends AppCompatActivity {
         listenersCards();
         listenersMenuAppBar();
         setViewModel();
-
     }
 
     private void initComponents() {

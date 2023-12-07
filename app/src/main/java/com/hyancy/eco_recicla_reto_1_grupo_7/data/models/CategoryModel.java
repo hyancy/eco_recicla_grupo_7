@@ -1,4 +1,4 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7.ui.models;
+package com.hyancy.eco_recicla_reto_1_grupo_7.data.models;
 
 public class CategoryModel {
     private String categoria;

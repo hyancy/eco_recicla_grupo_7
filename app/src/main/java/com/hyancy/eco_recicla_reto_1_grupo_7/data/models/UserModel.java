@@ -1,4 +1,4 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7.ui.models;
+package com.hyancy.eco_recicla_reto_1_grupo_7.data.models;
 
 public class UserModel {
     private String name;
@@ -44,4 +44,10 @@ public class UserModel {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String createUserID(){
+        RandomKey randomKeyGenerator = new RandomKey();
+        return randomKeyGenerator.createRandomKey();
+    }
+
 }

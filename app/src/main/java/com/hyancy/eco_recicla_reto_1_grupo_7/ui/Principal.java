@@ -1,6 +1,7 @@
 package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +12,9 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
+import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class Principal extends AppCompatActivity {
@@ -19,11 +22,16 @@ public class Principal extends AppCompatActivity {
     TextView tvUserCurrent;
     FirebaseAuth auth;
     FirebaseUser currentUser;
+    UserViewModel userViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
 

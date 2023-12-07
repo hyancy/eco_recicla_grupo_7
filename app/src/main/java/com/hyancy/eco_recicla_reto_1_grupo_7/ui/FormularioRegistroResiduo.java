@@ -16,14 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
-import com.hyancy.eco_recicla_reto_1_grupo_7.ui.models.SpinnerModel;
-import com.hyancy.eco_recicla_reto_1_grupo_7.ui.models.WasteModel;
-import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.SpinnerModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.WasteModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.WasteViewModel;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class FormularioRegistroResiduo extends AppCompatActivity {
     private Button btnBegistarResiduo;
@@ -116,7 +113,7 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
                 }
 
                 wasteViewModel.createWaste(description, photoUrl, registerDate, location, category, quantity, points);
-                startActivity(initIntents().get(0));
+                startActivity(initIntents().get(1));
             }
         });
     }
