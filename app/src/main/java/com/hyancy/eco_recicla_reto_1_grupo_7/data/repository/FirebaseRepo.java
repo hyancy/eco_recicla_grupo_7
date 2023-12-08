@@ -94,7 +94,7 @@ public class FirebaseRepo {
         wasteHashMap.put("category", category);
         wasteHashMap.put("quantity", quantity);
         wasteHashMap.put("points", points);
-        wasteHashMap.put("idCurrentUser", getUidUser());
+        wasteHashMap.put("idUser", getUidUser());
 
         //Agregar una nueva colección a la base de datos con un nuevo documento que tenga el objeto de usuario
         db.collection("wastes")

@@ -1,5 +1,6 @@
 package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,12 +23,16 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.WasteModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.WasteViewModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FormularioRegistroResiduo extends AppCompatActivity {
-    private Button btnBegistarResiduo;
+    private Button btnCalculatePoints, btnRegisterWaste, btnCancelRegister;
     private ImageView categoriasBottomBar, estadisticasBottomBar, consejosBottomBar, homeAppBottomBar, logoutBottomBar, ivCamera, ivCalendar, ivLocation, photo;
     private EditText edtDescription, edtDateRegister, edtLocationRegister, edtQuantity;
+    private LinearLayout lnLayoutRegisterCancelButtons;
     TextView tvPoints;
+    double totalPoints = 0;
     private Spinner categoryWasteSpinner;
     private ArrayList<String> listCategories;
     private WasteViewModel wasteViewModel;
@@ -42,7 +48,8 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         wasteViewModel = new ViewModelProvider(this).get(WasteViewModel.class);
 
         initComponents();
-        listenersButtons();
+        calculateWastePoints();
+        listenersMenuAppBar();
         spinnerUI(spinnerModel);
     }
 
@@ -58,7 +65,10 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         ivLocation = findViewById(R.id.iv_location);
         photo = findViewById(R.id.iv_photo_waste);
 
-        btnBegistarResiduo = findViewById(R.id.btn_register_waste);
+        btnCalculatePoints = findViewById(R.id.btn_calculate_points);
+        lnLayoutRegisterCancelButtons = findViewById(R.id.ln_layout_register_cancel_buttons);
+        btnRegisterWaste = findViewById(R.id.btn_register_waste);
+        btnCancelRegister = findViewById(R.id.btn_cancel);
 
         homeAppBottomBar = findViewById(R.id.home_menu_bottom_bar);
         categoriasBottomBar = findViewById(R.id.categorias_menu_bottom_bar);
@@ -66,56 +76,6 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         consejosBottomBar = findViewById(R.id.consejos_menu_bottom_bar);
         logoutBottomBar = findViewById(R.id.logout_menu_bottom_bar);
 
-    }
-
-    private void listenersButtons() {
-        createWaste();
-        listenersMenuAppBar();
-    }
-
-    private void createWaste() {
-        btnBegistarResiduo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String description = edtDescription.getText().toString().trim();
-                String photoUrl = edtDescription.getText().toString().trim();
-                String registerDate = edtDateRegister.getText().toString().trim();
-                String location = edtLocationRegister.getText().toString().trim();
-                String category = categoryWasteSpinner.getSelectedItem().toString();
-                double quantity = Double.parseDouble(edtQuantity.getText().toString().trim());
-                int points = Integer.parseInt(tvPoints.getText().toString().trim());
-
-                wasteModel = new WasteModel(description, photoUrl, registerDate, location, category, quantity, points);
-
-                if (TextUtils.isEmpty(description)) {
-                    Toast.makeText(getApplicationContext(), "Ingrese la descripción del residuo", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(photoUrl)) {
-                    Toast.makeText(getApplicationContext(), "Tomar una foto del residuo", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(registerDate)) {
-                    Toast.makeText(getApplicationContext(), "Ingrese la fecha de recolección", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(location)) {
-                    Toast.makeText(getApplicationContext(), "Ingrese el sitio de recolección", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(category) || category.equals("Seleccione una categoría")) {
-                    Toast.makeText(getApplicationContext(), "Seleccione la categoria del residuo", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(String.valueOf(quantity)) || quantity == 0) {
-                    Toast.makeText(getApplicationContext(), "Ingrese la cantidad de residuo", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                wasteViewModel.createWaste(description, photoUrl, registerDate, location, category, quantity, points);
-                startActivity(initIntents().get(1));
-            }
-        });
     }
 
     private void listenersMenuAppBar() {
@@ -153,6 +113,125 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         });
     }
 
+    private void calculateWastePoints() {
+        btnCalculatePoints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String description = edtDescription.getText().toString().trim();
+                String photoUrl = edtDescription.getText().toString().trim();
+                String registerDate = edtDateRegister.getText().toString().trim();
+                String location = edtLocationRegister.getText().toString().trim();
+                String category = categoryWasteSpinner.getSelectedItem().toString();
+                double quantity = Double.parseDouble(edtQuantity.getText().toString().trim());
+
+                if (TextUtils.isEmpty(description)) {
+                    Toast.makeText(getApplicationContext(), "Ingrese la descripción del residuo", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(photoUrl)) {
+                    Toast.makeText(getApplicationContext(), "Tomar una foto del residuo", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(registerDate)) {
+                    Toast.makeText(getApplicationContext(), "Ingrese la fecha de recolección", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(location)) {
+                    Toast.makeText(getApplicationContext(), "Ingrese el sitio de recolección", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(category) || category.equals("Seleccione una categoría")) {
+                    Toast.makeText(getApplicationContext(), "Seleccione la categoria del residuo", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(String.valueOf(quantity)) || quantity == 0) {
+                    Toast.makeText(getApplicationContext(), "Ingrese la cantidad de residuo", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                double environmentFactor = calculateEnvioronmentalFactor(category);
+                double recyclingFactor = calculateRecyclingFactor(category);
+                int points = (int) Math.round(calculatePoints(environmentFactor, recyclingFactor, quantity));
+
+                wasteModel = new WasteModel(description, photoUrl, registerDate, location, category, quantity, points);
+
+                tvPoints.setText(String.valueOf(points));
+
+                showRegisterCancelButtons(description, photoUrl, registerDate, location, category, quantity, points);
+            }
+        });
+    }
+
+    public void registerWaste(String description, String photoUrl, String registerDate,
+                              String location, String category, double quantity, int points) {
+        btnRegisterWaste.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                wasteViewModel.createWaste(description, photoUrl, registerDate, location, category, quantity, points);
+                //clearComponents();
+                //startActivity(initIntents().get(1));
+            }
+        });
+
+        btnCancelRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCalculateButton();
+            }
+        });
+    }
+
+    private double calculatePoints(double environmentalImpactFactor_, double recyclingFactor_, double quantity_) {
+
+        double environmentalImpactFactor = environmentalImpactFactor_;
+        double recyclingFactor = recyclingFactor_;
+        double quantity = quantity_;
+
+        double points = environmentalImpactFactor * quantity / recyclingFactor;
+        return points;
+    }
+
+    private double calculateRecyclingFactor(String category) {
+        double recyclingFactor = 0;
+
+        Map<String, Integer> numFactor = new HashMap<>();
+        numFactor.put("Aceites", 4);
+        numFactor.put("Baterías / Pilas", 5);
+        numFactor.put("Maderas / Escombros", 2);
+        numFactor.put("Metales", 7);
+        numFactor.put("Papel / Cartón", 5);
+        numFactor.put("Plásticos", 5);
+        numFactor.put("Tetrabrik", 3);
+        numFactor.put("Vidrios", 7);
+        numFactor.put("Orgánicos", 5);
+
+        if (numFactor.containsKey(category)) {
+            recyclingFactor = numFactor.get(category);
+        }
+
+        return recyclingFactor;
+    }
+
+    private double calculateEnvioronmentalFactor(String category) {
+        double environmentalFactor = 0;
+
+        Map<String, Integer> numFactor = new HashMap<>();
+        numFactor.put("Aceites", 8);
+        numFactor.put("Baterías / Pilas", 9);
+        numFactor.put("Maderas / Escombros", 5);
+        numFactor.put("Metales", 7);
+        numFactor.put("Papel / Cartón", 4);
+        numFactor.put("Plásticos", 6);
+        numFactor.put("Tetrabrik", 4);
+        numFactor.put("Vidrios", 3);
+        numFactor.put("Orgánicos", 2);
+
+        if (numFactor.containsKey(category)) {
+            environmentalFactor = numFactor.get(category);
+        }
+
+        return environmentalFactor;
+    }
+
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
         Intent intentPrincipal = new Intent(FormularioRegistroResiduo.this, Principal.class);
@@ -170,6 +249,24 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         return listaIntents;
     }
 
+
+    private void showRegisterCancelButtons(String description, String photoUrl, String registerDate,
+                                           String location, String category, double quantity, int points) {
+        registerWaste(description, photoUrl, registerDate, location, category, quantity, points);
+        btnCalculatePoints.setVisibility(View.GONE);
+        lnLayoutRegisterCancelButtons.setVisibility(View.VISIBLE);
+        btnRegisterWaste.setVisibility(View.VISIBLE);
+        btnCancelRegister.setVisibility(View.VISIBLE);
+    }
+
+    private void showCalculateButton() {
+        btnRegisterWaste.setVisibility(View.GONE);
+        btnCancelRegister.setVisibility(View.GONE);
+        lnLayoutRegisterCancelButtons.setVisibility(View.VISIBLE);
+        btnCalculatePoints.setVisibility(View.VISIBLE);
+    }
+
+
     private void spinnerUI(SpinnerModel spinnerModel) {
         this.listCategories = spinnerModel.getListSpinnerCategory();
         ArrayAdapter<String> categories = new ArrayAdapter<>(this, R.layout.spinner_categories_item);
@@ -178,5 +275,12 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
     }
 
     private void clearComponents() {
+        edtDescription.setText("");
+        edtDateRegister.setText("");
+        edtLocationRegister.setText("");
+        edtQuantity.setText("0");
+        tvPoints.setText("0");
+        categoryWasteSpinner.setSelection(0);
     }
+
 }

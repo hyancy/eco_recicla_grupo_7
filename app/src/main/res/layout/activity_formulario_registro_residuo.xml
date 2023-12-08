@@ -39,9 +39,9 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="24dp"
             android:fontFamily="sans-serif-black"
+            android:gravity="start"
             android:paddingVertical="6dp"
             android:text="Registro de\nresiduos"
-            android:gravity="start"
             android:textColor="@color/green_app"
             android:textSize="32sp" />
 
@@ -107,10 +107,10 @@
                                 android:id="@+id/edt_descripcion_waste"
                                 android:layout_width="194dp"
                                 android:layout_height="100dp"
-                                android:padding="4dp"
                                 android:background="@color/green_app_secondary"
                                 android:gravity="start|top"
-                                android:textColor="@color/white"
+                                android:padding="4dp"
+                                android:textColor="@color/beige_app"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
 
@@ -122,15 +122,14 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        >
+                        android:layout_marginStart="20dp">
 
                         <ImageView
                             android:id="@+id/iv_photo_waste"
                             android:layout_width="128dp"
                             android:layout_height="100dp"
                             android:layout_gravity="center"
-                            android:background="@color/black" />
+                            android:background="#000000" />
 
                         <ImageView
                             android:id="@+id/iv_camera_photo"
@@ -139,7 +138,8 @@
                             android:layout_gravity="center"
                             android:background="@color/green_app_secondary"
                             android:clickable="true"
-                            android:src="@drawable/ic_camara_foto" />
+                            android:src="@drawable/ic_camara_foto"
+                            android:visibility="visible" />
 
 
                     </FrameLayout>
@@ -173,7 +173,7 @@
                         android:gravity="center"
                         android:hint="DD | MM | AAAA"
                         android:textAlignment="center"
-                        android:textColor="@color/white"
+                        android:textColor="@color/beige_app"
                         android:textSize="18sp" />
 
                     <ImageView
@@ -213,7 +213,7 @@
                         android:gravity="center"
                         android:hint="Escriba su ubicación"
                         android:textAlignment="center"
-                        android:textColor="@color/white"
+                        android:textColor="@color/beige_app"
                         android:textSize="18sp" />
 
                     <ImageView
@@ -282,7 +282,7 @@
                         android:gravity="center"
                         android:hint="0"
                         android:text="0"
-                        android:textColor="@color/white"
+                        android:textColor="@color/beige_app"
                         android:textSize="28dp"
                         android:textStyle="bold" />
 
@@ -311,21 +311,64 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btn_register_waste"
-                    android:layout_width="250dp"
+                    android:id="@+id/btn_calculate_points"
+                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="12dp"
                     android:backgroundTint="@color/beige_app"
                     android:gravity="center"
-                    android:text="Registrar"
+                    android:text="Calcular puntos"
                     android:textColor="@color/green_app"
                     android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="visible" />
 
-                <Space
+
+                <LinearLayout
+                    android:id="@+id/ln_layout_register_cancel_buttons"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/btn_register_waste"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/beige_app"
+                        android:gravity="center"
+                        android:text="Registrar"
+                        android:textColor="@color/green_app"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <Space
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btn_cancel"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/beige_app"
+                        android:gravity="center"
+                        android:text="Cancelar"
+                        android:textColor="@color/green_app"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+                </LinearLayout>
+                <!--
+                                <Space
+                                    android:layout_width="match_parent"
+                                    android:layout_height="180dp" />
+                                    -->
             </LinearLayout>
         </ScrollView>
 
@@ -349,8 +392,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="6dp"
                 android:clickable="true"
-                app:tint="#1A681D"
-                android:src="@drawable/ic_home_app_menu_bottom_bar" />
+                android:src="@drawable/ic_home_app_menu_bottom_bar"
+                app:tint="#1A681D" />
 
             <ImageView
                 android:id="@+id/categorias_menu_bottom_bar"
