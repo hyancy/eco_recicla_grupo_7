@@ -15,7 +15,7 @@
         android:scaleType="matrix"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/img" />
+        app:srcCompat="@drawable/background_pantalla_login" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

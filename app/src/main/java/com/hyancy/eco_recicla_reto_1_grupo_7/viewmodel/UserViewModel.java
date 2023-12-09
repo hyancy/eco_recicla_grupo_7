@@ -17,4 +17,11 @@ public class UserViewModel extends ViewModel {
         userUseCase.getUserData(idUser);
     }
 
+    public String getUidUser() {
+        return userUseCase.getUidUser();
+    }
+
+    public void logoutSesion(){
+        userUseCase.logoutSesion();
+    }
 }

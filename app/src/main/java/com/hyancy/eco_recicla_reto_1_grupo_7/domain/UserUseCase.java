@@ -2,6 +2,7 @@ package com.hyancy.eco_recicla_reto_1_grupo_7.domain;
 
 import android.content.Context;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.hyancy.eco_recicla_reto_1_grupo_7.data.repository.FirebaseRepo;
 
@@ -14,9 +15,15 @@ public class UserUseCase {
         repository.createUser(name, age, email, password, context);
     }
 
-
     public void getUserData(String idUser) {
         repository.getUserData(idUser);
     }
 
+    public String getUidUser() {
+        return repository.getUidUser();
+    }
+
+    public void logoutSesion(){
+        repository.logoutSesion();
+    }
 }

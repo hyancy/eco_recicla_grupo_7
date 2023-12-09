@@ -122,7 +122,7 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
                 String registerDate = edtDateRegister.getText().toString().trim();
                 String location = edtLocationRegister.getText().toString().trim();
                 String category = categoryWasteSpinner.getSelectedItem().toString();
-                double quantity = Double.parseDouble(edtQuantity.getText().toString().trim());
+                double quantity = 0;
 
                 if (TextUtils.isEmpty(description)) {
                     Toast.makeText(getApplicationContext(), "Ingrese la descripción del residuo", Toast.LENGTH_LONG).show();
@@ -144,7 +144,11 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Seleccione la categoria del residuo", Toast.LENGTH_LONG).show();
                     return;
                 }
+
                 if (TextUtils.isEmpty(String.valueOf(quantity)) || quantity == 0) {
+                    while (quantity == 0) {
+                        quantity = Double.parseDouble(edtQuantity.getText().toString().trim());
+                    }
                     Toast.makeText(getApplicationContext(), "Ingrese la cantidad de residuo", Toast.LENGTH_LONG).show();
                     return;
                 }
