@@ -281,8 +281,7 @@
                         android:background="@color/green_app_secondary"
                         android:gravity="center"
                         android:hint="0"
-                        android:text="0"
-                        android:textColor="@color/beige_app"
+                        android:textColor="@color/white"
                         android:textSize="28dp"
                         android:textStyle="bold" />
 
@@ -306,7 +305,7 @@
                         android:text="0"
                         android:textSize="28dp"
                         android:textStyle="bold"
-                        tools:textColor="@color/white" />
+                        tools:textColor="@color/beige_app" />
 
                 </LinearLayout>
 

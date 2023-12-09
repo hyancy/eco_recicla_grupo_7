@@ -4,6 +4,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,15 +16,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.auth.User;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,8 +30,11 @@ public class FirebaseRepo {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private final FirebaseUser currentUser = mAuth.getCurrentUser();
+    ArrayList<QueryDocumentSnapshot> wasteList = new ArrayList<>();
 
     public void createUser(String name, Integer age, String email, String password, Context context) {
+        final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -145,5 +146,43 @@ public class FirebaseRepo {
                 Log.d(TAG, "Usuario no encontrado, verificar los datos");
             }
         });
+    }
+
+    public void getWasteByUserId(String idCurrentUser, ArrayList<QueryDocumentSnapshot> wasteList, TextView tvAccumulatedAmount, TextView tvAccumulatedPoints, String category) {
+        db.collection("wastes").whereEqualTo("idUser", idCurrentUser).whereEqualTo("category", category).get().addOnSuccessListener(queryResponse -> {
+            if (!queryResponse.isEmpty()) {
+                int points = 0;
+                double quantity = 0.0;
+                for (QueryDocumentSnapshot queryWaste : queryResponse) {
+                    System.out.println(category);
+                    points += Integer.parseInt(queryWaste.get("points").toString());
+                    quantity += Double.parseDouble(queryWaste.get("quantity").toString());
+                    wasteList.add(queryWaste);
+                    System.out.println(quantity);
+                    System.out.println(points);
+                }
+                tvAccumulatedAmount.setText(String.valueOf(quantity));
+                tvAccumulatedPoints.setText(String.valueOf(points));
+                System.out.println("CANTIDAD TOTAL" + quantity);
+                System.out.println("PUNTAJE TOTAL" + points);
+            } else {
+                System.out.println("NO EXISTE INFORMACIÓN");
+                System.out.println(category);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+    }
+
+    public ArrayList<QueryDocumentSnapshot> getDataWaste(ArrayList<QueryDocumentSnapshot> wasteList) {
+        this.wasteList = wasteList;
+        return this.wasteList;
+    }
+
+    public void logoutSesion() {
+        FirebaseAuth.getInstance().signOut();
     }
 }

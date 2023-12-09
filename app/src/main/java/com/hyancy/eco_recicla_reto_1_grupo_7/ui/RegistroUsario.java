@@ -184,7 +184,7 @@ public class RegistroUsario extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 clearComponents();
-                startActivity(initIntents().get(0));
+                //startActivity(initIntents().get(0));
             }
         });
         builder.setView(R.layout.dialog_registro_completo).create().show();

@@ -107,6 +107,7 @@
                         android:src="@drawable/imagen_categoria_aceites_categorias" />
 
                     <TextView
+                        android:id="@+id/tv_aceites"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="100dp"
@@ -137,10 +138,11 @@
                         android:src="@drawable/imagen_categoria_baterias_categorias" />
 
                     <TextView
+                        android:id="@+id/tv_baterias_pilas"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="88dp"
-                        android:text="Baterías /\nPilas"
+                        android:text="Baterías / Pilas"
                         android:textAlignment="center"
                         android:textColor="@color/green_app"
                         android:textSize="16sp"
@@ -166,10 +168,11 @@
                         android:src="@drawable/imagen_categoria_madera_escombros_categorias" />
 
                     <TextView
+                        android:id="@+id/tv_maderas_escombros"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="88dp"
-                        android:text="Maderas /\nEscombros"
+                        android:text="Maderas / Escombros"
                         android:textAlignment="center"
                         android:textColor="@color/green_app"
                         android:textSize="16sp"
@@ -194,6 +197,7 @@
                         android:src="@drawable/imagen_categoria_metal_chatarra_categorias" />
 
                     <TextView
+                        android:id="@+id/tv_metales"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="100dp"
@@ -224,10 +228,12 @@
                         android:src="@drawable/imagen_categoria_palpel_carton_categorias" />
 
                     <TextView
+                        android:id="@+id/tv_papel_carton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="88dp"
-                        android:text="Papel /\nCartón"
+                        android:text="Papel / Cartón"
+                        android:paddingHorizontal="4dp"
                         android:textAlignment="center"
                         android:textColor="@color/green_app"
                         android:textSize="16sp"
@@ -254,6 +260,7 @@
                         android:src="@drawable/imagen_categoria_plastico_categorias" />
 
                     <TextView
+                        android:id="@+id/tv_plasticos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="100dp"
@@ -283,6 +290,7 @@
                         android:src="@drawable/imagen_categoria_tetrabrick_categorias" />
 
                     <TextView
+                        android:id="@+id/tv_tetrabrick"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="100dp"
@@ -313,6 +321,7 @@
                         android:src="@drawable/imagen_categoria_vidrio_categorias" />
 
                     <TextView
+                        android:id="@+id/tv_vidrios"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="100dp"
@@ -343,6 +352,7 @@
                         android:src="@drawable/imagen_categoria_organicos_categorias" />
 
                     <TextView
+                        android:id="@+id/tv_organicos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="100dp"
