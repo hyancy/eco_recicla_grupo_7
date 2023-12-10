@@ -1,6 +1,7 @@
 package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,16 +26,19 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.WasteViewModel;
 import java.util.ArrayList;
 
 public class Categoria extends AppCompatActivity {
+    private SearchView searchFilterCategory;
+    CardView cardsLists[];
+    TextView tvCardsList[];
     private CardView cardAceites, cardBateriasPilas, cardMaderasEscombros, cardMetales, cardPapelCarton, cardPlasticos,
             cardTetrabrik, cardVidrios, cardOrganicos;
     private TextView tvCardAceites, tvCardBateriasPilas, tvCardMaderasEscombros, tvCardMetales, tvCardPapelCarton, tvCardPlasticos,
-            tvCardTetrabrik, tvCardVidrios, tvCardOrganicos;
+            tvCardTetrabrik, tvCardVidrios, tvCardOrganicos, tvCategoryNotFound;
     private ImageView estadisticasBottomBar, consejosBottomBar, homeAppBottomBar, logoutBottomBar;
+    private GridLayout gridLayoutCards;
     private MyViewModel viewModel;
     private WasteViewModel wasteViewModel;
     private UserViewModel userViewModel;
     private ArrayList<QueryDocumentSnapshot> wasteList = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +52,26 @@ public class Categoria extends AppCompatActivity {
         listenersCards();
         listenersMenuAppBar();
         setViewModel();
-
+        filterCard();
     }
 
+    private void filterCard() {
+        searchFilterCategory.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchFilterListener(newText.toString(), cardAceites.getId());
+                return false;
+            }
+        });
+    }
 
     private void initComponents() {
+        searchFilterCategory = findViewById(R.id.srch_filter_category);
         cardAceites = findViewById(R.id.card_aceites);
         cardBateriasPilas = findViewById(R.id.card_baterias_pilas);
         cardMaderasEscombros = findViewById(R.id.card_maderas_escombros);
@@ -76,8 +96,26 @@ public class Categoria extends AppCompatActivity {
         tvCardTetrabrik = findViewById(R.id.tv_tetrabrick);
         tvCardVidrios = findViewById(R.id.tv_vidrios);
         tvCardOrganicos = findViewById(R.id.tv_organicos);
+        tvCategoryNotFound = findViewById(R.id.tv_category_not_found);
+
+        gridLayoutCards = findViewById(R.id.grid_layout_cards);
+
+        cardsLists = initCardsList();
+        tvCardsList = initTvCardsList();
+
     }
 
+    private TextView[] initTvCardsList() {
+        TextView tvCards[] = {tvCardAceites, tvCardBateriasPilas, tvCardMaderasEscombros, tvCardMetales,
+                tvCardPapelCarton, tvCardPlasticos, tvCardTetrabrik, tvCardVidrios, tvCardOrganicos};
+        return tvCards;
+    }
+
+    private CardView[] initCardsList() {
+        CardView cards[] = {cardAceites, cardBateriasPilas, cardMaderasEscombros, cardMetales,
+                cardPapelCarton, cardPlasticos, cardTetrabrik, cardVidrios, cardOrganicos};
+        return cards;
+    }
 
     private void listenersCards() {
         cardAceites.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +129,6 @@ public class Categoria extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showDialogCard(tvCardBateriasPilas.getText().toString().trim());
-                System.out.println("CATEGORIA: " + tvCardBateriasPilas.getText().toString().trim());
             }
         });
 
@@ -175,10 +212,36 @@ public class Categoria extends AppCompatActivity {
             @Override
             public void onChanged(ArrayList<WasteModel> wasteModels) {
                 for (WasteModel wasteModel : wasteModels) {
-                    System.out.println("Lista de productos: " + wasteModel.getCategory());
                 }
             }
         });
+    }
+
+    private void searchFilterListener(String filter, int idFilter) {
+        int lengthFilter = filter.length();
+        int goneCount = 0;
+        if (lengthFilter != 0) {
+            for (int i = 0; i < tvCardsList.length; i++) {
+                if (tvCardsList[i].getText().toString().toLowerCase().contains(filter.toLowerCase())) {
+                    tvCategoryNotFound.setVisibility(View.GONE);
+                    gridLayoutCards.setVisibility(View.VISIBLE);
+                    cardsLists[i].setVisibility(View.VISIBLE);
+                }
+                if (!tvCardsList[i].getText().toString().toLowerCase().contains(filter.toLowerCase())) {
+                    cardsLists[i].setVisibility(View.GONE);
+                    goneCount++;
+                }
+                if (goneCount == 9) {
+                    gridLayoutCards.setVisibility(View.GONE);
+                    tvCategoryNotFound.setVisibility(View.VISIBLE);
+                }
+            }
+
+        } else {
+            for (CardView card : cardsLists) {
+                card.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     private void showDialogCard(String category) {
@@ -206,12 +269,12 @@ public class Categoria extends AppCompatActivity {
 
         tvTitleDialogCards.setText(category);
         //tvAccumulatedAmount.setText(String.valueOf(quantity));
-       // tvAccumulatedPoints.setText(String.valueOf(points));
+        // tvAccumulatedPoints.setText(String.valueOf(points));
 
         btnNewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(initIntents().get(1));
+                startActivity(initIntents().get(1).putExtra("category", category));
                 dialog.dismiss();
             }
         });

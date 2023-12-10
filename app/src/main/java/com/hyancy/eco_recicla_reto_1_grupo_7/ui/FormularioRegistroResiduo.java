@@ -37,6 +37,7 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
     private ArrayList<String> listCategories;
     private WasteViewModel wasteViewModel;
     WasteModel wasteModel;
+    Bundle bundle;
 
 
     @Override
@@ -46,6 +47,7 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
 
         SpinnerModel spinnerModel = new SpinnerModel();
         wasteViewModel = new ViewModelProvider(this).get(WasteViewModel.class);
+        bundle = getIntent().getExtras();
 
         initComponents();
         calculateWastePoints();
@@ -144,11 +146,9 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Seleccione la categoria del residuo", Toast.LENGTH_LONG).show();
                     return;
                 }
+                quantity = Double.parseDouble(edtQuantity.getText().toString().trim());
 
                 if (TextUtils.isEmpty(String.valueOf(quantity)) || quantity == 0) {
-                    while (quantity == 0) {
-                        quantity = Double.parseDouble(edtQuantity.getText().toString().trim());
-                    }
                     Toast.makeText(getApplicationContext(), "Ingrese la cantidad de residuo", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -179,6 +179,8 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         btnCancelRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tvPoints.setText("0");
+                edtQuantity.setHint("0");
                 showCalculateButton();
             }
         });
@@ -270,19 +272,20 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         btnCalculatePoints.setVisibility(View.VISIBLE);
     }
 
-
     private void spinnerUI(SpinnerModel spinnerModel) {
+        String category = bundle.getString("category");
         this.listCategories = spinnerModel.getListSpinnerCategory();
         ArrayAdapter<String> categories = new ArrayAdapter<>(this, R.layout.spinner_categories_item);
         categories.addAll(listCategories);
         categoryWasteSpinner.setAdapter(categories);
+        categoryWasteSpinner.setSelection(categories.getPosition(category));
     }
 
     private void clearComponents() {
         edtDescription.setText("");
         edtDateRegister.setText("");
         edtLocationRegister.setText("");
-        edtQuantity.setText("0");
+        edtQuantity.setHint("0");
         tvPoints.setText("0");
         categoryWasteSpinner.setSelection(0);
     }
