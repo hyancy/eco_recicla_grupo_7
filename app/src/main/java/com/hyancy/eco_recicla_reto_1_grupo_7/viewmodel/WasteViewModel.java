@@ -23,7 +23,4 @@ public class WasteViewModel extends ViewModel {
         wasteUseCase.getWasteByUserId(idCurrentUser, wasteList, tvAccumulatedAmount, tvAccumulatedPoints, category);
     }
 
-    public ArrayList<QueryDocumentSnapshot> getDataWaste(ArrayList<QueryDocumentSnapshot> wasteList) {
-        return this.wasteList = wasteUseCase.getDataWaste(wasteList);
-    }
 }

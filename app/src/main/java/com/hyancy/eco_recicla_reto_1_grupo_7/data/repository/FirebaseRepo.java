@@ -154,20 +154,16 @@ public class FirebaseRepo {
                 int points = 0;
                 double quantity = 0.0;
                 for (QueryDocumentSnapshot queryWaste : queryResponse) {
-                    System.out.println(category);
                     points += Integer.parseInt(queryWaste.get("points").toString());
                     quantity += Double.parseDouble(queryWaste.get("quantity").toString());
                     wasteList.add(queryWaste);
-                    System.out.println(quantity);
-                    System.out.println(points);
                 }
                 tvAccumulatedAmount.setText(String.valueOf(quantity));
                 tvAccumulatedPoints.setText(String.valueOf(points));
-                System.out.println("CANTIDAD TOTAL" + quantity);
-                System.out.println("PUNTAJE TOTAL" + points);
+                Log.i("ResponseQuery", wasteList.toArray().toString());
+
             } else {
-                System.out.println("NO EXISTE INFORMACIÓN");
-                System.out.println(category);
+                Log.i("ResponseQuery", "No hay datos de esta categoría");
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
