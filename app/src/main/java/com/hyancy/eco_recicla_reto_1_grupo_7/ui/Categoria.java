@@ -64,7 +64,7 @@ public class Categoria extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                searchFilterListener(newText.toString(), cardAceites.getId());
+                searchFilterListener(newText.toString());
                 return false;
             }
         });
@@ -217,7 +217,7 @@ public class Categoria extends AppCompatActivity {
         });
     }
 
-    private void searchFilterListener(String filter, int idFilter) {
+    private void searchFilterListener(String filter) {
         int lengthFilter = filter.length();
         int goneCount = 0;
         if (lengthFilter != 0) {

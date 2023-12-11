@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn ="menu_navigation">
+    <group android:checkableBehavior="none"
+        android:id="@+id/navigation_options">
+        <item
+            android:id="@+id/menu_inicio"
+            android:icon="@android:drawable/dialog_frame"
+            android:title="Inicio" />
+        <item
+            android:id="@+id/menu_categorias"
+            android:icon="@android:drawable/ic_dialog_dialer"
+            android:title="Categorías" />
+        <item
+            android:id="@+id/menu_estadisticas"
+            android:icon="@android:drawable/dialog_frame"
+            android:title="Estadistícas" />
+        <item
+            android:id="@+id/menu_consejos"
+            android:icon="@android:drawable/dialog_frame"
+            android:title="Consejos" />
+        <item
+            android:id="@+id/menu_info_app"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="Info App" />
+
+    </group>
+    <group android:id="@+id/logout">
+        <item
+            android:id="@+id/menu_cerrar_sesion"
+            android:title="Cerrar Sesión"
+            android:icon="@android:drawable/ic_lock_power_off"/>
+    </group>
+
+</menu>

@@ -1,14 +1,23 @@
 package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
@@ -17,13 +26,15 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 
-public class Principal extends AppCompatActivity {
-    Button btnCategorias, btnEstadistica, btnConsejos, btnLogout;
-    TextView tvUserCurrent;
-    FirebaseAuth auth;
-    FirebaseUser currentUser;
-    UserViewModel userViewModel;
-
+public class Principal extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private Button btnCategorias, btnEstadistica, btnConsejos, btnLogout;
+    private DrawerLayout drawerLayout;
+    private ImageView imageViewToolbar;
+    private NavigationView navigationView;
+    private TextView tvUserCurrent;
+    private FirebaseAuth auth;
+    private FirebaseUser currentUser;
+    private UserViewModel userViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +45,7 @@ public class Principal extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
-
+        setToolbar();
         initComponents();
         listenersButtons();
         showCurrentSesion();
@@ -42,14 +53,20 @@ public class Principal extends AppCompatActivity {
 
     }
 
+    // application
+
     private void initComponents() {
         btnCategorias = findViewById(R.id.btn_categorias);
         btnEstadistica = findViewById(R.id.btn_estadistica);
         btnConsejos = findViewById(R.id.btn_consejos);
-
+        imageViewToolbar = findViewById(R.id.menu_hamburguesa);
         tvUserCurrent = findViewById(R.id.user_current);
         btnLogout = findViewById(R.id.btn_logout);
 
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.menu_navigation);
+
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void listenersButtons() {
@@ -72,6 +89,9 @@ public class Principal extends AppCompatActivity {
             }
         });
 
+        imageViewToolbar.setOnClickListener(v->{
+            drawerLayout.openDrawer(GravityCompat.END);
+        });
     }
 
     private ArrayList<Intent> initIntents() {
@@ -90,11 +110,11 @@ public class Principal extends AppCompatActivity {
     }
 
     private void showCurrentSesion() {
-        if(currentUser == null){
+        if (currentUser == null) {
             Intent intentLogin = new Intent(getApplicationContext(), Login.class);
             startActivity(intentLogin);
             finish();
-        } else{
+        } else {
             tvUserCurrent.setText(currentUser.getEmail());
         }
     }
@@ -109,6 +129,40 @@ public class Principal extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void setToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.menu_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+    }
+
+    public boolean onNavigationItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            drawerLayout.openDrawer(GravityCompat.END);
+        }
+        if (item.getItemId() == R.id.menu_inicio) {
+            drawerLayout.closeDrawer(GravityCompat.END);
+        }
+        if (item.getItemId() == R.id.menu_categorias) {
+            startActivity(initIntents().get(0));
+        }
+        if (item.getItemId() == R.id.menu_estadisticas) {
+            startActivity(initIntents().get(1));
+        }
+        if (item.getItemId() == R.id.menu_consejos) {
+            startActivity(initIntents().get(2));
+        }
+        if (item.getItemId() == R.id.menu_info_app) {
+            Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
+        }
+        if (item.getItemId() == R.id.menu_cerrar_sesion) {
+            logoutCurrentSesion();
+            Toast.makeText(this, "Saliendo de la App", Toast.LENGTH_LONG).show();
+        }
+
+        return false;
     }
 
 }
