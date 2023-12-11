@@ -4,6 +4,7 @@
     android:layout_height="215dp"
     android:background="@color/green_app"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     android:padding="16dp">
 
     <ImageView

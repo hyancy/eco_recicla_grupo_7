@@ -26,7 +26,7 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 
-public class Principal extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class Principal extends AppCompatActivity {
     private Button btnCategorias, btnEstadistica, btnConsejos, btnLogout;
     private DrawerLayout drawerLayout;
     private ImageView imageViewToolbar;
@@ -45,7 +45,7 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
 
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
-        setToolbar();
+        //setToolbar();
         initComponents();
         listenersButtons();
         showCurrentSesion();
@@ -63,10 +63,10 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
         tvUserCurrent = findViewById(R.id.user_current);
         btnLogout = findViewById(R.id.btn_logout);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.menu_navigation);
+        //drawerLayout = findViewById(R.id.drawer_layout);
+        //navigationView = findViewById(R.id.menu_navigation);
 
-        navigationView.setNavigationItemSelectedListener(this);
+        //navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void listenersButtons() {
@@ -88,10 +88,10 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
                 startActivity(initIntents().get(2));
             }
         });
-
+/*
         imageViewToolbar.setOnClickListener(v->{
             drawerLayout.openDrawer(GravityCompat.END);
-        });
+        });*/
     }
 
     private ArrayList<Intent> initIntents() {
@@ -130,7 +130,7 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
             }
         });
     }
-
+/*
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.menu_toolbar);
         setSupportActionBar(toolbar);
@@ -163,6 +163,6 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
         }
 
         return false;
-    }
+    }*/
 
 }

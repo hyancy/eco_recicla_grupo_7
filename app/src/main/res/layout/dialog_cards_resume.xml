@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:backgroundTint="@color/green_app"
     android:orientation="vertical"
     app:cardCornerRadius="16dp">
@@ -20,20 +20,21 @@
 
         <LinearLayout
             android:layout_width="320dp"
-            android:layout_height="305dp"
-            android:orientation="vertical"
+            android:layout_height="430dp"
             android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_title_dialog_cards"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:gravity="center"
-                tools:text="Categoría de residuo"
                 android:textColor="@color/green_app"
                 android:textSize="28sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="Categoría de residuo" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -125,12 +126,54 @@
 
             </LinearLayout>
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/green_app"
+                app:cardCornerRadius="16dp">
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="8dp">
+
+                    <TextView
+                        android:id="@+id/tv_environmental_impact"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:paddingHorizontal="4dp"
+                        android:background="@color/beige_app"
+                        android:gravity="center"
+                        android:text="Haz evitado contaminar 100L de agua."
+                        android:textColor="@color/green_app"
+                        android:textStyle="bold"
+                        android:textSize="20sp" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="75dp"
+                    android:gravity="center"
+                    android:text="Impacto Ambiental"
+                    android:textColor="@color/beige_app"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
             <Button
                 android:id="@+id/btn_statistics"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="@color/green_app"
+                android:backgroundTint="@color/green_app_secondary"
                 android:text="Estadísticas"
                 android:textColor="@color/beige_app"
                 android:textSize="28dp" />
@@ -140,7 +183,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="4dp"
-                android:backgroundTint="@color/green_app"
+                android:backgroundTint="@color/green_app_secondary"
                 android:text="Nuevo Registro"
                 android:textColor="@color/beige_app"
                 android:textSize="28dp" />

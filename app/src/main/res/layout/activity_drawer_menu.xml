@@ -25,7 +25,7 @@
         android:id="@+id/menu_navigation"
         android:layout_width="260dp"
         android:layout_height="530dp"
-        android:layout_gravity="start"
+        android:layout_gravity="end"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/menu_drawer_navigation_header"
         app:menu="@menu/menu_lateral">

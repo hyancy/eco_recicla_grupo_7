@@ -15,13 +15,18 @@
         android:theme="@style/Theme.Eco_recicla_reto_1_grupo_7"
         tools:targetApi="31">
         <activity
-            android:name=".ui.DrawerMenuActivity"
-            android:exported="false">
+            android:name=".DrawerPruebaActivity"
+            android:exported="false"
+            android:label="@string/title_activity_drawer_prueba"
+            android:theme="@style/NoActionBar">
 
         </activity>
         <activity
-            android:name=".ui.CategoriaUI"
+            android:name=".ui.DrawerMenuActivity"
             android:exported="false"></activity>
+        <activity
+            android:name=".ui.CategoriaUI"
+            android:exported="false" />
         <activity
             android:name=".ui.Register2"
             android:exported="false"
@@ -29,7 +34,7 @@
         <activity
             android:name=".ui.Login2"
             android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".ui.PoliticaPrivacidadTerminos"
             android:exported="false" />
