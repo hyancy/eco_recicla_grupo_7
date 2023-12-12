@@ -1,6 +1,5 @@
 package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,10 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
@@ -138,9 +134,13 @@ public class RegistroUsario extends AppCompatActivity {
 
                 if (name.isEmpty() || age.isEmpty() || email.isEmpty() || confirmEmail.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                     showDialogCompleteAll();
-                } else if (!(password.equals(confirmPassword))) {
-                    showDialogContrasenaNoCoincide();
+                } else if (!isValidEmailFormat(email)) {
+                    Toast.makeText(getApplicationContext(), "Escriba un correo válido!!!", Toast.LENGTH_LONG).show();
                 } else if (!(email.equals(confirmEmail))) {
+                    Toast.makeText(getApplicationContext(), "Los correos no coinciden!!!", Toast.LENGTH_LONG).show();
+                } else if (!isValidLengthPassword(password)) {
+                    Toast.makeText(getApplicationContext(), "La contraseña debe tener entre 6 y 16 caracteres", Toast.LENGTH_LONG).show();
+                } else if (!(password.equals(confirmPassword))) {
                     showDialogContrasenaNoCoincide();
                 } else if (!(cbxTerminosCondiciones.isChecked())) {
                     showDialogAceptaCondicionesYTerminos();
@@ -266,7 +266,7 @@ public class RegistroUsario extends AppCompatActivity {
     }
 
     private void createUser(String name, Integer age, String email, String password, Context context) {
-       userViewModel.createUser(name, age, email, password, context);
+        userViewModel.createUser(name, age, email, password, context);
     }
 
 
@@ -290,5 +290,16 @@ public class RegistroUsario extends AppCompatActivity {
         edtConfirmEmail.setText("");
         edtPassword.setText("");
         edtConfirmPassword.setText("");
+    }
+
+    private boolean isValidLengthPassword(String password) {
+        int minLength = 6;
+        int maxLength = 10;
+        return password.length() >= minLength && password.length() <= maxLength;
+    }
+
+    private boolean isValidEmailFormat(String email) {
+        String emailString = email.toString();
+        return emailString.contains("@") && emailString.contains(".com");
     }
 }
