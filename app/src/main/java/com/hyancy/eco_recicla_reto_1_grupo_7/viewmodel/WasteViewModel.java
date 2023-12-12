@@ -12,9 +12,6 @@ import java.util.ArrayList;
 public class WasteViewModel extends ViewModel {
     private WasteUseCase wasteUseCase = new WasteUseCase();
 
-    private ArrayList<QueryDocumentSnapshot> wasteList = new ArrayList<>();
-
-
     public void createWaste(String description, String photoUrl, String registerDate, String location, String category, double quantity, int points) {
         wasteUseCase.setWaste(description, photoUrl, registerDate, location, category, quantity, points);
     }

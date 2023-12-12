@@ -1,7 +1,9 @@
 package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -9,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -18,8 +22,6 @@ import android.widget.Toast;
 
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
-import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.WasteModel;
-import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.MyViewModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.WasteViewModel;
 
@@ -27,15 +29,15 @@ import java.util.ArrayList;
 
 public class Categoria extends AppCompatActivity {
     private SearchView searchFilterCategory;
-    CardView cardsLists[];
-    TextView tvCardsList[];
+    private CardView cardsLists[];
+    private TextView tvCardsList[];
+    private ImageView imageViewToolbar;
     private CardView cardAceites, cardBateriasPilas, cardMaderasEscombros, cardMetales, cardPapelCarton, cardPlasticos,
             cardTetrabrik, cardVidrios, cardOrganicos;
     private TextView tvCardAceites, tvCardBateriasPilas, tvCardMaderasEscombros, tvCardMetales, tvCardPapelCarton, tvCardPlasticos,
             tvCardTetrabrik, tvCardVidrios, tvCardOrganicos, tvCategoryNotFound;
     private ImageView estadisticasBottomBar, consejosBottomBar, homeAppBottomBar, logoutBottomBar;
     private GridLayout gridLayoutCards;
-    private MyViewModel viewModel;
     private WasteViewModel wasteViewModel;
     private UserViewModel userViewModel;
     private ArrayList<QueryDocumentSnapshot> wasteList = new ArrayList<>();
@@ -48,26 +50,11 @@ public class Categoria extends AppCompatActivity {
         wasteViewModel = new ViewModelProvider(this).get(WasteViewModel.class);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
+        setToolbar();
         initComponents();
         listenersCards();
         listenersMenuAppBar();
-        setViewModel();
         filterCard();
-    }
-
-    private void filterCard() {
-        searchFilterCategory.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                searchFilterListener(newText.toString());
-                return false;
-            }
-        });
     }
 
     private void initComponents() {
@@ -86,6 +73,7 @@ public class Categoria extends AppCompatActivity {
         consejosBottomBar = findViewById(R.id.consejos_menu_bottom_bar);
         homeAppBottomBar = findViewById(R.id.home_menu_bottom_bar);
         logoutBottomBar = findViewById(R.id.logout_menu_bottom_bar);
+        imageViewToolbar = findViewById(R.id.menu_hamburguesa);
 
         tvCardAceites = findViewById(R.id.tv_aceites);
         tvCardBateriasPilas = findViewById(R.id.tv_baterias_pilas);
@@ -181,42 +169,48 @@ public class Categoria extends AppCompatActivity {
         homeAppBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(initIntents().get(0));
+                startActivity(initIntents().get(4));
             }
         });
         estadisticasBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                startActivity(initIntents().get(2));
+                startActivity(initIntents().get(1));
             }
         });
         consejosBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(initIntents().get(3));
+                startActivity(initIntents().get(2));
             }
         });
         logoutBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userViewModel.logoutSesion();
-                startActivity(initIntents().get(4));
+               logoutCurrentSesion();
             }
+        });
+
+        imageViewToolbar.setOnClickListener(v -> {
+            Toast.makeText(this, "Menu", Toast.LENGTH_LONG).show();
         });
     }
 
-    private void setViewModel() {
-        viewModel = new ViewModelProvider(this).get(MyViewModel.class);
-        viewModel.getListProductsLiveData().observe(this, new Observer<ArrayList<WasteModel>>() {
+    private void filterCard() {
+        searchFilterCategory.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onChanged(ArrayList<WasteModel> wasteModels) {
-                for (WasteModel wasteModel : wasteModels) {
-                }
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchFilterListener(newText.toString());
+                return false;
             }
         });
     }
-
     private void searchFilterListener(String filter) {
         int lengthFilter = filter.length();
         int goneCount = 0;
@@ -274,7 +268,7 @@ public class Categoria extends AppCompatActivity {
         btnNewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(initIntents().get(1).putExtra("category", category));
+                startActivity(initIntents().get(5).putExtra("category", category));
                 dialog.dismiss();
             }
         });
@@ -282,7 +276,7 @@ public class Categoria extends AppCompatActivity {
         btnStatistics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(initIntents().get(2));
+                startActivity(initIntents().get(1));
                 dialog.dismiss();
             }
         });
@@ -315,18 +309,67 @@ public class Categoria extends AppCompatActivity {
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentPrincipal = new Intent(Categoria.this, Principal.class);
-        Intent intentRegistroResiduos = new Intent(Categoria.this, FormularioRegistroResiduo.class);
+        Intent intentCategorias = new Intent(Categoria.this, Categoria.class);
         Intent intentEstadisticas = new Intent(Categoria.this, Statistic.class);
         Intent intentConsejos = new Intent(Categoria.this, Consejos.class);
-        Intent intentLogout = new Intent(Categoria.this, Login.class);
+        Intent intentLogout = new Intent(Categoria.this, Index.class);
+        Intent intentPrincipal = new Intent(Categoria.this, Principal.class);
+        Intent intentRegisterWaste = new Intent(Categoria.this, FormularioRegistroResiduo.class);
 
-        listaIntents.add(intentPrincipal);
-        listaIntents.add(intentRegistroResiduos);
+        listaIntents.add(intentCategorias);
         listaIntents.add(intentEstadisticas);
         listaIntents.add(intentConsejos);
         listaIntents.add(intentLogout);
+        listaIntents.add(intentPrincipal);
+        listaIntents.add(intentRegisterWaste);
 
         return listaIntents;
+    }
+
+    private void logoutCurrentSesion() {
+        userViewModel.logoutSesion();
+        Intent intentLogout = new Intent(getApplicationContext(), Index.class);
+        startActivity(intentLogout);
+        finish();
+    }
+
+    //Toolbar
+    private void setToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.menu_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setIcon(R.drawable.ic_launcher_foreground);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+    }
+
+    //Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_lateral, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_inicio) {
+            startActivity(initIntents().get(4));
+        }
+        if (item.getItemId() == R.id.menu_categorias) {
+            item.collapseActionView();
+        }
+        if (item.getItemId() == R.id.menu_estadisticas) {
+            startActivity(initIntents().get(1));
+        }
+        if (item.getItemId() == R.id.menu_consejos) {
+            startActivity(initIntents().get(2));
+        }
+        if (item.getItemId() == R.id.menu_info_app) {
+            Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
+        }
+        if (item.getItemId() == R.id.menu_cerrar_sesion) {
+            logoutCurrentSesion();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

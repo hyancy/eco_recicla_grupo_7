@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.Principal">
 
+    <include
+        android:id="@+id/menu_toolbar"
+        layout="@layout/menu_toolbar" />
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -33,7 +37,6 @@
         android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
     <ImageView
@@ -127,42 +130,42 @@
         android:text="Cerrar\nsesión"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-<!--
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context=".ui.DrawerMenuActivity">
-
-        <LinearLayout
-            android:id="@+id/content_drawer"
+    <!--
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <include
-                android:id="@+id/menu_toolbar"
-                layout="@layout/menu_toolbar" />
-
-        </LinearLayout>
-
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/menu_navigation"
-            android:layout_width="260dp"
-            android:layout_height="530dp"
-            android:layout_gravity="end"
-            app:itemTextColor="@color/green_app"
-            android:background="@color/beige_app"
             android:fitsSystemWindows="true"
-            app:headerLayout="@layout/menu_drawer_navigation_header"
-            app:menu="@menu/menu_lateral">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context=".ui.DrawerMenuActivity">
 
-        </com.google.android.material.navigation.NavigationView>
+            <LinearLayout
+                android:id="@+id/content_drawer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    </androidx.drawerlayout.widget.DrawerLayout>
--->
+                <include
+                    android:id="@+id/menu_toolbar"
+                    layout="@layout/menu_toolbar" />
+
+            </LinearLayout>
+
+
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/menu_navigation"
+                android:layout_width="260dp"
+                android:layout_height="530dp"
+                android:layout_gravity="end"
+                app:itemTextColor="@color/green_app"
+                android:background="@color/beige_app"
+                android:fitsSystemWindows="true"
+                app:headerLayout="@layout/menu_drawer_navigation_header"
+                app:menu="@menu/menu_lateral">
+
+            </com.google.android.material.navigation.NavigationView>
+
+        </androidx.drawerlayout.widget.DrawerLayout>
+    -->
 </androidx.constraintlayout.widget.ConstraintLayout>

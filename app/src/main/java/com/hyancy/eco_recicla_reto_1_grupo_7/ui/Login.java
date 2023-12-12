@@ -26,13 +26,12 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 import java.util.ArrayList;
 
 public class Login extends AppCompatActivity {
-    Button btnLogin;
-    TextInputEditText userLogin, passwordLogin;
-    ProgressBar progressBar;
-    FirebaseAuth mAuth;
-    TextView tvNoHaveCount, tvForgottenPassword;
-
-    UserViewModel userViewModel;
+    private Button btnLogin;
+    private TextInputEditText userLogin, passwordLogin;
+    private ProgressBar progressBar;
+    private FirebaseAuth mAuth;
+    private TextView tvNoHaveCount, tvForgottenPassword;
+    private UserViewModel userViewModel;
 
 
     @Override
