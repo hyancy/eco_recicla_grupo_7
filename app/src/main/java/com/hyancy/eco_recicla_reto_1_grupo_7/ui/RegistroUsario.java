@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,6 +26,7 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.DatasetViewModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class RegistroUsario extends AppCompatActivity {
     FloatingActionButton btnCerrar;
@@ -131,6 +133,10 @@ public class RegistroUsario extends AppCompatActivity {
                 String password = edtPassword.getText().toString().trim();
                 String confirmPassword = edtConfirmPassword.getText().toString().trim();
 
+                int minLengthPassword = 6;
+                int maxLengthPassword = 20;
+                String validationMessage = "La contraseña debe tener entre " + minLengthPassword +
+                        " y " + maxLengthPassword + " caracteres";
 
                 if (name.isEmpty() || age.isEmpty() || email.isEmpty() || confirmEmail.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                     showDialogCompleteAll();
@@ -138,8 +144,8 @@ public class RegistroUsario extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Escriba un correo válido!!!", Toast.LENGTH_LONG).show();
                 } else if (!(email.equals(confirmEmail))) {
                     Toast.makeText(getApplicationContext(), "Los correos no coinciden!!!", Toast.LENGTH_LONG).show();
-                } else if (!isValidLengthPassword(password)) {
-                    Toast.makeText(getApplicationContext(), "La contraseña debe tener entre 6 y 16 caracteres", Toast.LENGTH_LONG).show();
+                } else if (!isValidLengthPassword(password, minLengthPassword, maxLengthPassword)) {
+                    Toast.makeText(getApplicationContext(), validationMessage, Toast.LENGTH_LONG).show();
                 } else if (!(password.equals(confirmPassword))) {
                     showDialogContrasenaNoCoincide();
                 } else if (!(cbxTerminosCondiciones.isChecked())) {
@@ -292,14 +298,13 @@ public class RegistroUsario extends AppCompatActivity {
         edtConfirmPassword.setText("");
     }
 
-    private boolean isValidLengthPassword(String password) {
-        int minLength = 6;
-        int maxLength = 10;
+    private boolean isValidLengthPassword(String password, int min, int max) {
+        int minLength = min;
+        int maxLength = max;
         return password.length() >= minLength && password.length() <= maxLength;
     }
 
     private boolean isValidEmailFormat(String email) {
-        String emailString = email.toString();
-        return emailString.contains("@") && emailString.contains(".com");
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }
