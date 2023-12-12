@@ -16,9 +16,9 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 import java.util.ArrayList;
 
 public class Index extends AppCompatActivity {
-    ImageButton consejos, puntosLimpios, desafiosLogros, infoApp;
-    Button btnIniciarSesion, btnRegistrarse;
-    FirebaseAuth mAuth;
+    private ImageButton consejos, puntosLimpios, desafiosLogros, infoApp;
+    private Button btnIniciarSesion, btnRegistrarse;
+    private FirebaseAuth mAuth;
 
     @Override
     public void onStart() {

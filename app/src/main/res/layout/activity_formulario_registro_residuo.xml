@@ -7,6 +7,9 @@
     android:background="@color/green_app"
     tools:context=".ui.FormularioRegistroResiduo">
 
+    <include
+        android:id="@+id/menu_toolbar"
+        layout="@layout/menu_toolbar" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -44,14 +47,6 @@
             android:text="Registro de\nresiduos"
             android:textColor="@color/green_app"
             android:textSize="32sp" />
-
-        <ImageView
-            android:id="@+id/menu_hamburguesa_categorias"
-            android:layout_width="62dp"
-            android:layout_height="62dp"
-            android:layout_gravity="end"
-            android:layout_margin="8dp"
-            android:src="@drawable/ic_menu_hamburguesa" />
 
         <ScrollView
             android:layout_width="match_parent"

@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -45,12 +46,11 @@ public class Principal extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
-        //setToolbar();
+
+        setToolbar();
         initComponents();
         listenersButtons();
         showCurrentSesion();
-        logoutCurrentSesion();
-
     }
 
     // application
@@ -88,10 +88,17 @@ public class Principal extends AppCompatActivity {
                 startActivity(initIntents().get(2));
             }
         });
-/*
-        imageViewToolbar.setOnClickListener(v->{
-            drawerLayout.openDrawer(GravityCompat.END);
-        });*/
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logoutCurrentSesion();
+            }
+        });
+
+        imageViewToolbar.setOnClickListener(v -> {
+            Toast.makeText(this, "Menu", Toast.LENGTH_LONG).show();
+        });
     }
 
     private ArrayList<Intent> initIntents() {
@@ -100,11 +107,13 @@ public class Principal extends AppCompatActivity {
         Intent intentEstadisticas = new Intent(Principal.this, Statistic.class);
         Intent intentConsejos = new Intent(Principal.this, Consejos.class);
         Intent intentLogout = new Intent(Principal.this, Index.class);
+        Intent intentPrincipal = new Intent(Principal.this, Principal.class);
 
         listaIntents.add(intentCategorias);
         listaIntents.add(intentEstadisticas);
         listaIntents.add(intentConsejos);
         listaIntents.add(intentLogout);
+        listaIntents.add(intentPrincipal);
 
         return listaIntents;
     }
@@ -120,23 +129,53 @@ public class Principal extends AppCompatActivity {
     }
 
     private void logoutCurrentSesion() {
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intentLogout = new Intent(getApplicationContext(), Index.class);
-                startActivity(intentLogout);
-                finish();
-            }
-        });
+        userViewModel.logoutSesion();
+        Intent intentLogout = new Intent(getApplicationContext(), Index.class);
+        startActivity(intentLogout);
+        finish();
     }
-/*
+
+    //Toolbar
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.menu_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setIcon(R.drawable.ic_launcher_foreground);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
+
+
+    //Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_lateral, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_inicio) {
+            item.collapseActionView();
+        }
+        if (item.getItemId() == R.id.menu_categorias) {
+            startActivity(initIntents().get(0));
+        }
+        if (item.getItemId() == R.id.menu_estadisticas) {
+            startActivity(initIntents().get(1));
+        }
+        if (item.getItemId() == R.id.menu_consejos) {
+            startActivity(initIntents().get(2));
+        }
+        if (item.getItemId() == R.id.menu_info_app) {
+            Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
+        }
+        if (item.getItemId() == R.id.menu_cerrar_sesion) {
+            logoutCurrentSesion();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    /*
 
     public boolean onNavigationItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

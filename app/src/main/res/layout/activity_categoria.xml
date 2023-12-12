@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.Categoria">
 
+    <include
+        android:id="@+id/menu_toolbar"
+        layout="@layout/menu_toolbar" />
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
@@ -39,14 +43,6 @@
             android:textColor="@color/green_app"
             android:textSize="32sp" />
 
-        <ImageView
-            android:id="@+id/menu_hamburguesa_categorias"
-            android:layout_width="62dp"
-            android:layout_height="62dp"
-            android:layout_gravity="end"
-            android:layout_margin="8dp"
-            android:clickable="true"
-            android:src="@drawable/ic_menu_hamburguesa" />
 
         <ImageView
             android:id="@+id/logo_categorias"

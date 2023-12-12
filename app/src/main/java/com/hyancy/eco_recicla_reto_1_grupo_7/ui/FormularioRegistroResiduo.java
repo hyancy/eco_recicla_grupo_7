@@ -1,12 +1,16 @@
 package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,6 +24,7 @@ import android.widget.Toast;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.SpinnerModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.WasteModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.WasteViewModel;
 
 import java.util.ArrayList;
@@ -36,6 +41,7 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
     private Spinner categoryWasteSpinner;
     private ArrayList<String> listCategories;
     private WasteViewModel wasteViewModel;
+    private UserViewModel userViewModel;
     WasteModel wasteModel;
     Bundle bundle;
 
@@ -47,8 +53,11 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
 
         SpinnerModel spinnerModel = new SpinnerModel();
         wasteViewModel = new ViewModelProvider(this).get(WasteViewModel.class);
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+
         bundle = getIntent().getExtras();
 
+        setToolbar();
         initComponents();
         calculateWastePoints();
         listenersMenuAppBar();
@@ -84,33 +93,32 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         homeAppBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(initIntents().get(0));
+                startActivity(initIntents().get(4));
             }
         });
         categoriasBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(initIntents().get(1));
+                startActivity(initIntents().get(0));
             }
         });
 
         estadisticasBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                startActivity(initIntents().get(2));
+                startActivity(initIntents().get(1));
             }
         });
         consejosBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(initIntents().get(3));
+                startActivity(initIntents().get(2));
             }
         });
         logoutBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(initIntents().get(4));
+                logoutCurrentSesion();
             }
         });
     }
@@ -238,24 +246,6 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         return environmentalFactor;
     }
 
-    private ArrayList<Intent> initIntents() {
-        ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentPrincipal = new Intent(FormularioRegistroResiduo.this, Principal.class);
-        Intent intentCategorias = new Intent(FormularioRegistroResiduo.this, Categoria.class);
-        Intent intentEstadisticas = new Intent(FormularioRegistroResiduo.this, Statistic.class);
-        Intent intentConsejos = new Intent(FormularioRegistroResiduo.this, Consejos.class);
-        Intent intentLogout = new Intent(FormularioRegistroResiduo.this, Index.class);
-
-        listaIntents.add(intentPrincipal);
-        listaIntents.add(intentCategorias);
-        listaIntents.add(intentEstadisticas);
-        listaIntents.add(intentConsejos);
-        listaIntents.add(intentLogout);
-
-        return listaIntents;
-    }
-
-
     private void showRegisterCancelButtons(String description, String photoUrl, String registerDate,
                                            String location, String category, double quantity, int points) {
         registerWaste(description, photoUrl, registerDate, location, category, quantity, points);
@@ -288,6 +278,72 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         edtQuantity.setHint("0");
         tvPoints.setText("0");
         categoryWasteSpinner.setSelection(0);
+    }
+
+    private ArrayList<Intent> initIntents() {
+        ArrayList<Intent> listaIntents = new ArrayList<>();
+        Intent intentCategorias = new Intent(FormularioRegistroResiduo.this, Categoria.class);
+        Intent intentEstadisticas = new Intent(FormularioRegistroResiduo.this, Statistic.class);
+        Intent intentConsejos = new Intent(FormularioRegistroResiduo.this, Consejos.class);
+        Intent intentLogout = new Intent(FormularioRegistroResiduo.this, Index.class);
+        Intent intentPrincipal = new Intent(FormularioRegistroResiduo.this, Principal.class);
+
+        listaIntents.add(intentCategorias);
+        listaIntents.add(intentEstadisticas);
+        listaIntents.add(intentConsejos);
+        listaIntents.add(intentLogout);
+        listaIntents.add(intentPrincipal);
+
+        return listaIntents;
+    }
+
+    private void logoutCurrentSesion() {
+        userViewModel.logoutSesion();
+        Intent intentLogout = new Intent(getApplicationContext(), Index.class);
+        startActivity(intentLogout);
+        finish();
+    }
+
+
+    //Toolbar
+    private void setToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.menu_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setIcon(R.drawable.ic_launcher_foreground);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+    }
+
+
+    //Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_lateral, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_inicio) {
+            startActivity(initIntents().get(4));
+        }
+        if (item.getItemId() == R.id.menu_categorias) {
+            startActivity(initIntents().get(0));
+        }
+        if (item.getItemId() == R.id.menu_estadisticas) {
+            startActivity(initIntents().get(1));
+        }
+        if (item.getItemId() == R.id.menu_consejos) {
+            startActivity(initIntents().get(2));
+        }
+        if (item.getItemId() == R.id.menu_info_app) {
+            Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
+        }
+        if (item.getItemId() == R.id.menu_cerrar_sesion) {
+            logoutCurrentSesion();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.Statistic">
 
+    <include
+        android:id="@+id/menu_toolbar"
+        layout="@layout/menu_toolbar" />
 
     <FrameLayout
         android:id="@+id/frameLY_top_statistics"
@@ -34,13 +37,6 @@
             android:textSize="32sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/menu_hamburguesa_estadisticas"
-            android:layout_width="62dp"
-            android:layout_height="62dp"
-            android:layout_gravity="end"
-            android:layout_margin="8dp"
-            android:src="@drawable/ic_menu_hamburguesa" />
 
         <ImageView
             android:id="@+id/ImageV_logo_statistics"
