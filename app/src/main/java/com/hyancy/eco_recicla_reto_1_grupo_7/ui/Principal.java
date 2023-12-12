@@ -28,7 +28,7 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class Principal extends AppCompatActivity {
-    private Button btnCategorias, btnEstadistica, btnConsejos, btnLogout;
+    private Button btnCategorias, btnEstadistica, btnConsejos;
     private DrawerLayout drawerLayout;
     private ImageView imageViewToolbar;
     private NavigationView navigationView;
@@ -61,7 +61,6 @@ public class Principal extends AppCompatActivity {
         btnConsejos = findViewById(R.id.btn_consejos);
         imageViewToolbar = findViewById(R.id.menu_hamburguesa);
         tvUserCurrent = findViewById(R.id.user_current);
-        btnLogout = findViewById(R.id.btn_logout);
 
         //drawerLayout = findViewById(R.id.drawer_layout);
         //navigationView = findViewById(R.id.menu_navigation);
@@ -86,13 +85,6 @@ public class Principal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(initIntents().get(2));
-            }
-        });
-
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logoutCurrentSesion();
             }
         });
 
