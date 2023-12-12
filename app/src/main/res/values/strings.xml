@@ -31,4 +31,32 @@
     <string name="password">Contraseña</string>
     <string name="btn_login">Login</string>
     <string name="btn_register">Sing up</string>
+    <string name="description_imageView_background">Imagen de fondo de la pantalla registro de usuario.</string>
+    <string name="description_float_button">Boton cerrar esta pantalla, ir pantalla Home.</string>
+    <string name="label_btn_user_register">Crear cuenta</string>
+    <string name="title_form_user_register">Regístrate!</string>
+    <string name="contentDescription_image_logo">imagen de logo de aplicación eco-recicla</string>
+    <string name="hint_name_user_register">Nombre</string>
+    <string name="hint_email_user_register">Email</string>
+    <string name="hint_confirm_email_user_register">Confirmar email</string>
+    <string name="hint_password_user_register">Contraseña</string>
+    <string name="hint_confirm_password_user_register">Confirmar contraseña</string>
+    <string name="terminos_condiciones_user_register">Acepto términos y condiciones.</string>
+    <string name="privacidad_user_register">Acepto políticas de privacidad y manejo de datos.</string>
+    <string name="tienes_cuenta_user_register">¿Ya tienes cuenta? Inicia sesión.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_email">Email o usuario</string>
+    <string name="hint_age_user_register">Edad</string>
+    <string name="title_activity_drawer_prueba">DrawerPruebaActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 </resources>

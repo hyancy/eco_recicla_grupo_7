@@ -4,12 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Principal">
+    tools:context=".ui.Principal">
+
+    <include
+        android:id="@+id/menu_toolbar"
+        layout="@layout/menu_toolbar" />
+
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="400dp"
-        android:layout_height="808dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="matrix"
         android:src="@drawable/background_pantalla_principal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="42dp"
         android:fontFamily="sans-serif-black"
         android:paddingVertical="6dp"
         android:text="@string/principal_app"
@@ -32,16 +38,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/menu_hamburguesa_categorias"
-        android:layout_width="62dp"
-        android:layout_height="62dp"
-        android:layout_gravity="end"
-        android:layout_margin="8dp"
-        android:clickable="true"
-        android:src="@drawable/ic_menu_hamburguesa"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/logo_categorias"
@@ -49,7 +45,7 @@
         android:layout_height="115dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="130dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="110dp"
         android:src="@drawable/ic_logo_app"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -59,40 +55,45 @@
         android:layout_width="match_parent"
         android:layout_height="84dp"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="270dp"
         android:backgroundTint="@color/beige_app"
         android:text="CATEGORÍAS"
         android:textAllCaps="true"
         android:textColor="@color/green_app"
         android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@id/btn_estadistica"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_estadistica"
         android:layout_width="match_parent"
-        android:layout_height="89dp"
+        android:layout_height="84dp"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/beige_app"
         android:text="ESTADÍSTICA"
         android:textAllCaps="true"
         android:textColor="@color/green_app"
         android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_categorias" />
 
     <Button
         android:id="@+id/btn_consejos"
         android:layout_width="match_parent"
-        android:layout_height="89dp"
+        android:layout_height="84dp"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/beige_app"
         android:text="CONSEJOS"
         android:textAllCaps="true"
         android:textColor="@color/green_app"
         android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@id/icono_usuario_pantalla_principal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_estadistica" />
 
@@ -100,7 +101,7 @@
         android:id="@+id/icono_usuario_pantalla_principal"
         android:layout_width="84dp"
         android:layout_height="84dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/ic_usuario_pantalla_principal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,15 +121,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icono_usuario_pantalla_principal" />
 
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cerrar\nsesión"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="170dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <!--
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context=".ui.DrawerMenuActivity">
+
+            <LinearLayout
+                android:id="@+id/content_drawer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/menu_toolbar"
+                    layout="@layout/menu_toolbar" />
+
+            </LinearLayout>
 
 
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/menu_navigation"
+                android:layout_width="260dp"
+                android:layout_height="530dp"
+                android:layout_gravity="end"
+                app:itemTextColor="@color/green_app"
+                android:background="@color/beige_app"
+                android:fitsSystemWindows="true"
+                app:headerLayout="@layout/menu_drawer_navigation_header"
+                app:menu="@menu/menu_lateral">
+
+            </com.google.android.material.navigation.NavigationView>
+
+        </androidx.drawerlayout.widget.DrawerLayout>
+    -->
 </androidx.constraintlayout.widget.ConstraintLayout>

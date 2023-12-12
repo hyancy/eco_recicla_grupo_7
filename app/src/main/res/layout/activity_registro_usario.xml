@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/green_app"
-    tools:context=".RegistroUsario">
+    tools:context=".ui.RegistroUsario">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/description_imageView_background"
         android:scaleType="matrix"
-        android:src="@drawable/img_1"/>
+        android:src="@drawable/background_pantalla_registro_usuario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -19,23 +24,27 @@
         style=" @style/ShapeAppearance.App.SmallComponent"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#262D8023" />
+        android:backgroundTint="#262D8023"
+        android:contentDescription="@string/description_float_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_title_user_register"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="244dp"
-        android:text="Regístrate!"
+        android:gravity="center"
+        android:text="@string/title_form_user_register"
         android:textColor="@color/white"
         android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -44,24 +53,31 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:visibility="gone"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
     <ImageView
         android:id="@+id/logo_clean_points"
         android:layout_width="84dp"
         android:layout_height="78dp"
-        android:layout_alignParentEnd="true"
         android:layout_gravity="end"
+        android:layout_marginStart="280dp"
         android:layout_marginTop="194dp"
-        android:layout_marginEnd="22dp"
-        android:src="@drawable/ic_logo_app" />
+        android:contentDescription="@string/contentDescription_image_logo"
+        android:src="@drawable/ic_logo_app"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="292dp">
+        android:layout_height="430dp"
+        android:layout_marginTop="292dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -70,122 +86,156 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="335dp"
                 android:layout_height="50dp"
                 app:cardCornerRadius="20dp">
 
                 <EditText
                     android:id="@+id/name_user_register"
-                    android:layout_width="match_parent"
+                    android:layout_width="340dp"
                     android:layout_height="match_parent"
+                    android:autofillHints="name"
                     android:background="@color/grey_app"
-                    android:hint="Nombre"
-                    android:paddingStart="16dp"
+                    android:hint="@string/hint_name_user_register"
+                    android:inputType="textPersonName"
+                    android:paddingHorizontal="16dp"
                     android:textColor="@color/beige_app"
+                    android:textColorHint="@color/beige_app"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="335dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="22dp"
+                app:cardCornerRadius="20dp">
+
+                <EditText
+                    android:id="@+id/age_user_register"
+                    android:layout_width="340dp"
+                    android:layout_height="match_parent"
+                    android:autofillHints="age"
+                    android:background="@color/grey_app"
+                    android:hint="@string/hint_age_user_register"
+                    android:inputType="number"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/beige_app"
+                    android:textColorHint="@color/beige_app"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="335dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="22dp"
                 app:cardCornerRadius="20dp">
 
                 <EditText
                     android:id="@+id/email_user_register"
-                    android:layout_width="match_parent"
+                    android:layout_width="340dp"
                     android:layout_height="match_parent"
+                    android:autofillHints="emailAddress"
                     android:background="@color/grey_app"
-                    android:hint="Email"
-                    android:paddingStart="16dp"
+                    android:hint="@string/hint_email_user_register"
+                    android:inputType="textEmailAddress"
+                    android:paddingHorizontal="16dp"
                     android:textColor="@color/beige_app"
+                    android:textColorHint="@color/beige_app"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="335dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="22dp"
                 app:cardCornerRadius="20dp">
 
                 <EditText
                     android:id="@+id/confirm_email_user_register"
-                    android:layout_width="match_parent"
+                    android:layout_width="340dp"
                     android:layout_height="match_parent"
+                    android:autofillHints="emailAddress"
                     android:background="@color/grey_app"
-                    android:hint="Confirmar email"
-                    android:paddingStart="16dp"
+                    android:hint="@string/hint_confirm_email_user_register"
+                    android:inputType="textEmailAddress"
+                    android:paddingHorizontal="16dp"
                     android:textColor="@color/beige_app"
+                    android:textColorHint="@color/beige_app"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="335dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="22dp"
                 app:cardCornerRadius="20dp">
 
                 <EditText
                     android:id="@+id/password_user_register"
-                    android:layout_width="match_parent"
+                    android:layout_width="340dp"
                     android:layout_height="match_parent"
+                    android:autofillHints="password"
                     android:background="@color/grey_app"
-                    android:hint="Contraseña"
-                    android:paddingStart="16dp"
+                    android:hint="@string/hint_password_user_register"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="16dp"
                     android:textColor="@color/beige_app"
+                    android:textColorHint="@color/beige_app"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="335dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="22dp"
                 app:cardCornerRadius="20dp">
 
                 <EditText
                     android:id="@+id/confirm_password_user_register"
-                    android:layout_width="match_parent"
+                    android:layout_width="340dp"
                     android:layout_height="match_parent"
+                    android:autofillHints="password"
                     android:background="@color/grey_app"
-                    android:hint="Confirmar contraseña"
-                    android:paddingStart="16dp"
+                    android:hint="@string/hint_confirm_password_user_register"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="16dp"
                     android:textColor="@color/beige_app"
+                    android:textColorHint="@color/beige_app"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
 
             <CheckBox
                 android:id="@+id/checkbox_terminos_condiciones"
-                android:layout_width="match_parent"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="34dp"
                 android:layout_marginTop="14dp"
-                android:text="Acepto términos y condiciones."
+                android:text="@string/terminos_condiciones_user_register"
                 android:textColor="@color/white"
-                android:textSize="16dp" />
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/checkbox_privacidad"
-                android:layout_width="match_parent"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="34dp"
-                android:layout_marginTop="-12dp"
-                android:text="Acepto políticas de privacidad y\nmanejo de datos."
+                android:text="@string/privacidad_user_register"
                 android:textColor="@color/white"
-                android:textSize="16dp" />
+                android:textSize="20sp"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/btn_registar_usuario"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:backgroundTint="@color/beige_app"
-                android:text="Crear usuario"
                 android:layout_marginTop="10dp"
+                android:backgroundTint="@color/beige_app"
+                android:text="@string/label_btn_user_register"
                 android:textColor="@color/green_app"
                 android:textSize="24sp" />
 
@@ -193,22 +243,20 @@
                 android:id="@+id/tv_ya_tiene_cuenta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
                 android:layout_marginTop="16dp"
+                android:text="@string/tienes_cuenta_user_register"
                 android:textAlignment="center"
-                android:text="¿Ya tienes cuenta? Inicia sesión."
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="30dp"/>
+                android:layout_height="30dp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     </ScrollView>
 
 
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

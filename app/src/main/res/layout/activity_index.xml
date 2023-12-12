@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_app"
+    tools:context=".ui.Index">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background_pantalla_home" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top">
+
+
+        <TextView
+            android:id="@+id/title_eco_recicla"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-black"
+            android:paddingVertical="6dp"
+            android:text="@string/name_app"
+            android:textAlignment="center"
+            android:textColor="@color/green_app"
+            android:textSize="44sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/logo_home"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="96dp"
+            android:src="@drawable/imagen_logo_home" />
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="344dp">
+
+        <View
+            android:id="@+id/background_welcome_home_home"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/text_bienvenida_home"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/welcome_home"
+            android:textAlignment="center"
+            android:textColor="@color/green_app"
+            android:textSize="44sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="420dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linear_icons_home"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center_horizontal"
+
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <ImageButton
+                android:id="@+id/icon_tips_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/green_app"
+                android:clickable="true"
+                android:src="@drawable/ic_consejos_home" />
+
+            <ImageButton
+                android:id="@+id/icon_clean_points_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:backgroundTint="@color/green_app"
+                android:src="@drawable/ic_puntos_limpios_home" />
+
+            <ImageButton
+                android:id="@+id/icon_challenges_achievements_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:backgroundTint="@color/green_app"
+                android:src="@drawable/ic_desafios_logros_home" />
+
+            <ImageButton
+                android:id="@+id/icon_info_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:backgroundTint="@color/green_app"
+                android:src="@drawable/ic_info_app_home" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_texts_icons_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:text="@string/text_ic_tips_home"
+                android:textAlignment="center"
+                android:textColor="@color/beige_app"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-4dp"
+                android:layout_weight="1.1"
+                android:text="@string/text_icon_clean_points_home"
+                android:textAlignment="center"
+                android:textColor="@color/beige_app"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-4dp"
+                android:layout_weight="0.8"
+                android:text="@string/text_icon_challenges_achievements_home"
+                android:textAlignment="center"
+                android:textColor="@color/beige_app"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1.2"
+                android:text="@string/text_ic_info_home"
+                android:textAlignment="center"
+                android:textColor="@color/beige_app"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="152dp"
+           >
+
+            <Button
+                android:id="@+id/btn_iniciar_sesion_home"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/beige_app"
+                android:text="@string/login_home"
+                android:textColor="@color/green_app"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:paddingHorizontal="-4dp"
+                android:layout_marginStart="10dp"
+                />
+
+            <Button
+                android:id="@+id/btn_registrarse_home"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/beige_app"
+                android:text="@string/signup_home"
+                android:textStyle="bold"
+                android:textColor="@color/green_app"
+                android:textSize="20sp"
+                android:layout_marginStart="34dp"
+                android:layout_marginEnd="10dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>
