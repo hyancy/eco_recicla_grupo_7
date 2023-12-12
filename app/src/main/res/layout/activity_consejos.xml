@@ -82,6 +82,7 @@
                     android:layout_marginTop="4dp">
 
                     <TextView
+                        android:id="@+id/consejo1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="90dp"
@@ -114,6 +115,7 @@
                     android:layout_marginTop="4dp">
 
                     <TextView
+                        android:id="@+id/consejo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="90dp"
@@ -146,6 +148,7 @@
                     android:layout_marginTop="4dp">
 
                     <TextView
+                        android:id="@+id/consejo3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="90dp"
@@ -179,6 +182,7 @@
 
 
                     <TextView
+                        android:id="@+id/consejo4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="78dp"
