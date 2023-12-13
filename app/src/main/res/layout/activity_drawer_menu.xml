@@ -7,6 +7,11 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".ui.DrawerMenuActivity">
+    <include
+        android:id="@+id/menu_drawer_principal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_principal" />
 
     <LinearLayout
         android:id="@+id/content_drawer"
@@ -19,7 +24,6 @@
             layout="@layout/menu_toolbar" />
 
     </LinearLayout>
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/menu_navigation"

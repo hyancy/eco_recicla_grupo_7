@@ -148,7 +148,7 @@ public class FirebaseRepo {
         });
     }
 
-    public void getWasteByUserId(String idCurrentUser, ArrayList<QueryDocumentSnapshot> wasteList, TextView tvAccumulatedAmount, TextView tvAccumulatedPoints, String category) {
+    public void  getWasteByUserId(String idCurrentUser, ArrayList<QueryDocumentSnapshot> wasteList, TextView tvAccumulatedAmount, TextView tvAccumulatedPoints, String category) {
         db.collection("wastes").whereEqualTo("idUser", idCurrentUser).whereEqualTo("category", category).get().addOnSuccessListener(queryResponse -> {
             if (!queryResponse.isEmpty()) {
                 int points = 0;
