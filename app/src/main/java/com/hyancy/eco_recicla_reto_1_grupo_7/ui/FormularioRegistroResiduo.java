@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -31,6 +32,7 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.WasteViewModel;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,6 +40,7 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
     private Button btnCalculatePoints, btnRegisterWaste, btnCancelRegister;
     private ImageView categoriasBottomBar, estadisticasBottomBar, consejosBottomBar, homeAppBottomBar, logoutBottomBar, ivCamera, ivCalendar, ivLocation, photo;
     private EditText edtDescription, edtDateRegister, edtLocationRegister, edtQuantity;
+    DatePicker calendar;
     private LinearLayout lnLayoutRegisterCancelButtons;
     TextView tvPoints;
     double totalPoints = 0;
@@ -47,7 +50,6 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
     private UserViewModel userViewModel;
     WasteModel wasteModel;
     Bundle bundle;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +62,12 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
 
         bundle = getIntent().getExtras();
 
+
         setToolbar();
         initComponents();
         setlisteners();
         calculateWastePoints();
+        setDateRegister();
         listenersMenuAppBar();
         spinnerUI(spinnerModel);
     }
@@ -98,6 +102,13 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showDialogCalendar();
+            }
+        });
+
+        ivLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //setDateRegister();
             }
         });
     }
@@ -192,7 +203,7 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 wasteViewModel.createWaste(description, photoUrl, registerDate, location, category, quantity, points);
-                //clearComponents();
+                clearComponents();
                 //startActivity(initIntents().get(1));
             }
         });
@@ -284,32 +295,6 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         categoryWasteSpinner.setSelection(categories.getPosition(category));
     }
 
-    private void clearComponents() {
-        edtDescription.setText("");
-        edtDateRegister.setText("");
-        edtLocationRegister.setText("");
-        edtQuantity.setHint("0");
-        tvPoints.setText("0");
-        categoryWasteSpinner.setSelection(0);
-    }
-
-    private ArrayList<Intent> initIntents() {
-        ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentCategorias = new Intent(FormularioRegistroResiduo.this, Categoria.class);
-        Intent intentEstadisticas = new Intent(FormularioRegistroResiduo.this, Statistic.class);
-        Intent intentConsejos = new Intent(FormularioRegistroResiduo.this, Consejos.class);
-        Intent intentLogout = new Intent(FormularioRegistroResiduo.this, Index.class);
-        Intent intentPrincipal = new Intent(FormularioRegistroResiduo.this, Principal.class);
-
-        listaIntents.add(intentCategorias);
-        listaIntents.add(intentEstadisticas);
-        listaIntents.add(intentConsejos);
-        listaIntents.add(intentLogout);
-        listaIntents.add(intentPrincipal);
-
-        return listaIntents;
-    }
-
     private void logoutCurrentSesion() {
         userViewModel.logoutSesion();
         Intent intentLogout = new Intent(getApplicationContext(), Index.class);
@@ -354,6 +339,16 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void setDateRegister() {
+        final Calendar calendar_ = Calendar.getInstance();
+        int mYear = calendar_.get(Calendar.YEAR);
+        int mMonth = calendar_.get(Calendar.MONTH);
+        int mDay = calendar_.get(Calendar.DAY_OF_MONTH);
+        String dateReg = mDay + "/" + (mMonth +1 ) + "/" + mYear;
+
+        edtDateRegister.setText(dateReg);
+    }
+
     private void showDialogCalendar() {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -364,23 +359,76 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         final AlertDialog dialog = dialogBuilder.create();
         dialog.show();
 
-        DatePicker calendar = view.findViewById(R.id.calendar);
-        int day = calendar.getDayOfMonth();
-        int month = calendar.getMonth();
-        int year = calendar.getYear();
+        calendar = view.findViewById(R.id.calendar);
 
         calendar.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                String dayRegister = String.valueOf(dayOfMonth);
+                String monthRegister = String.valueOf(monthOfYear + 1);
+                String yearRegister = String.valueOf(year);
+                String dateRegister = dayRegister + "/" + monthRegister + "/" + yearRegister;
 
+                edtDateRegister.setText(dateRegister);
+
+                dialog.dismiss();
             }
         });
     }
-    private void showDialogCompleteDataForm(){
+
+    private void setDateRegister_() {
+        DatePickerDialog datePickerDialog;
+        View view = getLayoutInflater().inflate(R.layout.dialog_calendar, null);
+
+        final Calendar calendar_ = Calendar.getInstance();
+        int mYear = calendar_.get(Calendar.YEAR);
+        int mMonth = calendar_.get(Calendar.MONTH);
+        int mDay = calendar_.get(Calendar.DAY_OF_MONTH);
+
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                int monthReg_ = month + 1;
+                String dateReg_ = dayOfMonth + "/" + monthReg_ + "/" + year;
+                edtDateRegister.setText(dateReg_);
+            }
+        }, mYear, mMonth, mDay);
+        datePickerDialog.setView(view);
+        datePickerDialog.show();
+    }
+
+    private void showDialogCompleteDataForm() {
         AlertDialog.Builder dialogCompleteDataForm = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_complete_data_form,null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_complete_data_form, null);
         dialogCompleteDataForm.setView(view);
         final AlertDialog dialog = dialogCompleteDataForm.create();
         dialog.show();
+    }
+
+    private ArrayList<Intent> initIntents() {
+        ArrayList<Intent> listaIntents = new ArrayList<>();
+        Intent intentCategorias = new Intent(FormularioRegistroResiduo.this, Categoria.class);
+        Intent intentEstadisticas = new Intent(FormularioRegistroResiduo.this, Statistic.class);
+        Intent intentConsejos = new Intent(FormularioRegistroResiduo.this, Consejos.class);
+        Intent intentLogout = new Intent(FormularioRegistroResiduo.this, Index.class);
+        Intent intentPrincipal = new Intent(FormularioRegistroResiduo.this, Principal.class);
+
+        listaIntents.add(intentCategorias);
+        listaIntents.add(intentEstadisticas);
+        listaIntents.add(intentConsejos);
+        listaIntents.add(intentLogout);
+        listaIntents.add(intentPrincipal);
+
+        return listaIntents;
+    }
+
+    private void clearComponents() {
+        edtDescription.setText("");
+        setDateRegister();
+        edtLocationRegister.setText("");
+        edtQuantity.setHint("0");
+        edtQuantity.setText(null);
+        tvPoints.setText("0");
+        categoryWasteSpinner.setSelection(0);
     }
 }
