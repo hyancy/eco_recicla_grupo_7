@@ -1,21 +1,27 @@
 package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
@@ -35,6 +41,8 @@ public class Consejos extends AppCompatActivity {
     private UserViewModel userViewModel;
     private DatasetViewModel datasetViewModel;
 
+    private CardView consejoAceite, consejoPlastico, consejoCompost, consejoRopa;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,7 @@ public class Consejos extends AppCompatActivity {
         showMenuBottomAppBar();
         setToolbar();
         listenersMenuAppBar();
+        listenersCards();
 
     }
 
@@ -61,6 +70,10 @@ public class Consejos extends AppCompatActivity {
         consejosBottomBar = findViewById(R.id.consejos_menu_bottom_bar);
         logoutBottomBar = findViewById(R.id.logout_menu_bottom_bar);
         imageViewToolbar = findViewById(R.id.menu_hamburguesa);
+        consejoAceite = findViewById(R.id.consejo_aceite);
+        consejoPlastico = findViewById(R.id.consejo_plastico);
+        consejoCompost = findViewById(R.id.consejo_compost);
+        consejoRopa = findViewById(R.id.consejo_ropa);
 
         toolbar = findViewById(R.id.menu_toolbar);
 
@@ -116,6 +129,36 @@ public class Consejos extends AppCompatActivity {
 
         imageViewToolbar.setOnClickListener(v -> {
             Toast.makeText(this, "Menu", Toast.LENGTH_LONG).show();
+        });
+    }
+
+    private void listenersCards() {
+        consejoAceite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showConsejoAceite ();
+            }
+        });
+
+        consejoPlastico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        consejoCompost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        consejoRopa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
         });
     }
 
@@ -187,4 +230,25 @@ public class Consejos extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void showConsejoAceite () {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_consejo1, null);
+
+        alertDialogBuilder.setView(view);
+
+        final AlertDialog dialog = alertDialogBuilder.create();
+        dialog.show();
+
+        TextView cerrarConsejo = view.findViewById(R.id.cerrar_consejo);
+        cerrarConsejo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+    }
+
 }

@@ -62,6 +62,7 @@
             android:paddingHorizontal="24dp">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/consejo_aceite"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginBottom="14dp"
@@ -95,6 +96,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/consejo_plastico"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginBottom="14dp"
@@ -128,6 +130,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/consejo_compost"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginBottom="14dp"
@@ -161,6 +164,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/consejo_ropa"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginBottom="50dp"
