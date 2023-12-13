@@ -197,6 +197,8 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(view.getContext(), "Se cerro dialogo", Toast.LENGTH_LONG).show();
                 dialog.dismiss();
             }
+
         });
+
     }
 }

@@ -376,5 +376,11 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
             }
         });
     }
-
+    private void showDialogCompleteDataForm(){
+        AlertDialog.Builder dialogCompleteDataForm = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_complete_data_form,null);
+        dialogCompleteDataForm.setView(view);
+        final AlertDialog dialog = dialogCompleteDataForm.create();
+        dialog.show();
+    }
 }
