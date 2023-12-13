@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +23,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.SpinnerModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.WasteModel;
@@ -59,6 +62,7 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
 
         setToolbar();
         initComponents();
+        setlisteners();
         calculateWastePoints();
         listenersMenuAppBar();
         spinnerUI(spinnerModel);
@@ -87,6 +91,15 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         consejosBottomBar = findViewById(R.id.consejos_menu_bottom_bar);
         logoutBottomBar = findViewById(R.id.logout_menu_bottom_bar);
 
+    }
+
+    private void setlisteners() {
+        ivCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogCalendar();
+            }
+        });
     }
 
     private void listenersMenuAppBar() {
@@ -339,6 +352,29 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showDialogCalendar() {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_calendar, null);
+
+        dialogBuilder.setView(view);
+
+        final AlertDialog dialog = dialogBuilder.create();
+        dialog.show();
+
+        DatePicker calendar = view.findViewById(R.id.calendar);
+        int day = calendar.getDayOfMonth();
+        int month = calendar.getMonth();
+        int year = calendar.getYear();
+
+        calendar.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+            }
+        });
     }
 
 }
