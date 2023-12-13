@@ -62,6 +62,7 @@
             android:paddingHorizontal="24dp">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/consejo_aceite"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginBottom="14dp"
@@ -75,6 +76,7 @@
                     android:layout_marginTop="4dp">
 
                     <TextView
+                        android:id="@+id/consejo1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="90dp"
@@ -94,6 +96,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/consejo_plastico"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginBottom="14dp"
@@ -107,6 +110,7 @@
                     android:layout_marginTop="4dp">
 
                     <TextView
+                        android:id="@+id/consejo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="90dp"
@@ -126,6 +130,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/consejo_compost"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginBottom="14dp"
@@ -139,6 +144,7 @@
                     android:layout_marginTop="4dp">
 
                     <TextView
+                        android:id="@+id/consejo3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="90dp"
@@ -158,6 +164,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/consejo_ropa"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginBottom="50dp"
@@ -172,6 +179,7 @@
 
 
                     <TextView
+                        android:id="@+id/consejo4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="78dp"
