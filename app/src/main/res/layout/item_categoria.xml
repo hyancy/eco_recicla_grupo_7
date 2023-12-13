@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_categoria"
+    app:cardCornerRadius="16dp"
+    android:layout_width="105dp"
+    android:layout_height="130dp"
+    android:layout_marginStart="7dp"
+    android:layout_marginBottom="16dp"
+    android:backgroundTint="@color/beige_app"
+    android:clickable="true">
+
+    <ImageView
+        android:id="@+id/image_view_categoria_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-20dp"
+        android:src="@drawable/imagen_categoria_aceites_categorias" />
+
+    <TextView
+        android:id="@+id/text_view_categoria_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="Baterías /\nPilas"
+        android:textAlignment="center"
+        android:textColor="@color/green_app"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="20dp"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Cómo reciclar el aceite?"
+        android:layout_gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#0B5A0E"
+        />
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Dispon de una botella donde puedas llenarla del aceite ya usado; nunca lo arrojes por el lavado.  Cuando ésta ya se encuentre llena, acude a puntos de recolección donde se encargaran de elaborar otros productos tales como jabón."
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="#2A782D"
+        android:paddingTop="10dp"/>
+
+</LinearLayout>

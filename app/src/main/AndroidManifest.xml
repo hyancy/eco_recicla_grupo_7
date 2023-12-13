@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,44 +14,42 @@
         android:theme="@style/Theme.Eco_recicla_reto_1_grupo_7"
         tools:targetApi="31">
         <activity
-            android:name=".PoliticaPrivacidadTerminos"
-            android:exported="false">
-
-        </activity>
-        <activity
-            android:name=".Login"
-            android:exported="false">
-        </activity>
-        <activity
-            android:name=".Principal"
-            android:exported="false">
-
-        </activity>
-        <activity
-            android:name=".Consejos"
+            android:name=".ui.DrawerMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".RegistroUsario"
+            android:name=".ui.CategoriaUI"
             android:exported="false" />
         <activity
-            android:name=".FormularioRegistroResiduo"
+            android:name=".ui.PoliticaPrivacidadTerminos"
             android:exported="false" />
         <activity
-            android:name=".PuntoLimpio"
-            android:exported="false" >
-
-        </activity>
-        <activity
-            android:name=".Statistic"
+            android:name=".ui.Login"
             android:exported="false" />
         <activity
-            android:name=".Category"
-            android:exported="false">
-
-        </activity>
+            android:name=".ui.Principal"
+            android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".ui.Consejos"
+            android:exported="false" />
+        <activity
+            android:name=".ui.RegistroUsario"
+            android:exported="false" />
+        <activity
+            android:name=".ui.FormularioRegistroResiduo"
+            android:exported="false" />
+        <activity
+            android:name=".ui.PuntoLimpio"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Statistic"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Categoria"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Index"
+            android:exported="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
