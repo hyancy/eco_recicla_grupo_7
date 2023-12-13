@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -10,21 +11,35 @@
         android:layout_height="wrap_content"
         android:text="¿Cómo hacer compost casero?"
         android:layout_gravity="center"
+        android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="#0B5A0E"
         />
+
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:text="Paso 1. Preparar el compostador Un recipiente reciclado, una caja de madera, algo que puedas ventilar de tanto en tanto.
-                      Paso 2. Añadir una capa de desechos secos, puede ser ramas, hojas secas, cartón, papel.
-                      Paso 3. Añadir los desechos orgánicos, cáscaras de frutas y verduras, té, café, restos de poda, etc.
-                      Paso 4. Regar el compost casero. Es importante maneterlo húmedo para que se pueda ir formando el fertilizante."
         android:layout_gravity="center"
-        android:textAlignment="center"
+        android:paddingTop="10dp"
+        android:text="Paso 1. Preparar el compostador, usa un recipiente reciclado, una caja de madera, algo que puedas ventilar de tanto en tanto.
+                      \nPaso 2. Añadir una capa de desechos secos, puede ser ramas, hojas secas, cartón, papel.
+                      \nPaso 3. Añadir los desechos orgánicos, cáscaras de frutas y verduras, té, café, restos de poda, etc.
+                      \nPaso 4. Regar el compost casero. Es importante maneterlo húmedo para que se pueda ir formando el fertilizante."
+        android:textAlignment="textStart"
+        android:textColor="#2A782D"
+        android:textSize="20sp"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:id="@+id/cerrar_consejo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cerrar"
+        android:textAlignment="textEnd"
         android:textSize="20sp"
         android:textColor="#2A782D"
-        android:paddingTop="10dp"/>
+        android:paddingTop="10dp"
+        android:paddingEnd="30dp"/>
 
 </LinearLayout>

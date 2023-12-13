@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -8,24 +9,38 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿Cómo hacer compost casero?"
+        android:text="¿Cómo darle una segunda oportunidad a las prendas?"
         android:layout_gravity="center"
+        android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="#0B5A0E"
         />
+
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="315dp"
         android:layout_height="wrap_content"
-        android:text="- Convierte los jean en shorts.
-                      - Elabora una bolsa para mercar a partir de un buso.
-                      - Convierte un vestido en una falda.
-                      - Recortala y elabora trapos de cocina
-                      - Recortala y fabrica un bolso nuevo"
         android:layout_gravity="center"
-        android:textAlignment="center"
+        android:paddingTop="10dp"
+        android:text=" a.Convierte los jeans en shorts.
+        \n b.Elabora una bolsa para mercar a partir de un buso amarrando sus mangas y uniendo la pretina con hilo.
+        \n c.Convierte un vestido en una falda, solo corta y cose un elástico a tu medida.
+        \n d.Recorta y elabora trapos para la cocina de una camiseta.
+        \n e.Recorta y fabrica un bolso nuevo con casi cualquier prenda"
+        android:textAlignment="textStart"
+        android:textColor="#2A782D"
+        android:textSize="20sp"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:id="@+id/cerrar_consejo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cerrar"
+        android:textAlignment="textEnd"
         android:textSize="20sp"
         android:textColor="#2A782D"
-        android:paddingTop="10dp"/>
+        android:paddingTop="10dp"
+        android:paddingEnd="30dp"/>
 
 </LinearLayout>
