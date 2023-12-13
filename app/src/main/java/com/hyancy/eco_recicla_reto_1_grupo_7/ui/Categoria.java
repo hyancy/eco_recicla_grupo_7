@@ -188,7 +188,7 @@ public class Categoria extends AppCompatActivity {
         logoutBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               logoutCurrentSesion();
+                logoutCurrentSesion();
             }
         });
 
@@ -211,6 +211,7 @@ public class Categoria extends AppCompatActivity {
             }
         });
     }
+
     private void searchFilterListener(String filter) {
         int lengthFilter = filter.length();
         int goneCount = 0;
@@ -353,20 +354,15 @@ public class Categoria extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_inicio) {
             startActivity(initIntents().get(4));
-        }
-        if (item.getItemId() == R.id.menu_categorias) {
+        } else if (item.getItemId() == R.id.menu_categorias) {
             item.collapseActionView();
-        }
-        if (item.getItemId() == R.id.menu_estadisticas) {
+        } else if (item.getItemId() == R.id.menu_estadisticas) {
             startActivity(initIntents().get(1));
-        }
-        if (item.getItemId() == R.id.menu_consejos) {
-            startActivity(initIntents().get(2));
-        }
-        if (item.getItemId() == R.id.menu_info_app) {
+        } else if (item.getItemId() == R.id.menu_consejos) {
+            item.collapseActionView();
+        } else if (item.getItemId() == R.id.menu_info_app) {
             Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
-        }
-        if (item.getItemId() == R.id.menu_cerrar_sesion) {
+        } else if (item.getItemId() == R.id.menu_cerrar_sesion) {
             logoutCurrentSesion();
         }
 

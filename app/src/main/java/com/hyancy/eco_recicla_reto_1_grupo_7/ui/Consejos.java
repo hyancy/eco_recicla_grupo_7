@@ -3,6 +3,7 @@ package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -12,9 +13,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
+import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.DatasetViewModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
@@ -22,7 +27,13 @@ import java.util.ArrayList;
 public class Consejos extends AppCompatActivity {
     private ImageView categoriasBottomBar, estadisticasBottomBar, consejosBottomBar, homeAppBottomBar, logoutBottomBar;
     private ImageView imageViewToolbar;
+    Toolbar toolbar;
+    private LinearLayout lnrLMenuBottomBar;
+    private View backgroundBottomBar;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
     private UserViewModel userViewModel;
+    private DatasetViewModel datasetViewModel;
 
 
     @Override
@@ -31,9 +42,14 @@ public class Consejos extends AppCompatActivity {
         setContentView(R.layout.activity_consejos);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        datasetViewModel = new ViewModelProvider(this).get(DatasetViewModel.class);
 
-        setToolbar();
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+
         initComponents();
+        showMenuBottomAppBar();
+        setToolbar();
         listenersMenuAppBar();
 
     }
@@ -45,6 +61,23 @@ public class Consejos extends AppCompatActivity {
         consejosBottomBar = findViewById(R.id.consejos_menu_bottom_bar);
         logoutBottomBar = findViewById(R.id.logout_menu_bottom_bar);
         imageViewToolbar = findViewById(R.id.menu_hamburguesa);
+
+        toolbar = findViewById(R.id.menu_toolbar);
+
+        lnrLMenuBottomBar = findViewById(R.id.linear_layout_menu_bottom_bar);
+        backgroundBottomBar = findViewById(R.id.background_bottom_bar);
+    }
+
+    private void showMenuBottomAppBar() {
+        if (currentUser != null) {
+            lnrLMenuBottomBar.setVisibility(View.VISIBLE);
+            backgroundBottomBar.setVisibility(View.VISIBLE);
+            imageViewToolbar.setVisibility(View.VISIBLE);
+        } else {
+            lnrLMenuBottomBar.setVisibility(View.INVISIBLE);
+            backgroundBottomBar.setVisibility(View.INVISIBLE);
+            imageViewToolbar.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void listenersMenuAppBar() {
@@ -113,39 +146,42 @@ public class Consejos extends AppCompatActivity {
 
     //Toolbar
     private void setToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.menu_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setIcon(R.drawable.ic_launcher_foreground);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        if (currentUser == null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } else {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        }
     }
 
 
     //Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_lateral, menu);
+        if (currentUser != null) {
+            getMenuInflater().inflate(R.menu.menu_lateral, menu);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.menu_inicio) {
+        if (item.getItemId() == android.R.id.home) {
+            startActivity(initIntents().get(3));
+            finish();
+        } else if (item.getItemId() == R.id.menu_inicio) {
             startActivity(initIntents().get(4));
-        }
-        if (item.getItemId() == R.id.menu_categorias) {
+        } else if (item.getItemId() == R.id.menu_categorias) {
             startActivity(initIntents().get(0));
-        }
-        if (item.getItemId() == R.id.menu_estadisticas) {
+        } else if (item.getItemId() == R.id.menu_estadisticas) {
             startActivity(initIntents().get(1));
-        }
-        if (item.getItemId() == R.id.menu_consejos) {
+        } else if (item.getItemId() == R.id.menu_consejos) {
             item.collapseActionView();
-        }
-        if (item.getItemId() == R.id.menu_info_app) {
+        } else if (item.getItemId() == R.id.menu_info_app) {
             Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
-        }
-        if (item.getItemId() == R.id.menu_cerrar_sesion) {
+        } else if (item.getItemId() == R.id.menu_cerrar_sesion) {
             logoutCurrentSesion();
         }
 
