@@ -27,7 +27,7 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 
-public class Principal extends AppCompatActivity {
+public class Principal extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Button btnCategorias, btnEstadistica, btnConsejos;
     private DrawerLayout drawerLayout;
     private ImageView imageViewToolbar;
@@ -40,7 +40,7 @@ public class Principal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.activity_drawer_menu);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
@@ -62,10 +62,10 @@ public class Principal extends AppCompatActivity {
         imageViewToolbar = findViewById(R.id.menu_hamburguesa);
         tvUserCurrent = findViewById(R.id.user_current);
 
-        //drawerLayout = findViewById(R.id.drawer_layout);
-        //navigationView = findViewById(R.id.menu_navigation);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.menu_navigation);
 
-        //navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void listenersButtons() {
@@ -89,6 +89,7 @@ public class Principal extends AppCompatActivity {
         });
 
         imageViewToolbar.setOnClickListener(v -> {
+            drawerLayout.openDrawer(GravityCompat.END);
             Toast.makeText(this, "Menu", Toast.LENGTH_LONG).show();
         });
     }
@@ -131,7 +132,6 @@ public class Principal extends AppCompatActivity {
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.menu_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setIcon(R.drawable.ic_launcher_foreground);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
@@ -148,52 +148,44 @@ public class Principal extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_inicio) {
             item.collapseActionView();
-        }
-        if (item.getItemId() == R.id.menu_categorias) {
+        } else if (item.getItemId() == R.id.menu_categorias) {
             startActivity(initIntents().get(0));
-        }
-        if (item.getItemId() == R.id.menu_estadisticas) {
+        } else if (item.getItemId() == R.id.menu_estadisticas) {
             startActivity(initIntents().get(1));
-        }
-        if (item.getItemId() == R.id.menu_consejos) {
+        } else if (item.getItemId() == R.id.menu_consejos) {
             startActivity(initIntents().get(2));
-        }
-        if (item.getItemId() == R.id.menu_info_app) {
+        } else if (item.getItemId() == R.id.menu_info_app) {
             Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
-        }
-        if (item.getItemId() == R.id.menu_cerrar_sesion) {
+        } else if (item.getItemId() == R.id.menu_cerrar_sesion) {
             logoutCurrentSesion();
         }
 
         return super.onOptionsItemSelected(item);
     }
-    /*
+
 
     public boolean onNavigationItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            drawerLayout.openDrawer(GravityCompat.END);
-        }
         if (item.getItemId() == R.id.menu_inicio) {
             drawerLayout.closeDrawer(GravityCompat.END);
-        }
-        if (item.getItemId() == R.id.menu_categorias) {
+            return true;
+        } else if (item.getItemId() == R.id.menu_categorias) {
             startActivity(initIntents().get(0));
-        }
-        if (item.getItemId() == R.id.menu_estadisticas) {
+            return true;
+        } else if (item.getItemId() == R.id.menu_estadisticas) {
             startActivity(initIntents().get(1));
-        }
-        if (item.getItemId() == R.id.menu_consejos) {
+            return true;
+        } else if (item.getItemId() == R.id.menu_consejos) {
             startActivity(initIntents().get(2));
-        }
-        if (item.getItemId() == R.id.menu_info_app) {
+            return true;
+        } else if (item.getItemId() == R.id.menu_info_app) {
             Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
-        }
-        if (item.getItemId() == R.id.menu_cerrar_sesion) {
+            return true;
+        } else if (item.getItemId() == R.id.menu_cerrar_sesion) {
             logoutCurrentSesion();
-            Toast.makeText(this, "Saliendo de la App", Toast.LENGTH_LONG).show();
+            return true;
         }
 
         return false;
-    }*/
+    }
 
 }
