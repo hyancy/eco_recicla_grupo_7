@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    >
+    android:backgroundTint="@color/beige_app"
+    app:cardCornerRadius="15dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Terminos y Condiciones"
         android:layout_gravity="center"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textColor="#2A782D"
         android:textStyle="bold"
+        android:textAlignment="center"
         />
     <ScrollView
         android:layout_width="match_parent"
@@ -27,7 +35,8 @@
                 android:layout_gravity="center"
                 android:textAlignment="center"
                 android:textSize="17sp"
-                android:text="¡Bienvenido a ECO-RECICLA!
+                android:textColor="@color/green_app"
+                android:text="
 
 Estos términos y condiciones describen las reglas y regulaciones para el uso de la aplicación de ECO-RECICLA.
 
@@ -117,8 +126,32 @@ Las limitaciones y prohibiciones de responsabilidad establecidas en esta secció
 
 Siempre que el sitio web y la información y los servicios en el sitio se proporcionen de forma gratuita, no seremos responsables de ninguna pérdida o daño de cualquier naturaleza."
                 />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp">
+            <Button
+                android:id="@+id/btn_no_aceptar_condiciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/green_app"
+                android:text="No Aceptar"
+                android:textSize="17sp"
+                android:layout_marginEnd="20dp"
+                />
+            <Button
+                android:id="@+id/btn_aceptar_condiciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/green_app"
+                android:text="Aceptar"
+                android:textSize="17sp"
+
+                />
+            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>
+    </LinearLayout>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

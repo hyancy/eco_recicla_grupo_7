@@ -94,17 +94,18 @@ public class RegistroUsario extends AppCompatActivity {
                 if (cbxTerminosCondiciones.isChecked()) {
                     showDialogTerminosYCondicones();
                 } else {
-                    cbxTerminosCondiciones.isChecked();
+                    cbxTerminosCondiciones.setChecked(false);
                 }
             }
         });
+
         cbxPoliticasPrivacidad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (cbxPoliticasPrivacidad.isChecked()) {
                     showDialogPrivacidad();
                 } else {
-                    cbxPoliticasPrivacidad.isChecked();
+                    cbxPoliticasPrivacidad.setChecked(false);
                 }
             }
         });
@@ -203,48 +204,52 @@ public class RegistroUsario extends AppCompatActivity {
     }
 
     private void showDialogContrasenaNoCoincide() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+       AlertDialog.Builder builder = new AlertDialog.Builder(this);
+       View view = getLayoutInflater().inflate(R.layout.dialog_contrasena_no_coincide, null);
+       builder.setView(view);
 
-        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        builder.setView(R.layout.dialog_contrasena_no_coincide).create().show();
+       AlertDialog dialog = builder.create();
+       dialog.show();
+
+       Button btnAceptarNoCoincideContrasena = view.findViewById(R.id.btn_aceptar_no_coincide_contrasena);
+       btnAceptarNoCoincideContrasena.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               dialog.dismiss();
+           }
+       });
 
     }
 
     private void showDialogAceptaCondicionesYTerminos() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setPositiveButton("CERRAR", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        builder.setView(R.layout.dialog_acepta_terminos_condiciones).create().show();
     }
 
     private void showDialogTerminosYCondicones() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_terminos_condiciones, null);
+        builder.setView(view);
 
-        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button btnNoAceptarCondiones = view.findViewById(R.id.btn_no_aceptar_condiciones);
+        Button btnAceptarCondiciones = view.findViewById(R.id.btn_aceptar_condiciones);
+
+        btnNoAceptarCondiones.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                cbxTerminosCondiciones.isChecked();
-                dialog.cancel();
-            }
-        });
-        builder.setNegativeButton("NO ACEPTO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(View v) {
+                dialog.dismiss();
                 cbxTerminosCondiciones.setChecked(false);
-                dialog.cancel();
             }
         });
-        builder.setView(R.layout.dialog_terminos_condiciones).create().show();
+        btnAceptarCondiciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                cbxTerminosCondiciones.isChecked();
+            }
+        });
     }
 
     private void showDialogAceptaPrivacidad() {
