@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/beige_app"
+    app:cardCornerRadius="15dp"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,7 +90,29 @@ ECO-RECICLA Se reserva el derecho de cambiar los términos de la presente Polít
                 android:textSize="17sp"
                 android:textAlignment="center"
                 />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp">
+                <Button
+                    android:id="@+id/btn_no_aceptar_privacidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/green_app"
+                    android:text="No Aceptar"
+                    android:textSize="17sp"
+                    android:layout_marginEnd="90dp"/>
+                <Button
+                    android:id="@+id/btn_aceptar_privacidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/green_app"
+                    android:text="Aceptar"
+                    android:textSize="17sp"/>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
