@@ -10,18 +10,31 @@
         android:layout_height="wrap_content"
         android:text="¿Cómo reciclar plastico en una(1) botella?"
         android:layout_gravity="center"
+        android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="#0B5A0E"
         />
+
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="326dp"
         android:layout_height="wrap_content"
-        android:text="Dispon de una botella plástica grande, en la cual podrás ir disponiendo todo el plástico firme, aquel que suena cuando lo frotas (no sirve llenarle de plastico que estira); tambien puedes incluir los cuerpos de los cepillos dentales, lo cual te ayudará empujar los plasticos y darle más espacio a la botella. Luego llevalo a un centro de dispocisión en donde las conocen como “Botellas de amor”."
         android:layout_gravity="center"
+        android:paddingTop="10dp"
+        android:text="Dispon de una botella plástica grande, en la cual podrás ir disponiendo todo el plástico firme, aquel que suena cuando lo frotas (no sirve llenarle de plastico que estira); tambien puedes incluir los cuerpos de los cepillos dentales, lo cual te ayudará empujar los plasticos y darle más espacio a la botella. Luego llevalo a un centro de dispocisión en donde las conocen como “Botellas de amor”."
         android:textAlignment="center"
+        android:textColor="#2A782D"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/cerrar_consejo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cerrar"
+        android:textAlignment="textEnd"
         android:textSize="20sp"
         android:textColor="#2A782D"
-        android:paddingTop="10dp"/>
+        android:paddingTop="10dp"
+        android:paddingEnd="30dp"/>
 
 </LinearLayout>
