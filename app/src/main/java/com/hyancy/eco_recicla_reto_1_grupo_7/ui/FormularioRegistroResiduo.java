@@ -1,6 +1,5 @@
 package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -24,9 +23,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
-import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.SpinnerModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.CategoriesModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.WasteModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.WasteViewModel;
@@ -56,7 +54,7 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_registro_residuo);
 
-        SpinnerModel spinnerModel = new SpinnerModel();
+        CategoriesModel categoriesModel = new CategoriesModel();
         wasteViewModel = new ViewModelProvider(this).get(WasteViewModel.class);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
@@ -69,7 +67,7 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         calculateWastePoints();
         setDateRegister();
         listenersMenuAppBar();
-        spinnerUI(spinnerModel);
+        spinnerUI(categoriesModel);
     }
 
     private void initComponents() {
@@ -286,9 +284,9 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         btnCalculatePoints.setVisibility(View.VISIBLE);
     }
 
-    private void spinnerUI(SpinnerModel spinnerModel) {
+    private void spinnerUI(CategoriesModel categoriesModel) {
         String category = bundle.getString("category");
-        this.listCategories = spinnerModel.getListSpinnerCategory();
+        this.listCategories = categoriesModel.getListCategories();
         ArrayAdapter<String> categories = new ArrayAdapter<>(this, R.layout.spinner_categories_item);
         categories.addAll(listCategories);
         categoryWasteSpinner.setAdapter(categories);
