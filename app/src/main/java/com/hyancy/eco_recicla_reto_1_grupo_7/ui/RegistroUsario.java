@@ -142,9 +142,9 @@ public class RegistroUsario extends AppCompatActivity {
                 if (name.isEmpty() || age.isEmpty() || email.isEmpty() || confirmEmail.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                     showDialogCompleteAll();
                 } else if (!isValidEmailFormat(email)) {
-                    Toast.makeText(getApplicationContext(), "Escriba un correo válido!!!", Toast.LENGTH_LONG).show();
+                    showDialogCorreoValido();
                 } else if (!(email.equals(confirmEmail))) {
-                    Toast.makeText(getApplicationContext(), "Los correos no coinciden!!!", Toast.LENGTH_LONG).show();
+                    showDialogCorreoNoCoinciden();
                 } else if (!isValidLengthPassword(password, minLengthPassword, maxLengthPassword)) {
                     Toast.makeText(getApplicationContext(), validationMessage, Toast.LENGTH_LONG).show();
                 } else if (!(password.equals(confirmPassword))) {
@@ -320,6 +320,41 @@ public class RegistroUsario extends AppCompatActivity {
                cbxPoliticasPrivacidad.setChecked(false);
            }
        });
+    }
+    private void showDialogCorreoNoCoinciden(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_correo_no_coinciden, null);
+        builder.setView(view);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button btnAceptarCorreoNoCoinciden = view.findViewById(R.id.btn_aceptar_no_coincide_correos);
+
+        btnAceptarCorreoNoCoinciden.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+    }
+    private void showDialogCorreoValido(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_correo_valido, null);
+        builder.setView(view);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button btnAceptarCorreoValido = view.findViewById(R.id.btn_aceptar_correo_invalido);
+
+        btnAceptarCorreoValido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 
     private void createUser(String name, Integer age, String email, String password, Context context) {
