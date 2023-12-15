@@ -193,14 +193,23 @@ public class RegistroUsario extends AppCompatActivity {
 
     private void showDialogoRegistroCompleto() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+        View view = getLayoutInflater().inflate(R.layout.dialog_registro_completo, null);
+        builder.setView(view);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button btnAceptarTodoRegistro = view.findViewById(R.id.btn_aceptar_registro_completo);
+
+        btnAceptarTodoRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                clearComponents();
-                //startActivity(initIntents().get(0));
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent(RegistroUsario.this, Principal.class);
+                startActivity(intent);
+
             }
         });
-        builder.setView(R.layout.dialog_registro_completo).create().show();
     }
 
     private void showDialogContrasenaNoCoincide() {

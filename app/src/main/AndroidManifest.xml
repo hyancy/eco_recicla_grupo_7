@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Eco_recicla_reto_1_grupo_7"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.InformacionApp"
+            android:exported="false" />
+        <activity
+            android:name=".ui.reciclerview.InformacionApp"
+            android:exported="false" />
         <activity
             android:name=".ui.DrawerMenuActivity"
             android:exported="false" />
