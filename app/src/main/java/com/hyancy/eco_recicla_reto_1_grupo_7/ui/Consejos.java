@@ -143,21 +143,21 @@ public class Consejos extends AppCompatActivity {
         consejoPlastico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showConsejoPlastico ();
             }
         });
 
         consejoCompost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showConsejoCompost ();
             }
         });
 
         consejoRopa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showConsejoRopa ();
             }
         });
     }
@@ -251,4 +251,63 @@ public class Consejos extends AppCompatActivity {
 
     }
 
+    public void showConsejoPlastico () {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_consejo2, null);
+
+        alertDialogBuilder.setView(view);
+
+        final AlertDialog dialog = alertDialogBuilder.create();
+        dialog.show();
+
+        TextView cerrarConsejo = view.findViewById(R.id.cerrar_consejo);
+        cerrarConsejo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+    }
+
+    public void showConsejoCompost () {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_consejo3, null);
+
+        alertDialogBuilder.setView(view);
+
+        final AlertDialog dialog = alertDialogBuilder.create();
+        dialog.show();
+
+        TextView cerrarConsejo = view.findViewById(R.id.cerrar_consejo);
+        cerrarConsejo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+    }
+
+    public void showConsejoRopa () {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_consejo4, null);
+
+        alertDialogBuilder.setView(view);
+
+        final AlertDialog dialog = alertDialogBuilder.create();
+        dialog.show();
+
+        TextView cerrarConsejo = view.findViewById(R.id.cerrar_consejo);
+        cerrarConsejo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+    }
 }

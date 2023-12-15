@@ -32,12 +32,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    viewBinding{
-        enable = true;
-    }
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
@@ -48,6 +42,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth:22.2.0")
     implementation("com.google.firebase:firebase-firestore:24.9.1")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("androidx.lifecycle:lifecycle-runtime:2.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.6.2")
     implementation("androidx.lifecycle:lifecycle-livedata:2.6.2")
