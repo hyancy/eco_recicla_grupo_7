@@ -132,21 +132,23 @@ Siempre que el sitio web y la información y los servicios en el sitio se propor
                 android:layout_marginTop="25dp">
             <Button
                 android:id="@+id/btn_no_aceptar_condiciones"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/green_app"
                 android:text="No Aceptar"
                 android:textSize="17sp"
-                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"
                 />
             <Button
                 android:id="@+id/btn_aceptar_condiciones"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/green_app"
                 android:text="Aceptar"
                 android:textSize="17sp"
-
+                android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"
                 />
             </LinearLayout>
         </LinearLayout>

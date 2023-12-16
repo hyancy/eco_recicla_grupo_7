@@ -3,35 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
     android:padding="20dp"
     android:backgroundTint="@color/beige_app"
-    app:cardCornerRadius="15dp"
-    android:orientation="vertical">
+    app:cardCornerRadius="15dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Acepta terminos y condiciones"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:textColor="#2A782D"
-        />
+        android:padding="12dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¡Ingrese un correo válido!"
+            android:textColor="#2A782D"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            />
         <Button
-            android:id="@+id/btn_aceptar_terminos"
+            android:id="@+id/btn_aceptar_correo_invalido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:backgroundTint="@color/green_app"
             android:text="Aceptar"
-            android:layout_marginTop="10dp"
             android:textSize="17sp"
-            />
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
     </LinearLayout>
+
 
 </androidx.cardview.widget.CardView>

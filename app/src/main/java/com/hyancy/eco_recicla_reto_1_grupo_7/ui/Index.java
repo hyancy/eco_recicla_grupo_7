@@ -90,7 +90,8 @@ public class Index extends AppCompatActivity {
         infoApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(Index.this, InformacionApp.class);
+                startActivity(intent);
             }
         });
 
