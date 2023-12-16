@@ -7,10 +7,6 @@
     android:background="@color/green_app"
     tools:context=".ui.FormularioRegistroResiduo">
 
-    <include
-        android:id="@+id/menu_toolbar"
-        layout="@layout/menu_toolbar" />
-
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="0dp"
