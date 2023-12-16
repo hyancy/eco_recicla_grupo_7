@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.DialogInterface;
@@ -21,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,10 +32,12 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
 
-public class Consejos extends AppCompatActivity {
+public class Consejos extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private ImageView categoriasBottomBar, estadisticasBottomBar, consejosBottomBar, homeAppBottomBar, logoutBottomBar;
     private ImageView imageViewToolbar;
     Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
     private LinearLayout lnrLMenuBottomBar;
     private View backgroundBottomBar;
     private FirebaseAuth mAuth;
@@ -47,7 +51,7 @@ public class Consejos extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consejos);
+        setContentView(R.layout.drawer_consejos);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         datasetViewModel = new ViewModelProvider(this).get(DatasetViewModel.class);
@@ -79,6 +83,11 @@ public class Consejos extends AppCompatActivity {
 
         lnrLMenuBottomBar = findViewById(R.id.linear_layout_menu_bottom_bar);
         backgroundBottomBar = findViewById(R.id.background_bottom_bar);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.menu_navigation);
+
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void showMenuBottomAppBar() {
@@ -128,7 +137,7 @@ public class Consejos extends AppCompatActivity {
         });
 
         imageViewToolbar.setOnClickListener(v -> {
-            Toast.makeText(this, "Menu", Toast.LENGTH_LONG).show();
+            drawerLayout.openDrawer(GravityCompat.END);
         });
     }
 
@@ -189,46 +198,10 @@ public class Consejos extends AppCompatActivity {
 
     //Toolbar
     private void setToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.menu_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setIcon(R.drawable.ic_launcher_foreground);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        if (currentUser == null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        } else {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        }
-    }
-
-
-    //Menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (currentUser != null) {
-            getMenuInflater().inflate(R.menu.menu_lateral, menu);
-        }
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            startActivity(initIntents().get(3));
-            finish();
-        } else if (item.getItemId() == R.id.menu_inicio) {
-            startActivity(initIntents().get(4));
-        } else if (item.getItemId() == R.id.menu_categorias) {
-            startActivity(initIntents().get(0));
-        } else if (item.getItemId() == R.id.menu_estadisticas) {
-            startActivity(initIntents().get(1));
-        } else if (item.getItemId() == R.id.menu_consejos) {
-            item.collapseActionView();
-        } else if (item.getItemId() == R.id.menu_info_app) {
-            Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
-        } else if (item.getItemId() == R.id.menu_cerrar_sesion) {
-            logoutCurrentSesion();
-        }
-
-        return super.onOptionsItemSelected(item);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
     public void showConsejoAceite () {
@@ -309,5 +282,29 @@ public class Consejos extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_inicio) {
+            startActivity(initIntents().get(4));
+            return true;
+        } else if (item.getItemId() == R.id.menu_categorias) {
+            startActivity(initIntents().get(0));
+            return true;
+        } else if (item.getItemId() == R.id.menu_estadisticas) {
+            startActivity(initIntents().get(1));
+            return true;
+        } else if (item.getItemId() == R.id.menu_consejos) {
+            drawerLayout.closeDrawer(GravityCompat.END);
+            return true;
+        } else if (item.getItemId() == R.id.menu_info_app) {
+            Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
+            return true;
+        } else if (item.getItemId() == R.id.menu_cerrar_sesion) {
+            logoutCurrentSesion();
+            return true;
+        }
+        return false;
     }
 }
