@@ -84,7 +84,8 @@ public class Index extends AppCompatActivity {
         desafiosLogros.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(Index.this, DesafiosLogros.class);
+                startActivity(intent);
             }
         });
         infoApp.setOnClickListener(new View.OnClickListener() {

@@ -52,7 +52,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Version"
+        android:text="Versión"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textAlignment="center"
@@ -86,7 +86,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Objectivo"
+                android:text="Objetivo"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textAlignment="center"
