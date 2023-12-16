@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.Consejos">
 
-    <include
-        android:id="@+id/menu_toolbar"
-        layout="@layout/menu_toolbar" />
 
     <ImageView
         android:id="@+id/PantallaConsejos"

@@ -96,12 +96,14 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
         Intent intentConsejos = new Intent(Principal.this, Consejos.class);
         Intent intentLogout = new Intent(Principal.this, Index.class);
         Intent intentPrincipal = new Intent(Principal.this, Principal.class);
+        Intent intentInfoApp = new Intent(Principal.this, InformacionApp.class);
 
         listaIntents.add(intentCategorias);
         listaIntents.add(intentEstadisticas);
         listaIntents.add(intentConsejos);
         listaIntents.add(intentLogout);
         listaIntents.add(intentPrincipal);
+        listaIntents.add(intentInfoApp);
 
         return listaIntents;
     }
@@ -145,7 +147,7 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
             startActivity(initIntents().get(2));
             return true;
         } else if (item.getItemId() == R.id.menu_info_app) {
-            Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
+            startActivity(initIntents().get(5));
             return true;
         } else if (item.getItemId() == R.id.menu_cerrar_sesion) {
             logoutCurrentSesion();

@@ -318,6 +318,7 @@ public class Categoria extends AppCompatActivity implements NavigationView.OnNav
         Intent intentLogout = new Intent(Categoria.this, Index.class);
         Intent intentPrincipal = new Intent(Categoria.this, Principal.class);
         Intent intentRegisterWaste = new Intent(Categoria.this, FormularioRegistroResiduo.class);
+        Intent intentInfoApp= new Intent(Categoria.this, InformacionApp.class);
 
         listaIntents.add(intentCategorias);
         listaIntents.add(intentEstadisticas);
@@ -325,6 +326,7 @@ public class Categoria extends AppCompatActivity implements NavigationView.OnNav
         listaIntents.add(intentLogout);
         listaIntents.add(intentPrincipal);
         listaIntents.add(intentRegisterWaste);
+        listaIntents.add(intentInfoApp);
 
         return listaIntents;
     }
@@ -358,7 +360,7 @@ public class Categoria extends AppCompatActivity implements NavigationView.OnNav
             startActivity(initIntents().get(2));
             return true;
         } else if (item.getItemId() == R.id.menu_info_app) {
-            Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
+            startActivity(initIntents().get(6));
             return true;
         } else if (item.getItemId() == R.id.menu_cerrar_sesion) {
             logoutCurrentSesion();
