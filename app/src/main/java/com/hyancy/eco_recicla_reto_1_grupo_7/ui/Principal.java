@@ -115,6 +115,7 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
             finish();
         } else {
             tvUserCurrent.setText(currentUser.getEmail());
+
         }
     }
 

@@ -43,8 +43,8 @@
                 />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:src="@drawable/ic_logo_app"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"/>
@@ -81,7 +81,7 @@
                 android:text="Eco-Recicla es una aplicación móvil que ha sido diseñada con el propósito de fomentar el reciclaje de manera eficiente, educativa y gratificante. Nuestra aplicación se esfuerza por empoderar a los usuarios, brindándoles las herramientas y la información necesaria para que se conviertan en agentes activos del cambio ambiental, contribuyendo a la preservación de nuestro planeta."
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:textAlignment="center"
+                android:justificationMode="inter_word"
                 android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_width="match_parent"
@@ -98,7 +98,7 @@
                 android:text="El objetivo de la aplicación es promover y facilitar el reciclaje de diversos materiales al ofrecer a los usuarios una herramienta práctica para registrar y realizar un seguimiento de sus actividades de reciclaje. Además, la aplicación tiene como objetivo educar a los usuarios proporcionando consejos sobre cómo reciclar de manera más efectiva y sostenible."
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:textAlignment="center"
+                android:justificationMode="inter_word"
                 android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_width="match_parent"
@@ -115,7 +115,7 @@
                 android:text="El alcance de la aplicación Eco-Recicla es brindar una experiencia completa que involucra, eduque y motive a los usuarios a participar activamente en el reciclaje y a contribuir a un futuro más limpio y sostenible. La aplicación busca ser una herramienta integral que fomente la conciencia ambiental y la responsabilidad ambiental de sus usuarios."
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:textAlignment="center"
+                android:justificationMode="inter_word"
                 android:layout_marginTop="5dp"/>
 
     <TextView
@@ -134,7 +134,7 @@
         android:text="El contenido y las obras presentadas en este aplicativo se encuentrasn gobernadas por las leyes de copyright de Colombia. La duplicación, el procesacimiento, distribucción, o cualquier tipo de cormecialización que se encuentre por fuera de estas leyes, requiere el consetimiento previo del autor o creador respectivo. "
         android:textColor="@color/white"
         android:textSize="15sp"
-        android:textAlignment="center"
+        android:justificationMode="inter_word"
         android:layout_marginTop="5dp"/>
         </LinearLayout>
     </ScrollView>
