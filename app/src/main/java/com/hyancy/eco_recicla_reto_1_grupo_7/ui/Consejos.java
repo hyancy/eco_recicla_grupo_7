@@ -178,12 +178,14 @@ public class Consejos extends AppCompatActivity implements NavigationView.OnNavi
         Intent intentConsejos = new Intent(Consejos.this, Consejos.class);
         Intent intentLogout = new Intent(Consejos.this, Index.class);
         Intent intentPrincipal = new Intent(Consejos.this, Principal.class);
+        Intent intentInfoApp = new Intent(Consejos.this, InformacionApp.class);
 
         listaIntents.add(intentCategorias);
         listaIntents.add(intentEstadisticas);
         listaIntents.add(intentConsejos);
         listaIntents.add(intentLogout);
         listaIntents.add(intentPrincipal);
+        listaIntents.add(intentInfoApp);
 
         return listaIntents;
     }
@@ -299,7 +301,7 @@ public class Consejos extends AppCompatActivity implements NavigationView.OnNavi
             drawerLayout.closeDrawer(GravityCompat.END);
             return true;
         } else if (item.getItemId() == R.id.menu_info_app) {
-            Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
+            startActivity(initIntents().get(5));
             return true;
         } else if (item.getItemId() == R.id.menu_cerrar_sesion) {
             logoutCurrentSesion();

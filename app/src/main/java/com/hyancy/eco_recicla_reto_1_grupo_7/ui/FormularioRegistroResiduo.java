@@ -356,12 +356,14 @@ public class FormularioRegistroResiduo extends AppCompatActivity implements Navi
         Intent intentConsejos = new Intent(FormularioRegistroResiduo.this, Consejos.class);
         Intent intentLogout = new Intent(FormularioRegistroResiduo.this, Index.class);
         Intent intentPrincipal = new Intent(FormularioRegistroResiduo.this, Principal.class);
+        Intent intentInfoApp = new Intent(FormularioRegistroResiduo.this, InformacionApp.class);
 
         listaIntents.add(intentCategorias);
         listaIntents.add(intentEstadisticas);
         listaIntents.add(intentConsejos);
         listaIntents.add(intentLogout);
         listaIntents.add(intentPrincipal);
+        listaIntents.add(intentInfoApp);
 
         return listaIntents;
     }
@@ -442,7 +444,7 @@ public class FormularioRegistroResiduo extends AppCompatActivity implements Navi
             startActivity(initIntents().get(2));
             return true;
         } else if (item.getItemId() == R.id.menu_info_app) {
-            Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
+            startActivity(initIntents().get(5));
             return true;
         } else if (item.getItemId() == R.id.menu_cerrar_sesion) {
             logoutCurrentSesion();
