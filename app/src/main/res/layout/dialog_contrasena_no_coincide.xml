@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="20dp"
-    >
-    <TextView
-        android:layout_width="wrap_content"
+    android:backgroundTint="@color/beige_app"
+    app:cardCornerRadius="15dp">
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="La contraseña no coincide"
+        android:padding="12dp"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Las contraseña no coinciden"
         android:textColor="#2A782D"
+        android:textAlignment="center"
         android:textSize="25sp"
-        android:layout_gravity="center"
         android:textStyle="bold"
         />
+        <Button
+            android:id="@+id/btn_aceptar_no_coincide_contrasena"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green_app"
+            android:text="Aceptar"
+            android:textSize="17sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
 
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

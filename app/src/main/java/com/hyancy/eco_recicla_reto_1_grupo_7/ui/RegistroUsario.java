@@ -26,7 +26,6 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.DatasetViewModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public class RegistroUsario extends AppCompatActivity {
     FloatingActionButton btnCerrar;
@@ -94,17 +93,18 @@ public class RegistroUsario extends AppCompatActivity {
                 if (cbxTerminosCondiciones.isChecked()) {
                     showDialogTerminosYCondicones();
                 } else {
-                    cbxTerminosCondiciones.isChecked();
+                    cbxTerminosCondiciones.setChecked(false);
                 }
             }
         });
+
         cbxPoliticasPrivacidad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (cbxPoliticasPrivacidad.isChecked()) {
                     showDialogPrivacidad();
                 } else {
-                    cbxPoliticasPrivacidad.isChecked();
+                    cbxPoliticasPrivacidad.setChecked(false);
                 }
             }
         });
@@ -141,9 +141,9 @@ public class RegistroUsario extends AppCompatActivity {
                 if (name.isEmpty() || age.isEmpty() || email.isEmpty() || confirmEmail.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                     showDialogCompleteAll();
                 } else if (!isValidEmailFormat(email)) {
-                    Toast.makeText(getApplicationContext(), "Escriba un correo válido!!!", Toast.LENGTH_LONG).show();
+                    showDialogCorreoValido();
                 } else if (!(email.equals(confirmEmail))) {
-                    Toast.makeText(getApplicationContext(), "Los correos no coinciden!!!", Toast.LENGTH_LONG).show();
+                    showDialogCorreoNoCoinciden();
                 } else if (!isValidLengthPassword(password, minLengthPassword, maxLengthPassword)) {
                     Toast.makeText(getApplicationContext(), validationMessage, Toast.LENGTH_LONG).show();
                 } else if (!(password.equals(confirmPassword))) {
@@ -174,101 +174,186 @@ public class RegistroUsario extends AppCompatActivity {
 
     private void showDialogCompleteAll() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+        View view = getLayoutInflater().inflate(R.layout.dialog_completa_todo, null);
+        builder.setView(view);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button btnAceptarTodo = view.findViewById(R.id.btn_aceptar_todo);
+
+        btnAceptarTodo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
-        builder.setView(R.layout.dialog_completa_todo).create().show();
 
     }
 
     private void showDialogoRegistroCompleto() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+        View view = getLayoutInflater().inflate(R.layout.dialog_registro_completo, null);
+        builder.setView(view);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button btnAceptarTodoRegistro = view.findViewById(R.id.btn_aceptar_registro_completo);
+
+        btnAceptarTodoRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                clearComponents();
-                //startActivity(initIntents().get(0));
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent(RegistroUsario.this, Principal.class);
+                startActivity(intent);
+
             }
         });
-        builder.setView(R.layout.dialog_registro_completo).create().show();
     }
 
     private void showDialogContrasenaNoCoincide() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+       AlertDialog.Builder builder = new AlertDialog.Builder(this);
+       View view = getLayoutInflater().inflate(R.layout.dialog_contrasena_no_coincide, null);
+       builder.setView(view);
 
-        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        builder.setView(R.layout.dialog_contrasena_no_coincide).create().show();
+       AlertDialog dialog = builder.create();
+       dialog.show();
+
+       Button btnAceptarNoCoincideContrasena = view.findViewById(R.id.btn_aceptar_no_coincide_contrasena);
+       btnAceptarNoCoincideContrasena.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               dialog.dismiss();
+           }
+       });
 
     }
 
     private void showDialogAceptaCondicionesYTerminos() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_acepta_terminos_condiciones, null);
+        builder.setView(view);
 
-        builder.setPositiveButton("CERRAR", new DialogInterface.OnClickListener() {
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button btnAceptaTerminos = view.findViewById(R.id.btn_aceptar_terminos);
+
+        btnAceptaTerminos.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
-        builder.setView(R.layout.dialog_acepta_terminos_condiciones).create().show();
     }
 
     private void showDialogTerminosYCondicones() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_terminos_condiciones, null);
+        builder.setView(view);
 
-        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button btnNoAceptarCondiones = view.findViewById(R.id.btn_no_aceptar_condiciones);
+        Button btnAceptarCondiciones = view.findViewById(R.id.btn_aceptar_condiciones);
+
+        btnNoAceptarCondiones.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                cbxTerminosCondiciones.isChecked();
-                dialog.cancel();
-            }
-        });
-        builder.setNegativeButton("NO ACEPTO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(View v) {
+                dialog.dismiss();
                 cbxTerminosCondiciones.setChecked(false);
-                dialog.cancel();
             }
         });
-        builder.setView(R.layout.dialog_terminos_condiciones).create().show();
+        btnAceptarCondiciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                cbxTerminosCondiciones.isChecked();
+            }
+        });
     }
 
     private void showDialogAceptaPrivacidad() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+        View view = getLayoutInflater().inflate(R.layout.dialog_acepta_privacidad, null);
+        builder.setView(view);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button btnAceptaDatos = view.findViewById(R.id.btn_aceptar_datos);
+
+        btnAceptaDatos.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
-        builder.setView(R.layout.dialog_acepta_privacidad).create().show();
+
+
     }
 
     private void showDialogPrivacidad() {
+       AlertDialog.Builder builder = new AlertDialog.Builder(this);
+       View view = getLayoutInflater().inflate(R.layout.dialog_privacidad, null);
+       builder.setView(view);
+
+       AlertDialog dialog = builder.create();
+       dialog.show();
+
+       Button btnAceptaPrivacidad = view.findViewById(R.id.btn_aceptar_privacidad);
+       Button btnNoAceptaPrivacidad = view.findViewById(R.id.btn_no_aceptar_privacidad);
+
+       btnAceptaPrivacidad.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               dialog.dismiss();
+               cbxPoliticasPrivacidad.isChecked();
+           }
+       });
+       btnNoAceptaPrivacidad.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               dialog.dismiss();
+               cbxPoliticasPrivacidad.setChecked(false);
+           }
+       });
+    }
+    private void showDialogCorreoNoCoinciden(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setPositiveButton("SI ACEPTO", new DialogInterface.OnClickListener() {
+        View view = getLayoutInflater().inflate(R.layout.dialog_correo_no_coinciden, null);
+        builder.setView(view);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button btnAceptarCorreoNoCoinciden = view.findViewById(R.id.btn_aceptar_no_coincide_correos);
+
+        btnAceptarCorreoNoCoinciden.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                cbxPoliticasPrivacidad.isChecked();
-                dialog.cancel();
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
-        builder.setNegativeButton("NO ACEPTO", new DialogInterface.OnClickListener() {
+
+    }
+    private void showDialogCorreoValido(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_correo_valido, null);
+        builder.setView(view);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button btnAceptarCorreoValido = view.findViewById(R.id.btn_aceptar_correo_invalido);
+
+        btnAceptarCorreoValido.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                cbxPoliticasPrivacidad.setChecked(false);
-                dialog.cancel();
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
-        builder.setView(R.layout.dialog_privacidad).create().show();
     }
 
     private void createUser(String name, Integer age, String email, String password, Context context) {
