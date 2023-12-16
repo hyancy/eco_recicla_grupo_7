@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.DrawerMenuActivity">
+    tools:context=".ui.Categoria">
     <include
         android:id="@+id/menu_drawer_principal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        layout="@layout/activity_principal" />
+        layout="@layout/activity_categoria" />
 
     <LinearLayout
         android:id="@+id/content_drawer"

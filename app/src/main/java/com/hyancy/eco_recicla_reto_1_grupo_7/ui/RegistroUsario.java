@@ -26,7 +26,6 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.DatasetViewModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public class RegistroUsario extends AppCompatActivity {
     FloatingActionButton btnCerrar;

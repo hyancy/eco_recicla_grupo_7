@@ -1,17 +1,16 @@
 package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.lifecycle.Observer;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
@@ -27,11 +27,13 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.WasteViewModel;
 
 import java.util.ArrayList;
 
-public class Categoria extends AppCompatActivity {
+public class Categoria extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private SearchView searchFilterCategory;
     private CardView cardsLists[];
     private TextView tvCardsList[];
     private ImageView imageViewToolbar;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
     private CardView cardAceites, cardBateriasPilas, cardMaderasEscombros, cardMetales, cardPapelCarton, cardPlasticos,
             cardTetrabrik, cardVidrios, cardOrganicos;
     private TextView tvCardAceites, tvCardBateriasPilas, tvCardMaderasEscombros, tvCardMetales, tvCardPapelCarton, tvCardPlasticos,
@@ -45,7 +47,7 @@ public class Categoria extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_categoria);
+        setContentView(R.layout.drawer_categories_menu);
 
         wasteViewModel = new ViewModelProvider(this).get(WasteViewModel.class);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
@@ -90,6 +92,12 @@ public class Categoria extends AppCompatActivity {
 
         cardsLists = initCardsList();
         tvCardsList = initTvCardsList();
+
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.menu_navigation);
+
+        navigationView.setNavigationItemSelectedListener(this);
 
     }
 
@@ -175,7 +183,6 @@ public class Categoria extends AppCompatActivity {
         estadisticasBottomBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startActivity(initIntents().get(1));
             }
         });
@@ -193,7 +200,7 @@ public class Categoria extends AppCompatActivity {
         });
 
         imageViewToolbar.setOnClickListener(v -> {
-            Toast.makeText(this, "Menu", Toast.LENGTH_LONG).show();
+            drawerLayout.openDrawer(GravityCompat.END);
         });
     }
 
@@ -258,13 +265,8 @@ public class Categoria extends AppCompatActivity {
 
         wasteViewModel.getWasteByUserId(userViewModel.getUidUser().toString(), wasteList, tvAccumulatedAmount,
                 tvAccumulatedPoints, category);
-        //int points = getTotalPoints(wasteList);
-        //double quantity = getTotalQuantity(wasteList);
-
 
         tvTitleDialogCards.setText(category);
-        //tvAccumulatedAmount.setText(String.valueOf(quantity));
-        // tvAccumulatedPoints.setText(String.valueOf(points));
 
         btnNewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -338,34 +340,32 @@ public class Categoria extends AppCompatActivity {
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.menu_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setIcon(R.drawable.ic_launcher_foreground);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
-    //Menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_lateral, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_inicio) {
             startActivity(initIntents().get(4));
+            return true;
         } else if (item.getItemId() == R.id.menu_categorias) {
-            item.collapseActionView();
+            drawerLayout.closeDrawer(GravityCompat.END);
+            return true;
         } else if (item.getItemId() == R.id.menu_estadisticas) {
             startActivity(initIntents().get(1));
+            return true;
         } else if (item.getItemId() == R.id.menu_consejos) {
-            item.collapseActionView();
+            startActivity(initIntents().get(2));
+            return true;
         } else if (item.getItemId() == R.id.menu_info_app) {
             Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
+            return true;
         } else if (item.getItemId() == R.id.menu_cerrar_sesion) {
             logoutCurrentSesion();
+            return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        return false;
     }
+
 }

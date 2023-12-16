@@ -18,15 +18,6 @@
             android:name=".ui.InformacionApp"
             android:exported="false" />
         <activity
-            android:name=".ui.reciclerview.InformacionApp"
-            android:exported="false" />
-        <activity
-            android:name=".ui.DrawerMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.CategoriaUI"
-            android:exported="false" />
-        <activity
             android:name=".ui.PoliticaPrivacidadTerminos"
             android:exported="false" />
         <activity
