@@ -1,10 +1,5 @@
 package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -22,6 +17,11 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.CategoriesModel;
@@ -154,6 +154,8 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
                 String registerDate = edtDateRegister.getText().toString().trim();
                 String location = edtLocationRegister.getText().toString().trim();
                 String category = categoryWasteSpinner.getSelectedItem().toString();
+                String quantity_ = edtQuantity.getText().toString().trim();
+
                 double quantity = 0;
 
                 if (TextUtils.isEmpty(description)) {
@@ -176,12 +178,17 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Seleccione la categoria del residuo", Toast.LENGTH_LONG).show();
                     return;
                 }
-                quantity = Double.parseDouble(edtQuantity.getText().toString().trim());
 
-                if (TextUtils.isEmpty(String.valueOf(quantity)) || quantity == 0) {
+                if(TextUtils.isEmpty(quantity_)){
                     Toast.makeText(getApplicationContext(), "Ingrese la cantidad de residuo", Toast.LENGTH_LONG).show();
                     return;
                 }
+                quantity = Double.parseDouble(quantity_);
+                if (quantity == 0) {
+                    Toast.makeText(getApplicationContext(), "Ingrese la cantidad de residuo", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 double environmentFactor = calculateEnvioronmentalFactor(category);
                 double recyclingFactor = calculateRecyclingFactor(category);
                 int points = (int) Math.round(calculatePoints(environmentFactor, recyclingFactor, quantity));
@@ -268,21 +275,6 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         return environmentalFactor;
     }
 
-    private void showRegisterCancelButtons(String description, String photoUrl, String registerDate,
-                                           String location, String category, double quantity, int points) {
-        registerWaste(description, photoUrl, registerDate, location, category, quantity, points);
-        btnCalculatePoints.setVisibility(View.GONE);
-        lnLayoutRegisterCancelButtons.setVisibility(View.VISIBLE);
-        btnRegisterWaste.setVisibility(View.VISIBLE);
-        btnCancelRegister.setVisibility(View.VISIBLE);
-    }
-
-    private void showCalculateButton() {
-        btnRegisterWaste.setVisibility(View.GONE);
-        btnCancelRegister.setVisibility(View.GONE);
-        lnLayoutRegisterCancelButtons.setVisibility(View.VISIBLE);
-        btnCalculatePoints.setVisibility(View.VISIBLE);
-    }
 
     private void spinnerUI(CategoriesModel categoriesModel) {
         String category = bundle.getString("category");
@@ -347,6 +339,62 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         edtDateRegister.setText(dateReg);
     }
 
+
+    private void setDateRegister_() {
+        DatePickerDialog datePickerDialog;
+        View view = getLayoutInflater().inflate(R.layout.dialog_calendar, null);
+
+        final Calendar calendar_ = Calendar.getInstance();
+        int mYear = calendar_.get(Calendar.YEAR);
+        int mMonth = calendar_.get(Calendar.MONTH);
+        int mDay = calendar_.get(Calendar.DAY_OF_MONTH);
+
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                int monthReg_ = month + 1;
+                String dateReg_ = dayOfMonth + "/" + monthReg_ + "/" + year;
+                edtDateRegister.setText(dateReg_);
+            }
+        }, mYear, mMonth, mDay);
+        datePickerDialog.setView(view);
+        datePickerDialog.show();
+    }
+
+
+    private ArrayList<Intent> initIntents() {
+        ArrayList<Intent> listaIntents = new ArrayList<>();
+        Intent intentCategorias = new Intent(FormularioRegistroResiduo.this, Categoria.class);
+        Intent intentEstadisticas = new Intent(FormularioRegistroResiduo.this, Statistic.class);
+        Intent intentConsejos = new Intent(FormularioRegistroResiduo.this, Consejos.class);
+        Intent intentLogout = new Intent(FormularioRegistroResiduo.this, Index.class);
+        Intent intentPrincipal = new Intent(FormularioRegistroResiduo.this, Principal.class);
+
+        listaIntents.add(intentCategorias);
+        listaIntents.add(intentEstadisticas);
+        listaIntents.add(intentConsejos);
+        listaIntents.add(intentLogout);
+        listaIntents.add(intentPrincipal);
+
+        return listaIntents;
+    }
+
+    private void showRegisterCancelButtons(String description, String photoUrl, String registerDate,
+                                           String location, String category, double quantity, int points) {
+        registerWaste(description, photoUrl, registerDate, location, category, quantity, points);
+        btnCalculatePoints.setVisibility(View.GONE);
+        lnLayoutRegisterCancelButtons.setVisibility(View.VISIBLE);
+        btnRegisterWaste.setVisibility(View.VISIBLE);
+        btnCancelRegister.setVisibility(View.VISIBLE);
+    }
+
+    private void showCalculateButton() {
+        btnRegisterWaste.setVisibility(View.GONE);
+        btnCancelRegister.setVisibility(View.GONE);
+        lnLayoutRegisterCancelButtons.setVisibility(View.VISIBLE);
+        btnCalculatePoints.setVisibility(View.VISIBLE);
+    }
+
     private void showDialogCalendar() {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -374,50 +422,12 @@ public class FormularioRegistroResiduo extends AppCompatActivity {
         });
     }
 
-    private void setDateRegister_() {
-        DatePickerDialog datePickerDialog;
-        View view = getLayoutInflater().inflate(R.layout.dialog_calendar, null);
-
-        final Calendar calendar_ = Calendar.getInstance();
-        int mYear = calendar_.get(Calendar.YEAR);
-        int mMonth = calendar_.get(Calendar.MONTH);
-        int mDay = calendar_.get(Calendar.DAY_OF_MONTH);
-
-        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                int monthReg_ = month + 1;
-                String dateReg_ = dayOfMonth + "/" + monthReg_ + "/" + year;
-                edtDateRegister.setText(dateReg_);
-            }
-        }, mYear, mMonth, mDay);
-        datePickerDialog.setView(view);
-        datePickerDialog.show();
-    }
-
     private void showDialogCompleteDataForm() {
         AlertDialog.Builder dialogCompleteDataForm = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.dialog_complete_data_form, null);
         dialogCompleteDataForm.setView(view);
         final AlertDialog dialog = dialogCompleteDataForm.create();
         dialog.show();
-    }
-
-    private ArrayList<Intent> initIntents() {
-        ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentCategorias = new Intent(FormularioRegistroResiduo.this, Categoria.class);
-        Intent intentEstadisticas = new Intent(FormularioRegistroResiduo.this, Statistic.class);
-        Intent intentConsejos = new Intent(FormularioRegistroResiduo.this, Consejos.class);
-        Intent intentLogout = new Intent(FormularioRegistroResiduo.this, Index.class);
-        Intent intentPrincipal = new Intent(FormularioRegistroResiduo.this, Principal.class);
-
-        listaIntents.add(intentCategorias);
-        listaIntents.add(intentEstadisticas);
-        listaIntents.add(intentConsejos);
-        listaIntents.add(intentLogout);
-        listaIntents.add(intentPrincipal);
-
-        return listaIntents;
     }
 
     private void clearComponents() {

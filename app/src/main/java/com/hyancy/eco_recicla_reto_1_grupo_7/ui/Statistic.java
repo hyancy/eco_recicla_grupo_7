@@ -3,6 +3,8 @@ package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -31,6 +33,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.collection.LLRBNode;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.CategoriesModel;
@@ -39,9 +42,11 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Statistic extends AppCompatActivity {
+public class Statistic extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView categoriasBottomBar, estadisticasBottomBar, consejosBottomBar, homeAppBottomBar, logoutBottomBar;
     private ImageView imageViewToolbar;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
     private UserViewModel userViewModel;
     private LineChart mLineChart;
     private HorizontalBarChart mHorizontalBarChar;
@@ -52,7 +57,7 @@ public class Statistic extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistic);
+        setContentView(R.layout.drawer_statistics_menu);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         categories = new CategoriesModel();
@@ -138,9 +143,9 @@ public class Statistic extends AppCompatActivity {
         float barWidth = 9.0f;
         float spaceForBar = 10.0f;
 
-        for(int i = 0; i <count; i++){
-            float value = (float) (Math.random()*range);
-            yValues.add(new BarEntry(i*spaceForBar, value));
+        for (int i = 0; i < count; i++) {
+            float value = (float) (Math.random() * range);
+            yValues.add(new BarEntry(i * spaceForBar, value));
         }
 
         BarDataSet set1 = new BarDataSet(yValues, "Data Set 1");
@@ -156,8 +161,8 @@ public class Statistic extends AppCompatActivity {
         mLineChart.setDragDecelerationEnabled(true);
         mLineChart.setScaleEnabled(true);
 
-        ArrayList <Entry> yValues = new ArrayList<>();
-        ArrayList <Entry> zValues = new ArrayList<>();
+        ArrayList<Entry> yValues = new ArrayList<>();
+        ArrayList<Entry> zValues = new ArrayList<>();
         yValues.add(new Entry(0, 60f));
         yValues.add(new Entry(1, 20f));
         yValues.add(new Entry(2, 10f));
@@ -222,6 +227,12 @@ public class Statistic extends AppCompatActivity {
         mHorizontalBarChar = findViewById(R.id.horizontal_bar_chart);
         mPieChart = findViewById(R.id.pie_chart);
         mVerticalBarChart = findViewById(R.id.vertical_bar_chart);
+
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.menu_navigation);
+
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void listenersMenuAppBar() {
@@ -257,7 +268,7 @@ public class Statistic extends AppCompatActivity {
         });
 
         imageViewToolbar.setOnClickListener(v -> {
-            Toast.makeText(this, "Menu", Toast.LENGTH_LONG).show();
+            drawerLayout.openDrawer(GravityCompat.END);
         });
     }
 
@@ -289,35 +300,31 @@ public class Statistic extends AppCompatActivity {
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.menu_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setIcon(R.drawable.ic_launcher_foreground);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
-
-    //Menu
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_lateral, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_inicio) {
             startActivity(initIntents().get(4));
+            return true;
         } else if (item.getItemId() == R.id.menu_categorias) {
             startActivity(initIntents().get(0));
+            return true;
         } else if (item.getItemId() == R.id.menu_estadisticas) {
-            item.collapseActionView();
+            drawerLayout.closeDrawer(GravityCompat.END);
+            return true;
         } else if (item.getItemId() == R.id.menu_consejos) {
             startActivity(initIntents().get(2));
+            return true;
         } else if (item.getItemId() == R.id.menu_info_app) {
             Toast.makeText(this, "Información de la App", Toast.LENGTH_LONG).show();
+            return true;
         } else if (item.getItemId() == R.id.menu_cerrar_sesion) {
             logoutCurrentSesion();
+            return true;
         }
-
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 }

@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.Statistic">
 
-    <include
-        android:id="@+id/menu_toolbar"
-        layout="@layout/menu_toolbar" />
-
     <FrameLayout
         android:id="@+id/frameLY_top_statistics"
         android:layout_width="match_parent"

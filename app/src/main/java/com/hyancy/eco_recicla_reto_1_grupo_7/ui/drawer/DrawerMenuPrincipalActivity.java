@@ -1,4 +1,4 @@
-package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
+package com.hyancy.eco_recicla_reto_1_grupo_7.ui.drawer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 
-public class DrawerMenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class DrawerMenuPrincipalActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -21,7 +21,7 @@ public class DrawerMenuActivity extends AppCompatActivity implements NavigationV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawer_menu);
+        setContentView(R.layout.drawer_principal_menu);
 
         initGUI();
         setToolbar("Mi Menu");
