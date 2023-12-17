@@ -1,6 +1,8 @@
 @startuml
 class Challenge {
+~ Button btnDesafio1
 # void onCreate(Bundle)
+- void showDialogDesafio()
 }
 
 

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 
 public class Challenge extends AppCompatActivity {
-    Button btnDesafio1, btnDesafio2, btnDesafio3, btnDesafio4, btnDesafio5, btnDesafio6, btnDesafio7, btnDesafio8, btnDesafio9, btnDesafio10;
+    private Button btnDesafio1, btnDesafio2, btnDesafio3, btnDesafio4, btnDesafio5, btnDesafio6, btnDesafio7, btnDesafio8, btnDesafio9, btnDesafio10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
