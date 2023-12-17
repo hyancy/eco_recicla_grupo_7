@@ -1,0 +1,45 @@
+@startuml
+class WasteRegisterForm {
+- Button btnCalculatePoints
+- ImageView categoriasBottomBar
+- EditText edtDescription
+- DrawerLayout drawerLayout
+- NavigationView navigationView
+- ImageView imageViewToolbar
+- DatePicker calendar
+- LinearLayout lnLayoutRegisterCancelButtons
+- TextView tvPoints
+~ double totalPoints
+- Spinner categoryWasteSpinner
+- ArrayList<String> listCategories
+- WasteViewModel wasteViewModel
+- UserViewModel userViewModel
+- WasteModel wasteModel
+- Bundle bundle
+# void onCreate(Bundle)
+- void initComponents()
+- void setlisteners()
+- void listenersMenuAppBar()
+- void calculateWastePoints()
++ void registerWaste(String,String,String,String,String,double,int)
+- double calculatePoints(double,double,double)
+- double calculateRecyclingFactor(String)
+- double calculateEnvioronmentalFactor(String)
+- void spinnerUI(CategoriesModel)
+- void logoutCurrentSesion()
+- void setToolbar()
+- void setDateRegister()
+- void setDateRegister_()
+- ArrayList<Intent> initIntents()
+- void showRegisterCancelButtons(String,String,String,String,String,double,int)
+- void showCalculateButton()
+- void showDialogCalendar()
+- void showDialogCompleteDataForm()
+- void clearComponents()
++ boolean onNavigationItemSelected(MenuItem)
+}
+
+
+OnNavigationItemSelectedListener <|.. WasteRegisterForm
+AppCompatActivity <|-- WasteRegisterForm
+@enduml

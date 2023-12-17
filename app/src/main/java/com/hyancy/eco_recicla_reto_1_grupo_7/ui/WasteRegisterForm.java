@@ -46,7 +46,7 @@ public class WasteRegisterForm extends AppCompatActivity implements NavigationVi
     private DatePicker calendar;
     private LinearLayout lnLayoutRegisterCancelButtons;
     private TextView tvPoints;
-    double totalPoints = 0;
+    private double totalPoints = 0;
     private Spinner categoryWasteSpinner;
     private ArrayList<String> listCategories;
     private WasteViewModel wasteViewModel;

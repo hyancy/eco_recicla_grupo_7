@@ -1,14 +1,14 @@
 @startuml
 class UserRegister {
-~ FloatingActionButton btnCerrar
-~ CheckBox cbxTerminosCondiciones
-~ Button btnRegistrarUsuario
-~ ProgressBar progressBar
-~ TextView tvYaTieneCuenta
-~ EditText edtName
-~ UserViewModel userViewModel
-~ DatasetViewModel datasetViewModel
-~ UserModel userModel
+- FloatingActionButton btnCerrar
+- CheckBox cbxTerminosCondiciones
+- Button btnRegistrarUsuario
+- ProgressBar progressBar
+- TextView tvYaTieneCuenta
+- EditText edtName
+- UserViewModel userViewModel
+- DatasetViewModel datasetViewModel
+- UserModel userModel
 + void onStart()
 # void onCreate(Bundle)
 - void initComponents()
