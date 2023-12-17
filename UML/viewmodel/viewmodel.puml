@@ -1,0 +1,26 @@
+@startuml
+class com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.DatasetViewModel {
+- DataUseCase dataUseCase
++ FirebaseFirestore getData()
++ FirebaseAuth getmAuth()
++ FirebaseUser getCurrentUser()
+}
+class com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel {
+- UserUseCase userUseCase
++ void createUser(String,Integer,String,String,Context)
++ void getUserData(String)
++ String getUidUser()
++ void logoutSesion()
+}
+class com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.WasteViewModel {
+- WasteUseCase wasteUseCase
++ void createWaste(String,String,String,String,String,double,int)
++ void getWasteByUserId(String,ArrayList<QueryDocumentSnapshot>,TextView,TextView,String)
++ Query getQuantityWasteByUser(String)
+}
+
+
+androidx.lifecycle.ViewModel <|-- com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.DatasetViewModel
+androidx.lifecycle.ViewModel <|-- com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel
+androidx.lifecycle.ViewModel <|-- com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.WasteViewModel
+@enduml
