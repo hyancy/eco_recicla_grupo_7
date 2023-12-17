@@ -26,5 +26,12 @@ public class DesafiosLogros extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnLogros.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent(DesafiosLogros.this, Logros.class);
+               startActivity(intent);
+            }
+        });
     }
 }
