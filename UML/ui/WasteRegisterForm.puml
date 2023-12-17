@@ -9,7 +9,7 @@ class WasteRegisterForm {
 - DatePicker calendar
 - LinearLayout lnLayoutRegisterCancelButtons
 - TextView tvPoints
-~ double totalPoints
+- double totalPoints
 - Spinner categoryWasteSpinner
 - ArrayList<String> listCategories
 - WasteViewModel wasteViewModel
