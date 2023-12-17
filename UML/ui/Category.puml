@@ -1,0 +1,36 @@
+@startuml
+class Category {
+- SearchView searchFilterCategory
+- CardView[] cardsLists
+- TextView[] tvCardsList
+- ImageView imageViewToolbar
+- DrawerLayout drawerLayout
+- NavigationView navigationView
+- CardView cardAceites
+- TextView tvCardAceites
+- ImageView estadisticasBottomBar
+- GridLayout gridLayoutCards
+- WasteViewModel wasteViewModel
+- UserViewModel userViewModel
+- ArrayList<QueryDocumentSnapshot> wasteList
+# void onCreate(Bundle)
+- void initComponents()
+- TextView[] initTvCardsList()
+- CardView[] initCardsList()
+- void listenersCards()
+- void listenersMenuAppBar()
+- void filterCard()
+- void searchFilterListener(String)
+- void showDialogCard(String)
++ Integer getTotalPoints(ArrayList<QueryDocumentSnapshot>)
+- double getTotalQuantity(ArrayList<QueryDocumentSnapshot>)
+- ArrayList<Intent> initIntents()
+- void logoutCurrentSesion()
+- void setToolbar()
++ boolean onNavigationItemSelected(MenuItem)
+}
+
+
+OnNavigationItemSelectedListener <|.. Category
+AppCompatActivity <|-- Category
+@enduml

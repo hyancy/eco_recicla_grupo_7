@@ -1,0 +1,8 @@
+@startuml
+class AppInformation {
+# void onCreate(Bundle)
+}
+
+
+AppCompatActivity <|-- AppInformation
+@enduml

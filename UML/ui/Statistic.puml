@@ -1,0 +1,32 @@
+@startuml
+class Statistic {
+- ImageView categoriasBottomBar
+- ImageView imageViewToolbar
+- DrawerLayout drawerLayout
+- NavigationView navigationView
+- UserViewModel userViewModel
+~ WasteViewModel wasteViewModel
+- LineChart mLineChart
+- HorizontalBarChart mHorizontalBarChar
+- PieChart mPieChart
+- BarChart mVerticalBarChart
+- CategoriesModel categories
+# void onCreate(Bundle)
+- void setVerticalBarChart()
+- void setPieChart()
+- void setHorizontalBarChart()
+- void setLineChart()
+- void initComponents()
+- void listenersMenuAppBar()
+- ArrayList<Intent> initIntents()
+- void logoutCurrentSesion()
+- void setToolbar()
++ boolean onNavigationItemSelected(MenuItem)
+- ArrayList<String> getXAxisValues()
+- ArrayList<BarDataSet> getDataSet()
+}
+
+
+OnNavigationItemSelectedListener <|.. Statistic
+AppCompatActivity <|-- Statistic
+@enduml

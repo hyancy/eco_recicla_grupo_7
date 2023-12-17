@@ -43,16 +43,16 @@ public class WasteRegisterForm extends AppCompatActivity implements NavigationVi
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ImageView imageViewToolbar;
-    DatePicker calendar;
+    private DatePicker calendar;
     private LinearLayout lnLayoutRegisterCancelButtons;
-    TextView tvPoints;
+    private TextView tvPoints;
     double totalPoints = 0;
     private Spinner categoryWasteSpinner;
     private ArrayList<String> listCategories;
     private WasteViewModel wasteViewModel;
     private UserViewModel userViewModel;
-    WasteModel wasteModel;
-    Bundle bundle;
+    private WasteModel wasteModel;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

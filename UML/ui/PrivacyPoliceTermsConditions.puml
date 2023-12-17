@@ -1,0 +1,12 @@
+@startuml
+class PrivacyPoliceTermsConditions {
+~ Button btnAceptoTerminos
+# void onCreate(Bundle)
+- void initComponents()
+- void listenersButtons()
+- ArrayList<Intent> initIntents()
+}
+
+
+AppCompatActivity <|-- PrivacyPoliceTermsConditions
+@enduml

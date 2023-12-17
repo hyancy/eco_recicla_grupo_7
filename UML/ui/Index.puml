@@ -1,0 +1,15 @@
+@startuml
+class Index {
+- ImageButton consejos
+- Button btnIniciarSesion
+- FirebaseAuth mAuth
++ void onStart()
+# void onCreate(Bundle)
+- void initComponents()
+- void listenersButtons()
+- ArrayList<Intent> initIntents()
+}
+
+
+AppCompatActivity <|-- Index
+@enduml

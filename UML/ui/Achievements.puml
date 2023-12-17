@@ -1,0 +1,8 @@
+@startuml
+class Achievements {
+# void onCreate(Bundle)
+}
+
+
+AppCompatActivity <|-- Achievements
+@enduml

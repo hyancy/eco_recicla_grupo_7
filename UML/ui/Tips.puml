@@ -1,0 +1,33 @@
+@startuml
+class Tips {
+- ImageView categoriasBottomBar
+- ImageView imageViewToolbar
+~ Toolbar toolbar
+- DrawerLayout drawerLayout
+- NavigationView navigationView
+- LinearLayout lnrLMenuBottomBar
+- View backgroundBottomBar
+- FirebaseAuth mAuth
+- FirebaseUser currentUser
+- UserViewModel userViewModel
+- DatasetViewModel datasetViewModel
+- CardView consejoAceite
+# void onCreate(Bundle)
+- void initComponents()
+- void showMenuBottomAppBar()
+- void listenersMenuAppBar()
+- void listenersCards()
+- ArrayList<Intent> initIntents()
+- void logoutCurrentSesion()
+- void setToolbar()
++ void showConsejoAceite()
++ void showConsejoPlastico()
++ void showConsejoCompost()
++ void showConsejoRopa()
++ boolean onNavigationItemSelected(MenuItem)
+}
+
+
+OnNavigationItemSelectedListener <|.. Tips
+AppCompatActivity <|-- Tips
+@enduml

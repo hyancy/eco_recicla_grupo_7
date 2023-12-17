@@ -1,0 +1,8 @@
+@startuml
+class Challenge {
+# void onCreate(Bundle)
+}
+
+
+AppCompatActivity <|-- Challenge
+@enduml

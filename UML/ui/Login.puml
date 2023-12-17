@@ -1,0 +1,20 @@
+@startuml
+class Login {
+- Button btnLogin
+- TextInputEditText userLogin
+- ProgressBar progressBar
+- FirebaseAuth mAuth
+- TextView tvNoHaveCount
+- UserViewModel userViewModel
++ void onStart()
+# void onCreate(Bundle)
+- void initComponents()
+- void listenersButtons()
+- ArrayList<Intent> initIntents()
+- void showDialogFogottenPassword()
+- void showDialogCompleteDataLogin()
+}
+
+
+AppCompatActivity <|-- Login
+@enduml

@@ -27,15 +27,15 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 import java.util.ArrayList;
 
 public class UserRegister extends AppCompatActivity {
-    FloatingActionButton btnCerrar;
-    CheckBox cbxTerminosCondiciones, cbxPoliticasPrivacidad;
-    Button btnRegistrarUsuario;
-    ProgressBar progressBar;
-    TextView tvYaTieneCuenta;
-    EditText edtName, edtAge, edtEmail, edtConfirmEmail, edtPassword, edtConfirmPassword;
-    UserViewModel userViewModel;
-    DatasetViewModel datasetViewModel;
-    UserModel userModel;
+    private FloatingActionButton btnCerrar;
+    private CheckBox cbxTerminosCondiciones, cbxPoliticasPrivacidad;
+    private Button btnRegistrarUsuario;
+    private ProgressBar progressBar;
+    private TextView tvYaTieneCuenta;
+    private EditText edtName, edtAge, edtEmail, edtConfirmEmail, edtPassword, edtConfirmPassword;
+    private UserViewModel userViewModel;
+    private DatasetViewModel datasetViewModel;
+    private UserModel userModel;
 
     @Override
     public void onStart() {

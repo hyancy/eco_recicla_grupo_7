@@ -1,0 +1,35 @@
+@startuml
+class UserRegister {
+~ FloatingActionButton btnCerrar
+~ CheckBox cbxTerminosCondiciones
+~ Button btnRegistrarUsuario
+~ ProgressBar progressBar
+~ TextView tvYaTieneCuenta
+~ EditText edtName
+~ UserViewModel userViewModel
+~ DatasetViewModel datasetViewModel
+~ UserModel userModel
++ void onStart()
+# void onCreate(Bundle)
+- void initComponents()
+- void listenersButtons()
++ void createUser()
+- void showDialogCompleteAll()
+- void showDialogoRegistroCompleto()
+- void showDialogContrasenaNoCoincide()
+- void showDialogAceptaCondicionesYTerminos()
+- void showDialogTerminosYCondicones()
+- void showDialogAceptaPrivacidad()
+- void showDialogPrivacidad()
+- void showDialogCorreoNoCoinciden()
+- void showDialogCorreoValido()
+- void createUser(String,Integer,String,String,Context)
+- ArrayList<Intent> initIntents()
+- void clearComponents()
+- boolean isValidLengthPassword(String,int,int)
+- boolean isValidEmailFormat(String)
+}
+
+
+AppCompatActivity <|-- UserRegister
+@enduml

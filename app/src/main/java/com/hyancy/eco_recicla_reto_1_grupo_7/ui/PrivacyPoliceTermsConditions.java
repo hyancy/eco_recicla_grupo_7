@@ -12,7 +12,7 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 import java.util.ArrayList;
 
 public class PrivacyPoliceTermsConditions extends AppCompatActivity {
-    Button btnAceptoTerminos, btnNoAceptoTerminos;
+    private Button btnAceptoTerminos, btnNoAceptoTerminos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

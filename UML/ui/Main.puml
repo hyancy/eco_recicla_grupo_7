@@ -1,0 +1,24 @@
+@startuml
+class Main {
+- Button btnCategorias
+- ImageView imageViewToolbar
+- DrawerLayout drawerLayout
+- NavigationView navigationView
+- TextView tvUserCurrent
+- FirebaseAuth auth
+- FirebaseUser currentUser
+- UserViewModel userViewModel
+# void onCreate(Bundle)
+- void initComponents()
+- void listenersButtons()
+- ArrayList<Intent> initIntents()
+- void showCurrentSesion()
+- void logoutCurrentSesion()
+- void setToolbar()
++ boolean onNavigationItemSelected(MenuItem)
+}
+
+
+OnNavigationItemSelectedListener <|.. Main
+AppCompatActivity <|-- Main
+@enduml
