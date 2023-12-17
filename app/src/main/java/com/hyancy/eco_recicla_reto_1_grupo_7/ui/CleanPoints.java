@@ -11,7 +11,7 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 
 import java.util.ArrayList;
 
-public class PuntoLimpio extends AppCompatActivity {
+public class CleanPoints extends AppCompatActivity {
     ImageView btnCerrar;
 
     @Override
@@ -39,7 +39,7 @@ public class PuntoLimpio extends AppCompatActivity {
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intenHome = new Intent(PuntoLimpio.this, Index.class);
+        Intent intenHome = new Intent(CleanPoints.this, Index.class);
 
         listaIntents.add(intenHome);
 

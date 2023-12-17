@@ -27,7 +27,7 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.WasteViewModel;
 
 import java.util.ArrayList;
 
-public class Categoria extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class Category extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private SearchView searchFilterCategory;
     private CardView cardsLists[];
     private TextView tvCardsList[];
@@ -312,13 +312,13 @@ public class Categoria extends AppCompatActivity implements NavigationView.OnNav
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentCategorias = new Intent(Categoria.this, Categoria.class);
-        Intent intentEstadisticas = new Intent(Categoria.this, Statistic.class);
-        Intent intentConsejos = new Intent(Categoria.this, Consejos.class);
-        Intent intentLogout = new Intent(Categoria.this, Index.class);
-        Intent intentPrincipal = new Intent(Categoria.this, Principal.class);
-        Intent intentRegisterWaste = new Intent(Categoria.this, FormularioRegistroResiduo.class);
-        Intent intentInfoApp= new Intent(Categoria.this, InformacionApp.class);
+        Intent intentCategorias = new Intent(Category.this, Category.class);
+        Intent intentEstadisticas = new Intent(Category.this, Statistic.class);
+        Intent intentConsejos = new Intent(Category.this, Tips.class);
+        Intent intentLogout = new Intent(Category.this, Index.class);
+        Intent intentPrincipal = new Intent(Category.this, Main.class);
+        Intent intentRegisterWaste = new Intent(Category.this, WasteRegisterForm.class);
+        Intent intentInfoApp= new Intent(Category.this, AppInformation.class);
 
         listaIntents.add(intentCategorias);
         listaIntents.add(intentEstadisticas);

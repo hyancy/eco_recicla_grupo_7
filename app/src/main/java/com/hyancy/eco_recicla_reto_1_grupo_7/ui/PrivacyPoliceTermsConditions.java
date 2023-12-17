@@ -11,7 +11,7 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 
 import java.util.ArrayList;
 
-public class PoliticaPrivacidadTerminos extends AppCompatActivity {
+public class PrivacyPoliceTermsConditions extends AppCompatActivity {
     Button btnAceptoTerminos, btnNoAceptoTerminos;
 
     @Override
@@ -46,8 +46,8 @@ public class PoliticaPrivacidadTerminos extends AppCompatActivity {
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentAceptoTerminos = new Intent(PoliticaPrivacidadTerminos.this, RegistroUsario.class);
-        Intent intentNoAceptoTerminos = new Intent(PoliticaPrivacidadTerminos.this, RegistroUsario.class);
+        Intent intentAceptoTerminos = new Intent(PrivacyPoliceTermsConditions.this, UserRegister.class);
+        Intent intentNoAceptoTerminos = new Intent(PrivacyPoliceTermsConditions.this, UserRegister.class);
 
         listaIntents.add(intentAceptoTerminos);
         listaIntents.add(intentNoAceptoTerminos);

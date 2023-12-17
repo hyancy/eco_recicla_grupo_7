@@ -33,7 +33,7 @@ public class Index extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            Intent intentPrincipal = new Intent(getApplicationContext(), Principal.class);
+            Intent intentPrincipal = new Intent(getApplicationContext(), Main.class);
             startActivity(intentPrincipal);
             finish();
         }
@@ -84,14 +84,14 @@ public class Index extends AppCompatActivity {
         desafiosLogros.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Index.this, DesafiosLogros.class);
+                Intent intent = new Intent(Index.this, ChallengeAchievements.class);
                 startActivity(intent);
             }
         });
         infoApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Index.this, InformacionApp.class);
+                Intent intent = new Intent(Index.this, AppInformation.class);
                 startActivity(intent);
             }
         });
@@ -115,9 +115,9 @@ public class Index extends AppCompatActivity {
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
         Intent intenIniciarSesion = new Intent(Index.this, Login.class);
-        Intent intentRegistrarse = new Intent(Index.this, RegistroUsario.class);
-        Intent intentConsejos = new Intent(Index.this, Consejos.class);
-        Intent intentPuntosLimpios = new Intent(Index.this, PuntoLimpio.class);
+        Intent intentRegistrarse = new Intent(Index.this, UserRegister.class);
+        Intent intentConsejos = new Intent(Index.this, Tips.class);
+        Intent intentPuntosLimpios = new Intent(Index.this, CleanPoints.class);
 
         listaIntents.add(intenIniciarSesion);
         listaIntents.add(intentRegistrarse);

@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 
-public class Desafios extends AppCompatActivity {
+public class Challenge extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

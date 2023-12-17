@@ -1,6 +1,7 @@
 package com.hyancy.eco_recicla_reto_1_grupo_7.ui;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -10,16 +11,17 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -29,18 +31,21 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.listener.OnChartGestureListener;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.collection.LLRBNode;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.CategoriesModel;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
+import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.WasteViewModel;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Statistic extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView categoriasBottomBar, estadisticasBottomBar, consejosBottomBar, homeAppBottomBar, logoutBottomBar;
@@ -48,6 +53,7 @@ public class Statistic extends AppCompatActivity implements NavigationView.OnNav
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private UserViewModel userViewModel;
+    WasteViewModel wasteViewModel;
     private LineChart mLineChart;
     private HorizontalBarChart mHorizontalBarChar;
     private PieChart mPieChart;
@@ -60,6 +66,7 @@ public class Statistic extends AppCompatActivity implements NavigationView.OnNav
         setContentView(R.layout.drawer_statistics_menu);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        wasteViewModel = new ViewModelProvider(this).get(WasteViewModel.class);
         categories = new CategoriesModel();
 
         setToolbar();
@@ -134,26 +141,34 @@ public class Statistic extends AppCompatActivity implements NavigationView.OnNav
     }
 
     private void setHorizontalBarChart() {
-        int count = 12;
-        int range = 50;
-        mHorizontalBarChar.setTop(10);
-        //mHorizontalBarChar.setExtraOffsets(5, 10, 5, 5);
-
-        ArrayList<BarEntry> yValues = new ArrayList<>();
-        float barWidth = 9.0f;
-        float spaceForBar = 10.0f;
-
-        for (int i = 0; i < count; i++) {
-            float value = (float) (Math.random() * range);
-            yValues.add(new BarEntry(i * spaceForBar, value));
-        }
-
-        BarDataSet set1 = new BarDataSet(yValues, "Data Set 1");
-
-        BarData data = new BarData(set1);
-        data.setBarWidth(barWidth);
-
+        BarData data = new BarData(getDataSet().get(0));
+        data.setValueTextSize(14.0f);
         mHorizontalBarChar.setData(data);
+        Description desc = new Description();
+        desc.setText("Category de residuos");
+        desc.setTextSize(14);
+        mHorizontalBarChar.setDescription(desc);
+        mHorizontalBarChar.animateXY(2500, 2500);
+        mHorizontalBarChar.setFitBars(true);
+        mHorizontalBarChar.getXAxis().setLabelCount(9);
+        mHorizontalBarChar.setExtraRightOffset(5.0f);
+        mHorizontalBarChar.setScaleEnabled(true);
+
+        mHorizontalBarChar.invalidate();
+
+        Legend legend = mHorizontalBarChar.getLegend();
+        legend.setEnabled(true);
+        XAxis xAxis = mHorizontalBarChar.getXAxis();
+        xAxis.setDrawGridLines(true);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setGranularityEnabled(true);
+        xAxis.setGranularity(1);
+        xAxis.setDrawLabels(true);
+        xAxis.setXOffset(10);
+        xAxis.setDrawAxisLine(true);
+
+        mHorizontalBarChar.getXAxis().setValueFormatter(new IndexAxisValueFormatter(categories.getListCategories().subList(1, 10)));
+
     }
 
     private void setLineChart() {
@@ -275,12 +290,12 @@ public class Statistic extends AppCompatActivity implements NavigationView.OnNav
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentCategorias = new Intent(Statistic.this, Categoria.class);
+        Intent intentCategorias = new Intent(Statistic.this, Category.class);
         Intent intentEstadisticas = new Intent(Statistic.this, Statistic.class);
-        Intent intentConsejos = new Intent(Statistic.this, Consejos.class);
+        Intent intentConsejos = new Intent(Statistic.this, Tips.class);
         Intent intentLogout = new Intent(Statistic.this, Index.class);
-        Intent intentPrincipal = new Intent(Statistic.this, Principal.class);
-        Intent intentInfoApp = new Intent(Statistic.this, InformacionApp.class);
+        Intent intentPrincipal = new Intent(Statistic.this, Main.class);
+        Intent intentInfoApp = new Intent(Statistic.this, AppInformation.class);
 
         listaIntents.add(intentCategorias);
         listaIntents.add(intentEstadisticas);
@@ -329,4 +344,60 @@ public class Statistic extends AppCompatActivity implements NavigationView.OnNav
         }
         return false;
     }
+
+    private ArrayList<String> getXAxisValues() {
+        ArrayList<String> xAxis = new ArrayList<>();
+        xAxis.add("ENE");
+        xAxis.add("FEB");
+        xAxis.add("MAR");
+        xAxis.add("ABR");
+        xAxis.add("MAY");
+        xAxis.add("JUN");
+        xAxis.add("JUL");
+        xAxis.add("AGO");
+        xAxis.add("SEP");
+        xAxis.add("OCT");
+        xAxis.add("NOV");
+        xAxis.add("DIC");
+
+        return xAxis;
+    }
+
+    private ArrayList<BarDataSet> getDataSet() {
+        ArrayList<BarDataSet> dataSets = new ArrayList<>();
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        String idUser = userViewModel.getUidUser();
+
+        Query query = wasteViewModel.getQuantityWasteByUser(idUser);
+        int i = 0;
+        System.out.println(query.count());
+        query.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                float quantity = 0.0f;
+                for(QueryDocumentSnapshot val : value){
+                    quantity = Float.parseFloat(val.get("quantity").toString());
+                    barEntries.add(new BarEntry(i +1, quantity));
+                    System.out.println(quantity);
+                }
+            }
+        });
+        barEntries.add(new BarEntry(0, 42.5f));
+        barEntries.add(new BarEntry(1, 52.5f));
+        barEntries.add(new BarEntry(2, 34.5f));
+        barEntries.add(new BarEntry(3, 65f));
+        barEntries.add(new BarEntry(4, 12f));
+        barEntries.add(new BarEntry(5, 28f));
+        barEntries.add(new BarEntry(6, 69f));
+        barEntries.add(new BarEntry(7, 100f));
+        barEntries.add(new BarEntry(8, 88f));
+
+        BarDataSet barDataSet1 = new BarDataSet(barEntries, "");
+        barDataSet1.setColors(ColorTemplate.COLORFUL_COLORS);
+
+        dataSets.add(barDataSet1);
+
+        return dataSets;
+    }
+
 }

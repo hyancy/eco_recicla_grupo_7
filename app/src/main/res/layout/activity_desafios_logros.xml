@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_pantalla_home"
     android:orientation="vertical"
-    tools:context=".ui.DesafiosLogros">
+    tools:context=".ui.ChallengeAchievements">
     <Button
         android:id="@+id/btn_regresar"
         android:layout_width="wrap_content"

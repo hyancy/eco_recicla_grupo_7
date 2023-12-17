@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -37,7 +36,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FormularioRegistroResiduo extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class WasteRegisterForm extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private Button btnCalculatePoints, btnRegisterWaste, btnCancelRegister;
     private ImageView categoriasBottomBar, estadisticasBottomBar, consejosBottomBar, homeAppBottomBar, logoutBottomBar, ivCamera, ivCalendar, ivLocation, photo;
     private EditText edtDescription, edtDateRegister, edtLocationRegister, edtQuantity;
@@ -98,7 +97,6 @@ public class FormularioRegistroResiduo extends AppCompatActivity implements Navi
         estadisticasBottomBar = findViewById(R.id.estadisticas_menu_bottom_bar);
         consejosBottomBar = findViewById(R.id.consejos_menu_bottom_bar);
         logoutBottomBar = findViewById(R.id.logout_menu_bottom_bar);
-
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.menu_navigation);
@@ -351,12 +349,12 @@ public class FormularioRegistroResiduo extends AppCompatActivity implements Navi
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentCategorias = new Intent(FormularioRegistroResiduo.this, Categoria.class);
-        Intent intentEstadisticas = new Intent(FormularioRegistroResiduo.this, Statistic.class);
-        Intent intentConsejos = new Intent(FormularioRegistroResiduo.this, Consejos.class);
-        Intent intentLogout = new Intent(FormularioRegistroResiduo.this, Index.class);
-        Intent intentPrincipal = new Intent(FormularioRegistroResiduo.this, Principal.class);
-        Intent intentInfoApp = new Intent(FormularioRegistroResiduo.this, InformacionApp.class);
+        Intent intentCategorias = new Intent(WasteRegisterForm.this, Category.class);
+        Intent intentEstadisticas = new Intent(WasteRegisterForm.this, Statistic.class);
+        Intent intentConsejos = new Intent(WasteRegisterForm.this, Tips.class);
+        Intent intentLogout = new Intent(WasteRegisterForm.this, Index.class);
+        Intent intentPrincipal = new Intent(WasteRegisterForm.this, Main.class);
+        Intent intentInfoApp = new Intent(WasteRegisterForm.this, AppInformation.class);
 
         listaIntents.add(intentCategorias);
         listaIntents.add(intentEstadisticas);

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/green_app"
-    tools:context=".ui.InformacionApp"
+    tools:context=".ui.AppInformation"
   >
     <Button
         android:id="@+id/btn_regresar"

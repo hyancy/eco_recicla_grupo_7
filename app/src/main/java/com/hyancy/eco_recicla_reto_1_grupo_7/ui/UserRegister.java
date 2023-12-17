@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -27,7 +26,7 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
 
-public class RegistroUsario extends AppCompatActivity {
+public class UserRegister extends AppCompatActivity {
     FloatingActionButton btnCerrar;
     CheckBox cbxTerminosCondiciones, cbxPoliticasPrivacidad;
     Button btnRegistrarUsuario;
@@ -43,7 +42,7 @@ public class RegistroUsario extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = datasetViewModel.getCurrentUser();
         if (currentUser != null) {
-            Intent intentPrincipal = new Intent(getApplicationContext(), Principal.class);
+            Intent intentPrincipal = new Intent(getApplicationContext(), Main.class);
             startActivity(intentPrincipal);
             finish();
         }
@@ -204,7 +203,7 @@ public class RegistroUsario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Intent intent = new Intent(RegistroUsario.this, Principal.class);
+                Intent intent = new Intent(UserRegister.this, Main.class);
                 startActivity(intent);
 
             }
@@ -363,9 +362,9 @@ public class RegistroUsario extends AppCompatActivity {
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentHome = new Intent(RegistroUsario.this, Index.class);
-        Intent intentTerminosCondiciones = new Intent(RegistroUsario.this, PoliticaPrivacidadTerminos.class);
-        Intent intentLogin = new Intent(RegistroUsario.this, Login.class);
+        Intent intentHome = new Intent(UserRegister.this, Index.class);
+        Intent intentTerminosCondiciones = new Intent(UserRegister.this, PrivacyPoliceTermsConditions.class);
+        Intent intentLogin = new Intent(UserRegister.this, Login.class);
 
         listaIntents.add(intentHome);
         listaIntents.add(intentTerminosCondiciones);

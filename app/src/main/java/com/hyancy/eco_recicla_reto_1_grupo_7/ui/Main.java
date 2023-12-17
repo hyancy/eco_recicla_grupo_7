@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,7 +22,7 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
 
-public class Principal extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class Main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Button btnCategorias, btnEstadistica, btnConsejos;
     private ImageView imageViewToolbar;
     private DrawerLayout drawerLayout;
@@ -91,12 +90,12 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentCategorias = new Intent(Principal.this, Categoria.class);
-        Intent intentEstadisticas = new Intent(Principal.this, Statistic.class);
-        Intent intentConsejos = new Intent(Principal.this, Consejos.class);
-        Intent intentLogout = new Intent(Principal.this, Index.class);
-        Intent intentPrincipal = new Intent(Principal.this, Principal.class);
-        Intent intentInfoApp = new Intent(Principal.this, InformacionApp.class);
+        Intent intentCategorias = new Intent(Main.this, Category.class);
+        Intent intentEstadisticas = new Intent(Main.this, Statistic.class);
+        Intent intentConsejos = new Intent(Main.this, Tips.class);
+        Intent intentLogout = new Intent(Main.this, Index.class);
+        Intent intentPrincipal = new Intent(Main.this, Main.class);
+        Intent intentInfoApp = new Intent(Main.this, AppInformation.class);
 
         listaIntents.add(intentCategorias);
         listaIntents.add(intentEstadisticas);

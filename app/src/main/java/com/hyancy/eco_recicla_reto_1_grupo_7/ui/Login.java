@@ -39,7 +39,7 @@ public class Login extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            Intent intentPrincipal = new Intent(getApplicationContext(), Principal.class);
+            Intent intentPrincipal = new Intent(getApplicationContext(), Main.class);
             startActivity(intentPrincipal);
             finish();
         }
@@ -128,8 +128,8 @@ public class Login extends AppCompatActivity {
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentPrincipal = new Intent(Login.this, Principal.class);
-        Intent intentRegistroUsuario = new Intent(Login.this, RegistroUsario.class);
+        Intent intentPrincipal = new Intent(Login.this, Main.class);
+        Intent intentRegistroUsuario = new Intent(Login.this, UserRegister.class);
 
         listaIntents.add(intentPrincipal);
         listaIntents.add(intentRegistroUsuario);

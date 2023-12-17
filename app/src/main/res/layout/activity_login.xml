@@ -94,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:text="¿Olvidaste contraseña?"
+            android:text="¿Olvidaste la contraseña?"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="18dp"

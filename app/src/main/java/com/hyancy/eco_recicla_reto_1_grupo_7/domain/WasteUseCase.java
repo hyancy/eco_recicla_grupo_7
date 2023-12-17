@@ -2,11 +2,14 @@ package com.hyancy.eco_recicla_reto_1_grupo_7.domain;
 
 import android.widget.TextView;
 
+import com.github.mikephil.charting.data.BarEntry;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.hyancy.eco_recicla_reto_1_grupo_7.data.repository.FirebaseRepo;
-import com.hyancy.eco_recicla_reto_1_grupo_7.data.models.WasteModel;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class WasteUseCase {
     private FirebaseRepo repository = new FirebaseRepo();
@@ -17,6 +20,10 @@ public class WasteUseCase {
 
     public void getWasteByUserId(String idCurrentUser, ArrayList<QueryDocumentSnapshot> wasteList, TextView tvAccumulatedAmount, TextView tvAccumulatedPoints, String category) {
         repository.getWasteByUserId(idCurrentUser, wasteList, tvAccumulatedAmount, tvAccumulatedPoints, category);
+    }
+
+    public Query getQuantityWasteByUser(String idCurrentUser){
+        return repository.getQuantityWasteByUser(idCurrentUser);
     }
 
 }

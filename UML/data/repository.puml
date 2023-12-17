@@ -1,0 +1,20 @@
+@startuml
+class com.hyancy.eco_recicla_reto_1_grupo_7.data.repository.FirebaseRepo {
+- FirebaseFirestore db
+- FirebaseAuth mAuth
+- FirebaseUser currentUser
+~ ArrayList<QueryDocumentSnapshot> wasteList
++ void createUser(String,Integer,String,String,Context)
++ String getUidUser()
++ void setUserData(String,String,Integer,String,String)
++ void setWasteData(String,String,String,String,String,double,int)
++ FirebaseFirestore getDb()
++ FirebaseAuth getmAuth()
++ FirebaseUser getCurrentUser()
++ void getUserData(String)
++ void getWasteByUserId(String,ArrayList<QueryDocumentSnapshot>,TextView,TextView,String)
++ Query getQuantityWasteByUser(String)
++ ArrayList<QueryDocumentSnapshot> getDataWaste(ArrayList<QueryDocumentSnapshot>)
++ void logoutSesion()
+}
+@enduml

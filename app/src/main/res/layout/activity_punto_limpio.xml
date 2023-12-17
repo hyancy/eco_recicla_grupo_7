@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.PuntoLimpio">
+    tools:context=".ui.CleanPoints">
 
     <ImageView
         android:id="@+id/imageView"
@@ -100,7 +100,8 @@
 
         <ImageView
             android:id="@+id/map_clean_points"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:src="@drawable/imagen_mapa_puntos_limpios" />

@@ -1,0 +1,58 @@
+@startuml
+class com.hyancy.eco_recicla_reto_1_grupo_7.data.models.CategoryModel {
+- String categoria
+- int pathImageCategoria
++ <<Create>> CategoryModel(String,int)
++ String getCategoria()
++ void setCategoria(String)
++ int getPathImageCategoria()
++ void setPathImageCategoria(int)
+}
+class com.hyancy.eco_recicla_reto_1_grupo_7.data.models.RandomKey {
++ String createRandomKey()
+}
+class com.hyancy.eco_recicla_reto_1_grupo_7.data.models.CategoriesModel {
+- ArrayList<String> listCategories
++ ArrayList<String> getListCategories()
+}
+class com.hyancy.eco_recicla_reto_1_grupo_7.data.models.WasteModel {
+- String description
+- String photoUrl
+- String registerDate
+- String location
+- String category
+- double quantity
+- int points
++ <<Create>> WasteModel(String,String,String,String,String,double,int)
++ String getDescription()
++ void setDescription(String)
++ String getPhotoUrl()
++ void setPhotoUrl(String)
++ String getRegisterDate()
++ void setRegisterDate(String)
++ String getLocation()
++ void setLocation(String)
++ String getCategory()
++ void setCategory(String)
++ double getQuantity()
++ void setQuantity(double)
++ int getPoints()
++ void setPoints(int)
+}
+class com.hyancy.eco_recicla_reto_1_grupo_7.data.models.UserModel {
+- String name
+- Integer age
+- String email
+- String password
++ <<Create>> UserModel(String,Integer,String,String)
++ String getName()
++ void setName(String)
++ Integer getAge()
++ void setAge(Integer)
++ String getEmail()
++ void setEmail(String)
++ String getPassword()
++ void setPassword(String)
++ String createUserID()
+}
+@enduml

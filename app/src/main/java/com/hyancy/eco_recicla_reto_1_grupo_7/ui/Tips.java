@@ -9,21 +9,15 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
@@ -32,7 +26,7 @@ import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
 
-public class Consejos extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class Tips extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private ImageView categoriasBottomBar, estadisticasBottomBar, consejosBottomBar, homeAppBottomBar, logoutBottomBar;
     private ImageView imageViewToolbar;
     Toolbar toolbar;
@@ -173,12 +167,12 @@ public class Consejos extends AppCompatActivity implements NavigationView.OnNavi
 
     private ArrayList<Intent> initIntents() {
         ArrayList<Intent> listaIntents = new ArrayList<>();
-        Intent intentCategorias = new Intent(Consejos.this, Categoria.class);
-        Intent intentEstadisticas = new Intent(Consejos.this, Statistic.class);
-        Intent intentConsejos = new Intent(Consejos.this, Consejos.class);
-        Intent intentLogout = new Intent(Consejos.this, Index.class);
-        Intent intentPrincipal = new Intent(Consejos.this, Principal.class);
-        Intent intentInfoApp = new Intent(Consejos.this, InformacionApp.class);
+        Intent intentCategorias = new Intent(Tips.this, Category.class);
+        Intent intentEstadisticas = new Intent(Tips.this, Statistic.class);
+        Intent intentConsejos = new Intent(Tips.this, Tips.class);
+        Intent intentLogout = new Intent(Tips.this, Index.class);
+        Intent intentPrincipal = new Intent(Tips.this, Main.class);
+        Intent intentInfoApp = new Intent(Tips.this, AppInformation.class);
 
         listaIntents.add(intentCategorias);
         listaIntents.add(intentEstadisticas);

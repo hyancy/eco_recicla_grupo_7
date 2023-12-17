@@ -8,7 +8,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.github.mikephil.charting.data.BarEntry;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,9 +20,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -148,7 +155,7 @@ public class FirebaseRepo {
         });
     }
 
-    public void  getWasteByUserId(String idCurrentUser, ArrayList<QueryDocumentSnapshot> wasteList, TextView tvAccumulatedAmount, TextView tvAccumulatedPoints, String category) {
+    public void getWasteByUserId(String idCurrentUser, ArrayList<QueryDocumentSnapshot> wasteList, TextView tvAccumulatedAmount, TextView tvAccumulatedPoints, String category) {
         db.collection("wastes").whereEqualTo("idUser", idCurrentUser).whereEqualTo("category", category).get().addOnSuccessListener(queryResponse -> {
             if (!queryResponse.isEmpty()) {
                 int points = 0;
@@ -171,6 +178,11 @@ public class FirebaseRepo {
 
             }
         });
+    }
+
+    public Query getQuantityWasteByUser(String idCurrentUser) {
+        Query query = db.collection("waste").whereEqualTo("idUser", idCurrentUser);
+        return  query;
     }
 
     public ArrayList<QueryDocumentSnapshot> getDataWaste(ArrayList<QueryDocumentSnapshot> wasteList) {
