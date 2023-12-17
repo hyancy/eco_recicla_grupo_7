@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginStart="105dp"
             android:fontFamily="sans-serif-black"
             android:paddingVertical="6dp"
             android:text="@string/title_estatistics"

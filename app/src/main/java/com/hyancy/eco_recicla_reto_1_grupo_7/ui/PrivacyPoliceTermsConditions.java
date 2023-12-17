@@ -17,7 +17,7 @@ public class PrivacyPoliceTermsConditions extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_politica_privacidad_terminos);
+        setContentView(R.layout.activity_privacity_police_terms_conditions);
 
         initComponents();
         listenersButtons();

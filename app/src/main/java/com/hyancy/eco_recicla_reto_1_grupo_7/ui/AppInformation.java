@@ -14,7 +14,7 @@ public class AppInformation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_informacion_app);
+        setContentView(R.layout.activity_app_information);
         Button btnRegresar;
         btnRegresar = findViewById(R.id.btn_regresar);
         btnRegresar.setOnClickListener(new View.OnClickListener() {

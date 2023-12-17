@@ -45,7 +45,7 @@ public class Tips extends AppCompatActivity implements NavigationView.OnNavigati
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer_consejos);
+        setContentView(R.layout.drawer_tips);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         datasetViewModel = new ViewModelProvider(this).get(DatasetViewModel.class);
@@ -203,7 +203,7 @@ public class Tips extends AppCompatActivity implements NavigationView.OnNavigati
     public void showConsejoAceite () {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_consejo1, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_tip_oil, null);
 
         alertDialogBuilder.setView(view);
 
@@ -223,7 +223,7 @@ public class Tips extends AppCompatActivity implements NavigationView.OnNavigati
     public void showConsejoPlastico () {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_consejo2, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_tip_recycle_plastic, null);
 
         alertDialogBuilder.setView(view);
 
@@ -243,7 +243,7 @@ public class Tips extends AppCompatActivity implements NavigationView.OnNavigati
     public void showConsejoCompost () {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_consejo3, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_tip_homemade_compost, null);
 
         alertDialogBuilder.setView(view);
 
@@ -263,7 +263,7 @@ public class Tips extends AppCompatActivity implements NavigationView.OnNavigati
     public void showConsejoRopa () {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_consejo4, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_tip_second_use_clothes, null);
 
         alertDialogBuilder.setView(view);
 

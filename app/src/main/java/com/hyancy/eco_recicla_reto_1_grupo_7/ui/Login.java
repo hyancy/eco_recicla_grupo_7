@@ -183,7 +183,7 @@ public class Login extends AppCompatActivity {
 
     private void showDialogCompleteDataLogin() {
         AlertDialog.Builder dialogCompleteDataLogin = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_complete_data_login, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_complete_all_login_information, null);
         dialogCompleteDataLogin.setView(view);
         final AlertDialog dialog = dialogCompleteDataLogin.create();
         dialog.show();

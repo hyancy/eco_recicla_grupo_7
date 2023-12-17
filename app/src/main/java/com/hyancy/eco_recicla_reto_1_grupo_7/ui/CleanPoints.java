@@ -17,7 +17,7 @@ public class CleanPoints extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_punto_limpio);
+        setContentView(R.layout.activity_clean_points);
 
         initComponents();
         listenersButtons();

@@ -16,7 +16,7 @@ public class Challenge extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_desafios);
+        setContentView(R.layout.activity_challenge);
         btnDesafio1 = findViewById(R.id.btn_desafio_1);
         btnDesafio2 = findViewById(R.id.btn_desafio_2);
         btnDesafio3 = findViewById(R.id.btn_desafio_3);
@@ -92,7 +92,7 @@ public class Challenge extends AppCompatActivity {
 
     private void showDialogDesafio() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_desafio, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_challenge, null);
         builder.setView(view);
 
         AlertDialog dialog = builder.create();

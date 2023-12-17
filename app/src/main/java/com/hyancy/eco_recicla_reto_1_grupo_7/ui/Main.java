@@ -35,7 +35,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer_principal_menu);
+        setContentView(R.layout.drawer_main);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 

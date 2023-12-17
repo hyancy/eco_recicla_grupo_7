@@ -15,7 +15,7 @@ public class ChallengeAchievements extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_desafios_logros);
+        setContentView(R.layout.activity_challenge_achievements);
         btnLogros = findViewById(R.id.btn_logros);
         btnDesafios = findViewById(R.id.btn_desafios);
 

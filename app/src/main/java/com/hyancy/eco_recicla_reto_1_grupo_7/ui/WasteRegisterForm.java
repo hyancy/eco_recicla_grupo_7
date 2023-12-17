@@ -57,7 +57,7 @@ public class WasteRegisterForm extends AppCompatActivity implements NavigationVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer_formulario_registro_residuos);
+        setContentView(R.layout.drawer_register_waste_form);
 
         CategoriesModel categoriesModel = new CategoriesModel();
         wasteViewModel = new ViewModelProvider(this).get(WasteViewModel.class);
@@ -411,7 +411,7 @@ public class WasteRegisterForm extends AppCompatActivity implements NavigationVi
 
     private void showDialogCompleteDataForm() {
         AlertDialog.Builder dialogCompleteDataForm = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_complete_data_form, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_complete_all_data_form_register, null);
         dialogCompleteDataForm.setView(view);
         final AlertDialog dialog = dialogCompleteDataForm.create();
         dialog.show();

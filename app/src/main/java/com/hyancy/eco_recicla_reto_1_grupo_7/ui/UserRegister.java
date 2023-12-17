@@ -51,7 +51,7 @@ public class UserRegister extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro_usario);
+        setContentView(R.layout.activity_user_register);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         datasetViewModel = new ViewModelProvider(this).get(DatasetViewModel.class);
@@ -173,7 +173,7 @@ public class UserRegister extends AppCompatActivity {
 
     private void showDialogCompleteAll() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_completa_todo, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_complete_all_registration_information, null);
         builder.setView(view);
         AlertDialog dialog = builder.create();
         dialog.show();
@@ -191,7 +191,7 @@ public class UserRegister extends AppCompatActivity {
 
     private void showDialogoRegistroCompleto() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_registro_completo, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_register_complete, null);
         builder.setView(view);
 
         AlertDialog dialog = builder.create();
@@ -212,7 +212,7 @@ public class UserRegister extends AppCompatActivity {
 
     private void showDialogContrasenaNoCoincide() {
        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-       View view = getLayoutInflater().inflate(R.layout.dialog_contrasena_no_coincide, null);
+       View view = getLayoutInflater().inflate(R.layout.dialog_passwords_no_match, null);
        builder.setView(view);
 
        AlertDialog dialog = builder.create();
@@ -230,7 +230,7 @@ public class UserRegister extends AppCompatActivity {
 
     private void showDialogAceptaCondicionesYTerminos() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_acepta_terminos_condiciones, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_accept_terms_conditions, null);
         builder.setView(view);
 
         AlertDialog dialog = builder.create();
@@ -248,7 +248,7 @@ public class UserRegister extends AppCompatActivity {
 
     private void showDialogTerminosYCondicones() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_terminos_condiciones, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_terms_conditions, null);
         builder.setView(view);
 
         AlertDialog dialog = builder.create();
@@ -275,7 +275,7 @@ public class UserRegister extends AppCompatActivity {
 
     private void showDialogAceptaPrivacidad() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_acepta_privacidad, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_accept_privacy_policies, null);
         builder.setView(view);
 
         AlertDialog dialog = builder.create();
@@ -295,7 +295,7 @@ public class UserRegister extends AppCompatActivity {
 
     private void showDialogPrivacidad() {
        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-       View view = getLayoutInflater().inflate(R.layout.dialog_privacidad, null);
+       View view = getLayoutInflater().inflate(R.layout.dialog_privacity, null);
        builder.setView(view);
 
        AlertDialog dialog = builder.create();
@@ -321,7 +321,7 @@ public class UserRegister extends AppCompatActivity {
     }
     private void showDialogCorreoNoCoinciden(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_correo_no_coinciden, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_emails_no_match, null);
         builder.setView(view);
 
         AlertDialog dialog = builder.create();
@@ -339,7 +339,7 @@ public class UserRegister extends AppCompatActivity {
     }
     private void showDialogCorreoValido(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_correo_valido, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_email_invalid, null);
         builder.setView(view);
 
         AlertDialog dialog = builder.create();
