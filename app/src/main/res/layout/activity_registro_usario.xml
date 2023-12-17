@@ -217,7 +217,8 @@
                 android:layout_marginTop="14dp"
                 android:text="@string/terminos_condiciones_user_register"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:buttonTint="@color/beige_app"/>
 
             <CheckBox
                 android:id="@+id/checkbox_privacidad"
@@ -226,7 +227,8 @@
                 android:text="@string/privacidad_user_register"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:clickable="true"/>
+                android:clickable="true"
+                android:buttonTint="@color/beige_app"/>
 
             <Button
                 android:id="@+id/btn_registar_usuario"

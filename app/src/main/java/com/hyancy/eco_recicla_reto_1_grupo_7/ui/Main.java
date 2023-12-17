@@ -114,6 +114,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             finish();
         } else {
             tvUserCurrent.setText(currentUser.getEmail());
+
         }
     }
 

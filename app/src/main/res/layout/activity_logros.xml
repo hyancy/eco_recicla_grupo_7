@@ -1,9 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context=".ui.Achievements">
+=======
+    tools:context=".ui.Logros"
+    android:orientation="vertical"
+    android:background="@color/green_app">
+    <Button
+        android:id="@+id/btn_regresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Regresar"
+        android:backgroundTint="@color/beige_app"
+        android:textSize="17sp"
+        android:drawableLeft="@drawable/ic_regresar"
+        android:textColor="@color/green_app"
+        android:layout_gravity="start"
+        android:padding="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        />
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_logo_app"
+        android:scaleType="centerInside"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mis Logros"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:fontFamily="monospace"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aquí puedes ver todos tus logros que has obtenido gracias a tú esfuerzo."
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/beige_app" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="20dp">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Reducción de Residuos Electrónicos"
+                    android:backgroundTint="@color/beige_app"
+                    android:textColor="@color/green_app"
+                    android:drawableLeft="@drawable/logro1"
+                    android:paddingLeft="20dp"
+                    android:layout_marginHorizontal="10dp"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Aumento en el Reciclaje de Plásticos"
+                    android:backgroundTint="@color/beige_app"
+                    android:textColor="@color/green_app"
+                    android:drawableLeft="@drawable/logro2"
+                    android:paddingLeft="20dp"
+                    android:layout_marginHorizontal="10dp">
+>>>>>>> main
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                </Button>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="20dp">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Reducción de Emisiones de Carbono"
+                    android:backgroundTint="@color/beige_app"
+                    android:textColor="@color/green_app"
+                    android:drawableLeft="@drawable/logro3"
+                    android:paddingLeft="20dp"
+                    android:layout_marginHorizontal="10dp"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Crecimiento de la Energía Renovable"
+                    android:backgroundTint="@color/beige_app"
+                    android:textColor="@color/green_app"
+                    android:drawableLeft="@drawable/logro4"
+                    android:paddingLeft="20dp"
+                    android:layout_marginHorizontal="10dp"
+                    >
+
+                </Button>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="20dp">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Fomento del Transporte Sostenible"
+                    android:backgroundTint="@color/beige_app"
+                    android:textColor="@color/green_app"
+                    android:drawableLeft="@drawable/logro5"
+                    android:paddingLeft="20dp"
+                    android:layout_marginHorizontal="10dp"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tecnologías Verdes Innovadoras"
+                    android:backgroundTint="@color/beige_app"
+                    android:textColor="@color/green_app"
+                    android:drawableLeft="@drawable/logro6"
+                    android:paddingLeft="20dp"
+                    android:layout_marginHorizontal="10dp">
+
+                </Button>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="20dp">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Energía Renovable Creciente"
+                    android:backgroundTint="@color/beige_app"
+                    android:textColor="@color/green_app"
+                    android:drawableLeft="@drawable/logro7"
+                    android:paddingLeft="20dp"
+                    android:layout_marginHorizontal="10dp"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Protección Océanos Urgente"
+                    android:backgroundTint="@color/beige_app"
+                    android:textColor="@color/green_app"
+                    android:drawableLeft="@drawable/logro8"
+                    android:paddingLeft="20dp"
+                    android:layout_marginHorizontal="10dp">
+
+                </Button>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="20dp">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Conciencia Ciudadana Activa"
+                    android:backgroundTint="@color/beige_app"
+                    android:textColor="@color/green_app"
+                    android:drawableLeft="@drawable/logro9"
+                    android:paddingLeft="20dp"
+                    android:layout_marginHorizontal="10dp"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Conciencia Ciudadana Fortalecida"
+                    android:backgroundTint="@color/beige_app"
+                    android:textColor="@color/green_app"
+                    android:drawableLeft="@drawable/logro10"
+                    android:paddingLeft="20dp"
+                    android:layout_marginHorizontal="10dp">
+
+                </Button>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="20dp">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Emisiones Carbono Disminuida"
+                    android:backgroundTint="@color/beige_app"
+                    android:textColor="@color/green_app"
+                    android:drawableLeft="@drawable/logro11"
+                    android:paddingLeft="20dp"
+                    android:layout_marginHorizontal="10dp"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Conciencia Ciudadana en Crecimiento"
+                    android:backgroundTint="@color/beige_app"
+                    android:textColor="@color/green_app"
+                    android:drawableLeft="@drawable/logro12"
+                    android:paddingLeft="20dp"
+                    android:layout_marginHorizontal="10dp">
+
+                </Button>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginVertical="20dp"
+                >
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:text="Plásticos Reutilizados con Éxito"
+                    android:backgroundTint="@color/beige_app"
+                    android:textColor="@color/green_app"
+                    android:drawableLeft="@drawable/logro13"
+                    android:paddingLeft="20dp"
+                    android:layout_marginHorizontal="10dp"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Éxito en la Protección Oceánica"
+                    android:backgroundTint="@color/beige_app"
+                    android:textColor="@color/green_app"
+                    android:drawableLeft="@drawable/logro14"
+                    android:paddingLeft="20dp"
+                    android:layout_marginHorizontal="10dp">
+
+                </Button>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

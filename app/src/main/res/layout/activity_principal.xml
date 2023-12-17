@@ -59,7 +59,9 @@
         app:layout_constraintBottom_toTopOf="@id/btn_estadistica"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableLeft="@drawable/categoria"
+        android:drawableTint="@color/green_app"/>
 
     <Button
         android:id="@+id/btn_estadistica"
@@ -74,7 +76,9 @@
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_categorias" />
+        app:layout_constraintTop_toBottomOf="@id/btn_categorias"
+        android:drawableLeft="@drawable/analitica"
+        android:drawableTint="@color/green_app"/>
 
     <Button
         android:id="@+id/btn_consejos"
@@ -84,13 +88,17 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/beige_app"
         android:text="CONSEJOS"
+        android:paddingHorizontal="30dp"
         android:textAllCaps="true"
         android:textColor="@color/green_app"
         android:textSize="35sp"
         app:layout_constraintBottom_toTopOf="@id/icono_usuario_pantalla_principal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_estadistica" />
+        app:layout_constraintTop_toBottomOf="@id/btn_estadistica"
+        android:drawableLeft="@drawable/consejo"
+        android:drawableTint="@color/green_app"
+        />
 
     <ImageView
         android:id="@+id/icono_usuario_pantalla_principal"
@@ -101,7 +109,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_consejos"
-        app:tint="@color/beige_app" />
+        app:tint="@color/beige_app"
+        android:clickable="true"/>
 
     <TextView
         android:id="@+id/user_current"

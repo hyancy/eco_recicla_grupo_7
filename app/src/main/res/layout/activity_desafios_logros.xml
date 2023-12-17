@@ -32,7 +32,7 @@
                     android:id="@+id/btn_desafios"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DESAFIOS"
+                    android:text="DESAFíOS"
                     android:textSize="40sp"
                     android:backgroundTint="@color/beige_app"
                     android:textColor="@color/green_app"
