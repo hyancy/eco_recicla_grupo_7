@@ -20,11 +20,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 import com.hyancy.eco_recicla_reto_1_grupo_7.viewmodel.UserViewModel;
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 public class Main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Button btnCategorias, btnEstadistica, btnConsejos;
-    private ImageView imageViewToolbar;
+    private ImageView imageViewToolbar, ivUser;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private TextView tvUserCurrent;
@@ -56,7 +57,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         btnConsejos = findViewById(R.id.btn_consejos);
         imageViewToolbar = findViewById(R.id.menu_hamburguesa);
         tvUserCurrent = findViewById(R.id.user_current);
-
+        ivUser = findViewById(R.id.icono_usuario_pantalla_principal);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.menu_navigation);
 
@@ -80,6 +81,13 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public void onClick(View v) {
                 startActivity(initIntents().get(2));
+            }
+        });
+        ivUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Main.this, MyProfile.class);
+                startActivity(intent);
             }
         });
 
@@ -156,5 +164,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
 
         return false;
     }
+
 
 }

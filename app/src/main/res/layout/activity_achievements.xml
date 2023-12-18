@@ -9,7 +9,7 @@
     tools:context=".ui.Achievements">
 
     <Button
-        android:id="@+id/btn_regresar"
+        android:id="@+id/btn_regresar_logros"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"

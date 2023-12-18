@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.hyancy.eco_recicla_reto_1_grupo_7.R;
 
 public class ChallengeAchievements extends AppCompatActivity {
-    private Button btnLogros, btnDesafios;
+    private Button btnLogros, btnDesafios, btnRegresarLd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,7 @@ public class ChallengeAchievements extends AppCompatActivity {
         setContentView(R.layout.activity_challenge_achievements);
         btnLogros = findViewById(R.id.btn_logros);
         btnDesafios = findViewById(R.id.btn_desafios);
+        btnRegresarLd = findViewById(R.id.btn_regresar_dl);
 
         btnDesafios.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +32,12 @@ public class ChallengeAchievements extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ChallengeAchievements.this, Achievements.class);
                 startActivity(intent);
+            }
+        });
+        btnRegresarLd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }

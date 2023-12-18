@@ -6,54 +6,54 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_pantalla_home"
     android:orientation="vertical"
+    android:paddingHorizontal="20dp"
     tools:context=".ui.ChallengeAchievements">
+
     <Button
-        android:id="@+id/btn_regresar"
+        android:id="@+id/btn_regresar_dl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Regresar"
-        android:backgroundTint="@color/beige_app"
-        android:textSize="17sp"
-        android:drawableLeft="@drawable/ic_regresar"
-        android:textColor="@color/green_app"
         android:layout_gravity="start"
-        android:padding="15dp"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
-        />
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/beige_app"
+        android:drawableLeft="@drawable/ic_regresar"
+        android:padding="15dp"
+        android:text="Regresar"
+        android:textColor="@color/green_app"
+        android:textSize="17sp" />
+
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_logo_app"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="60dp"
+        android:src="@drawable/ic_logo_app" />
 
-                <Button
-                    android:id="@+id/btn_desafios"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="DESAFíOS"
-                    android:textSize="40sp"
-                    android:backgroundTint="@color/beige_app"
-                    android:textColor="@color/green_app"
-                    android:drawableLeft="@drawable/objetivo"
-                    android:drawableTint="@color/green_app"
-                    android:layout_marginTop="50dp"
-                    android:layout_gravity="center"
-                    />
-                <Button
-                    android:id="@+id/btn_logros"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="LOGROS"
-                    android:textSize="43sp"
-                    android:backgroundTint="@color/beige_app"
-                    android:textColor="@color/green_app"
-                    android:drawableLeft="@drawable/logros"
-                    android:drawableTint="@color/green_app"
-                    android:layout_marginTop="60dp"
-                    android:layout_gravity="center"
-                    />
+    <Button
+        android:id="@+id/btn_desafios"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/beige_app"
+        android:drawableLeft="@drawable/objetivo"
+        android:drawableTint="@color/green_app"
+        android:text="DESAFíOS"
+        android:textColor="@color/green_app"
+        android:textSize="40sp" />
 
+    <Button
+        android:id="@+id/btn_logros"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/beige_app"
+        android:drawableLeft="@drawable/logros"
+        android:drawableTint="@color/green_app"
+        android:text="LOGROS"
+        android:textColor="@color/green_app"
+        android:textSize="43sp" />
 
-        </LinearLayout>
+</LinearLayout>
