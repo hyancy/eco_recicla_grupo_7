@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@color/green_app">
     <Button
-        android:id="@+id/btn_regresar"
+        android:id="@+id/btn_regresar_logros"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Regresar"

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class Principal extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Button btnCategorias, btnEstadistica, btnConsejos;
-    private ImageView imageViewToolbar;
+    private ImageView imageViewToolbar, ivUser;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private TextView tvUserCurrent;
@@ -57,7 +57,7 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
         btnConsejos = findViewById(R.id.btn_consejos);
         imageViewToolbar = findViewById(R.id.menu_hamburguesa);
         tvUserCurrent = findViewById(R.id.user_current);
-
+        ivUser = findViewById(R.id.icono_usuario_pantalla_principal);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.menu_navigation);
 
@@ -81,6 +81,13 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
             @Override
             public void onClick(View v) {
                 startActivity(initIntents().get(2));
+            }
+        });
+        ivUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Principal.this, MiPerfil.class);
+                startActivity(intent);
             }
         });
 
@@ -157,5 +164,6 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
 
         return false;
     }
+
 
 }

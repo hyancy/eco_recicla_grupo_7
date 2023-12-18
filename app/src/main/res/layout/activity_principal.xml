@@ -104,13 +104,14 @@
         android:id="@+id/icono_usuario_pantalla_principal"
         android:layout_width="84dp"
         android:layout_height="84dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="28dp"
+        android:clickable="true"
         android:src="@drawable/ic_usuario_pantalla_principal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_consejos"
-        app:tint="@color/beige_app"
-        android:clickable="true"/>
+        app:tint="@color/beige_app" />
 
     <TextView
         android:id="@+id/user_current"

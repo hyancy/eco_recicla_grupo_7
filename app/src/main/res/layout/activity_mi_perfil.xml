@@ -1,9 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_pantalla_consejos"
     tools:context=".ui.MiPerfil">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <ImageButton
+        android:id="@+id/btn_regresar_perfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_regresar"
+        android:backgroundTint="@color/white"
+        android:layout_marginStart="10dp"
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_usuario_pantalla_principal"
+        app:tint="@color/green_app"
+        android:backgroundTint="@color/white"
+        android:layout_marginStart="80dp"
+       />
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_logo_app"
+           android:scaleType="fitCenter"
+            android:backgroundTint="@color/white"
+            android:layout_marginStart="40dp"
+            />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_nombre_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ECO RECICLA"
+        android:layout_gravity="center"
+        android:textSize="25sp"
+        />
+    <TextView
+        android:id="@+id/tv_label_email_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Correo:"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/beige_app"
+        />
+    <TextView
+        android:id="@+id/tv_email_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ecorecicla@1.com"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="25sp"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/beige_app"
+        />
+    <TextView
+        android:id="@+id/tv_label_age_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edad:"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/beige_app"
+        />
+    <TextView
+        android:id="@+id/tv_age_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="19"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="25sp"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/beige_app"
+        />
+    <TextView
+        android:id="@+id/tv_label_phone_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Teléfono:"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/beige_app"
+        />
+    <TextView
+        android:id="@+id/tv_phone_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3123123123"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="25sp"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/beige_app"
+        />
+    <TextView
+        android:id="@+id/tv_label_puntos_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Puntos Totales:"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/beige_app"
+        />
+    <TextView
+        android:id="@+id/tv_puntos_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1000"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="25sp"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/beige_app"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="70dp">
+        <Button
+            android:id="@+id/btn_user_desafios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MIS DESAFIOS"
+            android:backgroundTint="@color/beige_app"
+            android:textColor="@color/green_app"
+            android:drawableLeft="@drawable/desafios_small"
+            android:drawableTint="@color/green_app"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            />
+        <Button
+            android:id="@+id/btn_user_logros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MIS LOGROS"
+            android:backgroundTint="@color/beige_app"
+            android:textColor="@color/green_app"
+            android:drawableLeft="@drawable/logros_small"
+            android:drawableTint="@color/green_app"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

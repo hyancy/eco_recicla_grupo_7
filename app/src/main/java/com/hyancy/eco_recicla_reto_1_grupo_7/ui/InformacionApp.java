@@ -20,8 +20,7 @@ public class InformacionApp extends AppCompatActivity {
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InformacionApp.this, Index.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
 
